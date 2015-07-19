@@ -148,11 +148,7 @@ public:
 
     Tablenode* location; // where this ant is
 
-    string joiner; // the ant class that joined with, initially set to nobody
-
-    bool joined; // indicator to whether the ant has joined with another ant
-
-    int attackpower;
+    int energy;
 
     bool dead;
 
@@ -160,7 +156,7 @@ public:
 
     /**SET THE ANTS VARIABLES**/
 
-    void set_up(string color_, string hierarchy_, int attackpower_)
+    void set_up(string color_, string hierarchy_, int energy_)
 
     {
 
@@ -168,15 +164,11 @@ public:
 
         hierarchy = hierarchy_;
 
-        attackpower = attackpower_;
+        energy = energy_;
 
         dead = false;
 
-        joined = false;
-
         location = NULL;
-
-        joiner = "";
 
     };
 
@@ -186,11 +178,7 @@ public:
 
     string gethierarchy() {return hierarchy;}
 
-    bool getjoined() {return joined;}
-
-    string getjoiner() {return joiner;}
-
-    int getattackpower() {return attackpower;}
+    int energy() {return energy;}
 
     Tablenode * getlocation() {return location;}
 
