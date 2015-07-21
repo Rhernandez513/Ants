@@ -1,7 +1,7 @@
 #include "TABLENODE.H"
 using namespace Ants;
 
-TableNode::TableNode() //constructor
+TableNode::TableNode()  // constructor
 {
   North = NULL;
   East = NULL;
@@ -10,7 +10,6 @@ TableNode::TableNode() //constructor
   filled = false;
 };
 
-bool TableNode::IsEmpty() { // Aren't these two redundant?
+bool TableNode::IsEmpty() {  // Aren't these two redundant?
   return filled ? false : true;
 }
-

@@ -1,38 +1,42 @@
 #ifndef ANT_H
 #define ANT_H
 
-namespace Ants
-{
-  class Ant{
-    private:
+namespace Ants {
+class Ant {
+ private:
+  Tablenode *location;  // where this ant is
+  int _attackPower;
 
-      Tablenode* location; // where this ant is
-      int _attackPower;
+  std::string _color;      // can be red and blue
+  std::string _hierarchy;  // different classes, with different attacks, Queen =
+                           // 0, worker = 1, soldier = 2
 
-      std::string _color; //can be red and blue
-      std::string _hierarchy; // different classes, with different attacks, Queen = 0, worker = 1, soldier = 2
-      std::string _joiner; // the ant class that joined with, initially set to nobody
-      
-      bool _isDead;
-      bool _joined; // indicator to whether the ant has joined with another ant
+  bool _isDead;
+  bool _joined;  // indicator to whether the ant has joined with another ant
 
-    public:
-      Tablenode * Getlocation();
+  // the assigned energy that certain ants will have.
+  // The higher the hierarchy of ants, the bigger
+  int energy;
+  // true/false on whether or not an ant is dead or not
+  bool dead;
 
-      Ant(std::string _color, std::string _hierarchy, int _attackpower) {};
-      ~Ant() {};
+ public:
+  Tablenode *Getlocation();
 
-      /**VARIOUS GETTERS AND SETTERS I THOUGHT USEFUL**/
-      std::string GetColor();
-      std::string GetHierarchy();
-      std::string GetJoiner();
-      int GetAttackPower();
-      bool GetJoined();
+  Ant(std::string _color, std::string _hierarchy, int _attackpower){};
+  ~Ant(){};
 
-      bool isDead();
-      void SetLocation;
-      void Turn ();
-  };
+  /**VARIOUS GETTERS AND SETTERS I THOUGHT USEFUL**/
+  std::string GetColor();
+  std::string GetHierarchy();
+  std::string GetJoiner();
+  int GetAttackPower();
+
+  bool IsDead();
+  void SetLocation;
+  void Turn();
+  void Attack(Ant *Enemy);
+  int GetEnergy();
+};
 }
-#endif //ANT_H
-
+#endif  // ANT_H
