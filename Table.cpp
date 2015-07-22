@@ -1,7 +1,13 @@
 #include "TABLE.H"
 
 using Namespace Ants;
-int Table::Createtable(int length)  // input a dimension to create the table
+Table::Table(int length) {
+  CreateTable(length);
+};
+
+Table::~Table() { };
+
+int Table::CreateTable(int length)  // input a dimension to create the table
 {
   /** 4 POINTERS TO TRACK WHICH NODES TO CONNECT **/
   Tablenode *topRight = Root;
@@ -32,13 +38,13 @@ int Table::Createtable(int length)  // input a dimension to create the table
 
     topLeft = topRight;
     bottomLeft = bottomRight;
-  }  // End for
+  } // End for
   // Tracking the square downwards
   for (int n = 0; n < length; n++) {
     // Must make sure that the topLeft goes all the way back to the left
     for (int i = 0; i < length; i++) {
       topLeft = topLeft->West;
-    }                          // End For
+    }
     topLeft = topLeft->South;  // bring it down once
     topRight = topLeft->East;
     bottomLeft = new Tablenode();
@@ -58,6 +64,7 @@ int Table::Createtable(int length)  // input a dimension to create the table
       topLeft = topLeft->East;
       topRight = topRight->East;
       bottomLeft = bottomRight;
-    }  // End Inner For
-  }    // End For
-}  // End Func
+    } // End Inner For
+  } // End For
+}
+

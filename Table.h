@@ -3,11 +3,12 @@
 
 namespace Ants {
 class Table {
+ private:
+  void CreateTable(int length);
  public:
   TableNode *Root;
-  Table() { Root = NULL; }
-  ~Table();
-  int CreateTable(int length);
+  Table() { };
+  ~Table() { };
 };
 }  // End Namespace
 #endif  // TABLE_H
