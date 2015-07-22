@@ -3,16 +3,17 @@
 
 namespace Ants {
 class TableNode {
+ private:
+   bool isCurrentlyEmpty;
  public:
-  TableNode() {}  // constructor
-
+  TableNode() {}
+  ~TableNode() {}
   /**4 DIRECTIONS**/
   TableNode *North;
   TableNode *East;
   TableNode *South;
   TableNode *West;
-  bool filled;     // Aren't these two redundant?
-  bool IsEmpty();  // Aren't these two redundant?
+  bool IsEmpty();
 };
 }
 #endif  // TABLENODE.H

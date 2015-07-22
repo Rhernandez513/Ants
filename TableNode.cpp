@@ -3,13 +3,17 @@ using namespace Ants;
 
 TableNode::TableNode()  // constructor
 {
-  North = NULL;
-  East = NULL;
-  South = NULL;
-  West = NULL;
-  filled = false;
+  isCurrentlyEmpty = true; 
 };
 
-bool TableNode::IsEmpty() {  // Aren't these two redundant?
-  return filled ? false : true;
+TableNode::~TableNode()  // constructor
+{
+  North = nullptr;
+  East = nullptr;
+  South = nullptr;
+  West = nullptr;
+};
+
+bool TableNode::IsEmpty() {
+  return isCurrentlyEmpty;
 }
