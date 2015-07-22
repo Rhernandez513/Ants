@@ -4,13 +4,16 @@
 
 using namespace Ants;
 
-Ant::Ant(std::string color_, std::string hierarchy_, int attackpower_) {
-  color = color_;
-  hierarchy = hierarchy_;
-  attackpower = attackpower_;
+Ant::Ant() { };
+
+Ant::Ant(std::string color, std::string hierarchy, int attackpower)
+{
+  this->_color = color;
+  this->_hierarchy = hierarchy;
+  this->_attackPower = attackpower;
   dead = false;
   joined = false;
-  location = NULL;
+  location = nullptr;
   joiner = "";
 };
 
@@ -18,40 +21,42 @@ Ant::~Ant(){};
 
 /**VARIOUS GETTERS AND SETTERS I THOUGHT USEFUL**/
 Ant::TableNode *GetLocation() { return location; }
-std::string Ant::GetColor() { return color; }
-std::string Ant::GetHierarchy() { return hierarchy; }
+std::string Ant::GetColor() { return _color; }
+std::string Ant::GetHierarchy() { return _hierarchy; }
 std::string Ant::GetJoiner() { return joiner; }
 bool Ant::GetJoined() { return joined; }
-int Ant::GetAttackPower() { return attackpower; }
+int Ant::GetAttackPower() { return _attackpower; }
 
-void Ant::IsDead() {
-  dead = true;
-  return;
+void Ant::Die() {
+  this->dead = true;
+  std::cout << "A" << this->GetColor() << " " << this->GetHierarchy
+            << " has died honorably trying to fight its foe. . . .\n";
+}
+
+bool Ant::IsDead() {
+  return this->dead;
 }
 
 void Ant::Turn();
 
-void Ant::SetLocation(Tablenode *new_location) { location = new_location; }
+Tablenode* Ant::SetLocation(Tablenode *new_location) {
+  return new_location->IsEmpty() ? new_location : this->GetLocation();
+}
 
-void Ant::Attack(Ant Enemy) {
+void Ant::Attack(Ant *Enemy) {
   // if your ant wins
-  if (energy > Enemy.GetEnergy()) {
-    Enemy.isdead();
-    std::cout << "A" << Enemy.GetColor() << " " << Enemy.GetHierarchy()
-              << " has died in a battle! \n";
-  } else if (energy < Enemy.GetEnergy()) {
+  if (this->GetEnergy() > Enemy->GetEnergy()) {
+    Enemy->Die();
+  } else if (this->GetEnergy() < Enemy->GetEnergy()) {
     // if the Enemy ant wins
-    dead = true;
-    std::cout << "A" << color << " " << hierarchy
-         << " has died honorably trying to fight its foe. . . .\n";
+    Enemy->Die();
   } else {
     // they have equal attack power
-    std::cout << "The two ants are equal in power! ";
+    std::cout << "The two ants are equal in power!\n";
     srand(time(NULL));
     int temp = rand() % 8;
     if (temp % 2 == 0) {
-      Enemy.isdead();
-      std::cout << "And the " << Enemy.GetColor() << " died!\n";
+      Enemy->Die();
     }
   }
 }

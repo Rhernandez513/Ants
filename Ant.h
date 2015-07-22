@@ -1,5 +1,6 @@
 #ifndef ANT_H
 #define ANT_H
+#include <string>
 
 namespace Ants {
 class Ant {
@@ -23,8 +24,8 @@ class Ant {
  public:
   Tablenode *Getlocation();
 
-  Ant(std::string _color, std::string _hierarchy, int _attackpower){};
-  ~Ant(){};
+  Ant(std::string color, std::string hierarchy, int attackpower) { };
+  ~Ant(){ };
 
   /**VARIOUS GETTERS AND SETTERS I THOUGHT USEFUL**/
   std::string GetColor();
@@ -32,6 +33,7 @@ class Ant {
   std::string GetJoiner();
   int GetAttackPower();
 
+  void Die();
   bool IsDead();
   void SetLocation;
   void Turn();
