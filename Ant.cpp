@@ -21,11 +21,24 @@ Ant::~Ant(){};
 
 /**VARIOUS GETTERS AND SETTERS I THOUGHT USEFUL**/
 Ant::TableNode *GetLocation() { return location; }
-std::string Ant::GetColor() { return _color; }
-std::string Ant::GetHierarchy() { return _hierarchy; }
 std::string Ant::GetJoiner() { return joiner; }
-bool Ant::GetJoined() { return joined; }
 int Ant::GetAttackPower() { return _attackpower; }
+
+Color Ant::GetColor() const { return _color; }
+
+
+void Promote() {
+  this->Hierarchy++;
+}
+
+Hierarchy Ant::GetHierarchy() const { return _hierarchy; }
+void Ant::SetHierarchy(Hierarchy hierarchy) {
+  if (this->_hierarchy > hierarchy) {
+    this->Promote();
+  } else if (this->_hierarchy < hierarchy) {
+    this->Demote();
+  }
+}
 
 void Ant::Die() {
   this->dead = true;
@@ -60,4 +73,42 @@ void Ant::Attack(Ant *Enemy) {
     }
   }
 }
+// enumeration types (both scoped and unscoped) can have overloaded operators
+std::ostream& operator<<(std::ostream& os, color c)
+{
+  switch(c) {
+    case red    : os << "red";    break;
+    case green  : os << "green";  break;
+    default : os.setstate(std::ios_base::failbit);
+  }
+  return os;
+}
 
+Color GetColor() const;
+void SetColor(Color color);
+
+Direction GetDirection() const;
+bool SetDirection(Direction direction);
+
+
+int GetAttackPower() const;
+void SetAttackPower(int attackPower);
+
+bool SetLocation(int x, int y) {
+  
+}
+
+Position GetLocation() const {
+  if (this->Position) {
+    Position pos = this->Position;
+    return pos;
+  }
+}
+
+
+void Die();
+bool IsDead() const;
+void Turn();
+void Attack(Ant *Enemy);
+int GetEnergy() const;
+void SetEnergy(int energy);

@@ -8,37 +8,49 @@ class Ant {
   Tablenode *location;  // where this ant is
   int _attackPower;
 
-  std::string _color;      // can be red and blue
-  std::string _hierarchy;  // different classes, with different attacks, Queen =
-                           // 0, worker = 1, soldier = 2
-
+  const Color _color;
+  const enum Color { red, blue };
+  enum Hierarchy { worker = 1, soldier, knight, Queen };
+  enum Direction { LEFT, RIGHT, UP, DOWN };
+  struct Position { int x; int y; }
   bool _isDead;
-  bool _joined;  // indicator to whether the ant has joined with another ant
 
   // the assigned energy that certain ants will have.
   // The higher the hierarchy of ants, the bigger
-  int energy;
-  // true/false on whether or not an ant is dead or not
+  int _energy;
   bool dead;
 
  public:
-  Tablenode *Getlocation();
+  Ant(Color, Hierarchy, int AttackPower, int Energy);
+  ~Ant();
 
-  Ant(std::string color, std::string hierarchy, int attackpower) { };
-  ~Ant(){ };
+  void Promote();
+  void Demote();
 
-  /**VARIOUS GETTERS AND SETTERS I THOUGHT USEFUL**/
-  std::string GetColor();
-  std::string GetHierarchy();
-  std::string GetJoiner();
-  int GetAttackPower();
+  Color GetColor() const;
+  void SetColor(Color color);
+
+  Direction GetDirection() const;
+  bool SetDirection(Direction direction);
+
+  Hierarchy GetHierarchy() const;
+  void SetHierarchy(Hierarchy hierarchy);
+
+  int GetAttackPower() const;
+  void SetAttackPower(int attackPower);
+
+  bool SetLocation(int x, int y);
+  Position GetLocation() const;
+
+  int GetEnergy() const;
+  void SetEnergy(int energy);
 
   void Die();
-  bool IsDead();
-  void SetLocation;
+  bool IsDead() const;
   void Turn();
   void Attack(Ant *Enemy);
-  int GetEnergy();
+
+  std::ostream& operator<<(std::ostream& os, color c)
 };
 }
 #endif  // ANT_H
