@@ -8,12 +8,12 @@ class Ant {
   Tablenode *location;  // where this ant is
   int _attackPower;
 
-  const Color _color;
   const enum Color { red, blue };
   enum Hierarchy { worker = 1, soldier, knight, Queen };
   enum Direction { LEFT, RIGHT, UP, DOWN };
-  struct Position { int x; int y; }
   bool _isDead;
+  
+  struct Position { int x; int y; }
 
   // the assigned energy that certain ants will have.
   // The higher the hierarchy of ants, the bigger
@@ -21,14 +21,13 @@ class Ant {
   bool dead;
 
  public:
-  Ant(Color, Hierarchy, int AttackPower, int Energy);
+  Ant(Color color, Hierarchy hierarchy, int AttackPower);
   ~Ant();
 
   void Promote();
   void Demote();
 
   Color GetColor() const;
-  void SetColor(Color color);
 
   Direction GetDirection() const;
   bool SetDirection(Direction direction);
@@ -50,7 +49,8 @@ class Ant {
   void Turn();
   void Attack(Ant *Enemy);
 
-  std::ostream& operator<<(std::ostream& os, color c)
+  std::ostream& operator<<(std::ostream& os);
 };
 }
 #endif  // ANT_H
+
