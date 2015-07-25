@@ -1,22 +1,29 @@
-#ifndef FIELD_H
-#define FIELD_H
+#ifndef GAMEFIELD_H
+#define GAMEFIELD_H
+#include "GameBlock.h"
 
 namespace Ants {
-public static class GameField {
-  private
-    int _length;
-    int _width;
-    enum Type { EMPTY, ANT };
+static class GameField {
+  private:
+    int _length; // x co-ordinates
+    int _width;  // y co-ordinates
+
+    // Extensible Storage
+    struct GameBlock {
+      bool isFilled;
+    } GameBlock _gameField[][];
+
   public:
-    Field(int length, width);
+    Field(int length, int width);
     ~Field();
 
-    Type GetBlock(Position pos);
-    bool SetBlock(Type blockType, int x, int y);
+    // Sets the Specified Position to filled if it is empty
+    bool SetBlock(int x, int y);
+    bool GetBlock(int x, int y);
 
     int GetLength();
     int GetWidth();
 };
 }
-#endif // FIELD_H
+#endif // GAMEFIELD_H
 
