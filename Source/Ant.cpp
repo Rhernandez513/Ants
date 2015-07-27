@@ -1,6 +1,7 @@
-#include "Ant.h"
 #include <iostream>
 #include <time.h>
+#include "../Headers/Ant.h"
+#include "../Headers/GameField.h"
 
 using namespace Ants;
 
