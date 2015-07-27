@@ -1,7 +1,8 @@
-#include "TABLE.H"
+#include "../Headers/Table.h"
 
-using Namespace Ants;
-Table::Table(int length) {
+using namespace Ants;
+
+Ants::Table::Table(int length) {
   CreateTable(length);
 };
 

@@ -1,4 +1,4 @@
-#include "TABLENODE.H"
+#include "../Headers/TableNode.h"
 using namespace Ants;
 
 TableNode::TableNode()  // constructor
