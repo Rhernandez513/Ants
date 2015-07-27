@@ -1,4 +1,4 @@
-#include "GameField.h"
+#include "../Headers/GameField.h"
 
 using namespace Ants;
 
@@ -11,10 +11,10 @@ int GameField::GetWidth() { return this->_width; }
 // Extensible Storage
 struct GameBlock {
   bool isFilled;
-} GameBlock ** _gameField;
+} ** _gameField;
 
 // Constructor
-GameField::Field(int length, int width) {
+GameField::GameField(int length, int width) {
   // Set member vars
   this->_length = length;
   this->_width = width;
@@ -26,14 +26,14 @@ GameField::Field(int length, int width) {
   }
   // Assign initial empty block values
   for (int i = 0; i < _length; ++i) {
-    *_gameField[i].isFilled = false;
-    for (int j = 0; j < _width)
+    _gameField[i]->isFilled = false;
+    for (int j = 0; j < _width; ++j)
       _gameField[i][j].isFilled = false;
   }
 }
 
 // Destructor
-GameField::~Field() {
+GameField::~GameField() {
   // Field is a 2D array of GameBlocks
   for (int i = 0; i < _length; ++i)
     delete [] _gameField[i];
@@ -50,7 +50,7 @@ bool GameField::SetBlock(int x, int y) {
  if (this->_gameField[x][y].isFilled) {
    return false;
  } else {
-   this->_gameField[x][y]isFilled = true;
+  this->_gameField[x][y].isFilled = true;
  }
  return true;
 }

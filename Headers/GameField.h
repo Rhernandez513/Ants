@@ -1,9 +1,8 @@
 #ifndef GAMEFIELD_H
 #define GAMEFIELD_H
-#include "GameBlock.h"
 
 namespace Ants {
-static class GameField {
+class GameField {
   private:
     int _length; // x co-ordinates
     int _width;  // y co-ordinates
@@ -11,11 +10,11 @@ static class GameField {
     // Extensible Storage
     struct GameBlock {
       bool isFilled;
-    } GameBlock _gameField[][];
+    } ** _gameField;
 
   public:
-    Field(int length, int width);
-    ~Field();
+    GameField(int length, int width);
+    ~GameField();
 
     // Sets the Specified Position to filled if it is empty
     bool SetBlock(int x, int y);
@@ -26,4 +25,3 @@ static class GameField {
 };
 }
 #endif // GAMEFIELD_H
-
