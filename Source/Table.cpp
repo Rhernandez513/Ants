@@ -1,29 +1,30 @@
 #include "../Headers/Table.h"
+#include "../Headers/TableNode.h"
 
 using namespace Ants;
 
-Ants::Table::Table(int length) {
+Table::Table(int length) {
   CreateTable(length);
 };
 
 Table::~Table() { };
 
-int Table::CreateTable(int length)  // input a dimension to create the table
+void Table::CreateTable(int length)  // input a dimension to create the table
 {
   /** 4 POINTERS TO TRACK WHICH NODES TO CONNECT **/
-  Tablenode *topRight = Root;
-  Tablenode *topLeft = Root;
-  Tablenode *bottomRight = Root;
-  Tablenode *bottomLeft = Root;
+  TableNode *topRight = Root;
+  TableNode *topLeft = Root;
+  TableNode *bottomRight = Root;
+  TableNode *bottomLeft = Root;
 
-  topRight = new Tablenode();
-  bottomLeft = new Tablenode();
+  topRight = new TableNode();
+  bottomLeft = new TableNode();
   Root = topRight;
   topLeft = topRight;
   // Taking square left to right, different for very beginning
   for (int i = 0; i < length; i++) {
-    bottomRight = new Tablenode();
-    topRight = new Tablenode;
+    bottomRight = new TableNode();
+    topRight = new TableNode;
 
     topRight->West = topLeft;
     topLeft->East = topRight;
@@ -48,11 +49,11 @@ int Table::CreateTable(int length)  // input a dimension to create the table
     }
     topLeft = topLeft->South;  // bring it down once
     topRight = topLeft->East;
-    bottomLeft = new Tablenode();
+    bottomLeft = new TableNode();
     // Making the square go left to right, its different than the top because
     // You do not have to relink the topLeft and topRight
     for (int i = 0; i < length; i++) {
-      bottomRight = new Tablenode();
+      bottomRight = new TableNode();
       bottomRight->West = bottomLeft;
       bottomLeft->East = bottomRight;
 
