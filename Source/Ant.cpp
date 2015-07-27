@@ -1,17 +1,16 @@
 #include <iostream>
 #include <time.h>
-#include "../Headers/Ant.h"
-#include "../Headers/GameField.h"
+#include "..\\Headers\\Ant.h"
+#include "..\\Headers\\GameField.h"
 
 using namespace Ants;
 
 Ant::Ant(Color color, Hierarchy hierarchy, int attackpower)
-  : Color(color)
-  , Hierarchy(hierarchy)
+  : _color(color)
+  , _hierarchy(hierarchy)
   , _attackPower(attackpower)
 {
-  dead = false;
-  location = nullptr;
+  _isDead = false;
 };
 
 Ant::~Ant(){};
@@ -27,13 +26,20 @@ void Ant::SetEnergy(int energy) {
 }
 
 /**VARIOUS GETTERS AND SETTERS I THOUGHT USEFUL**/
-Position Ant::GetLocation() const { if (Position) return Position; }
+Position Ant::GetLocation() const { return this->_position;  }
 
-int Ant::GetAttackPower() const { return _attackpower; }
+int Ant::GetAttackPower() const { return this->_attackPower; }
 
-Color Ant::GetColor() const { if (Color) return Color; }
+Color Ant::GetColor() const { return this->_color; }
 
-Hierarchy Ant::GetHierarchy() const { return _hierarchy; }
+Hierarchy Ant::GetHierarchy() const { return this->_hierarchy; }
+
+//////////////////////////////////////////
+// NOT YET DONE
+void SetAttackPower(int attackPower);
+bool SetLocation(int x, int y);
+// NOT YET DONE
+//////////////////////////////////////////
 
 void Ant::SetHierarchy(Hierarchy hierarchy) {
   if (this->_hierarchy > hierarchy) {
@@ -44,30 +50,30 @@ void Ant::SetHierarchy(Hierarchy hierarchy) {
 }
 
 void Ant::Promote() {
-  if (this->Hierarchy != Queen) {
-    ++this->Hierarchy;  // Will not work if Hierarchy is non-continuous
+  if (this->_hierarchy != Queen) {
+    ++this->_hierarchy;  // Will not work if Hierarchy is non-continuous
   }
 }
 
 void Ant::Demote() {
-  if (this->Hierarchy != worker) {
-    --this->Hierarchy;  // Will not work if Hierarchy is non-continuous 
+  if (this->_hierarchy != Worker) {
+    --this->_hierarchy;  // Will not work if Hierarchy is non-continuous 
   }
 }
 void Ant::Die() {
-  this->dead = true;
+  this->_isDead = true;
   std::cout << "A" << this
             << "has died honorably trying to fight its foe. . . .\n";
 }
 
 bool Ant::IsDead() const {
-  return this->dead;
+  return this->_isDead;
 }
 
-void Ant::Turn();
+void Ant::Turn() {  }
 
-bool Ant::SetLocation(int x, int y) {
-  if (GameField->SetBlock(x, y)) return true;
+bool Ant::SetLocation(Position pos) {
+  if (GameField->SetBlock(pos.x, pos.y)) return true;
   return false;
 }
 
@@ -91,8 +97,8 @@ void Ant::Attack(Ant *Enemy) {
 
 std::ostream& Ant::operator<<(std::ostream& os)
 {
-  if (this->Hierarchy && this->Color) {
-    os << " " << Hierarchy << " " << Color << " " << "Ant ";
+  if (this->_hierarchy && this->_color) {
+    os << " " << this->_hierarchy << " " << this->_color << " " << "Ant ";
   } else {
     os.setstate(std::ios_base::failbit);
   }
@@ -100,21 +106,49 @@ std::ostream& Ant::operator<<(std::ostream& os)
 }
 
 
-Direction GetDirection() const;
-bool SetDirection(Direction direction);
-
-
-int GetAttackPower() const;
-void SetAttackPower(int attackPower);
-
-bool SetLocation(int x, int y) {
-  
+Direction Ant::GetDirection() const {
+  return this->_direction;
 }
 
-Position GetLocation() const {
-  if (this->Position) {
-    Position pos = this->Position;
-    return pos;
+void Ant::SetDirection(Direction direction) {
+  this->_direction = direction;
+}
+
+
+// Helper Function for Demote()
+// DO NOT CALL DIRECTLY
+Hierarchy & Ants::operator--(Hierarchy & hierarchy) {
+  switch (hierarchy) {
+    case(Queen):
+      hierarchy = Knight;
+      break;
+    case(Knight):
+      hierarchy = Worker;
+      break;
+    case(Soldier):
+      hierarchy = Worker;
+      break;
+    case(Worker):
+      break;
   }
+  return hierarchy;
 }
 
+// Helper Function for Promote()
+// DO NOT CALL DIRECTLY
+Hierarchy & Ants::operator++(Hierarchy & hierarchy) {
+  switch (hierarchy) {
+    case(Queen):
+      break;
+    case(Knight):
+      hierarchy = Queen;
+      break;
+    case(Soldier):
+      hierarchy = Knight;
+      break;
+    case(Worker):
+      hierarchy = Knight;
+      break;
+  }
+  return hierarchy;
+}

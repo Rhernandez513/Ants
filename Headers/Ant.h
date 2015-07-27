@@ -1,28 +1,33 @@
 #ifndef ANT_H
 #define ANT_H
-#include <string>
 
 namespace Ants {
+  enum Hierarchy { Worker = 1, Soldier, Knight, Queen };
+  Hierarchy& operator--(Hierarchy& hierarchy);
+  Hierarchy& operator++(Hierarchy& hierarchy);
+  enum Direction { LEFT, RIGHT, UP, DOWN };
+  enum Color { red, blue };
+  struct Position { int x; int y; };
 class Ant {
  private:
-  Tablenode *location;  // where this ant is
-  int _attackPower;
+  //Tablenode *location;  // where this ant is
 
-  const enum Color { red, blue };
-  enum Hierarchy { worker = 1, soldier, knight, Queen };
-  enum Direction { LEFT, RIGHT, UP, DOWN };
-  bool _isDead;
+  const Color _color; // red or blue
+  Hierarchy _hierarchy; // ant's "level"
+  Direction _direction; // direction ant is facing
+  int _attackPower;
+  bool _isDead;  // True if dead
   
-  struct Position { int x; int y; }
+  Position _position; // (x,y)
 
   // the assigned energy that certain ants will have.
-  // The higher the hierarchy of ants, the bigger
+  // The higher the hierarchy of ants, the more energy
   int _energy;
-  bool dead;
 
  public:
   Ant(Color color, Hierarchy hierarchy, int AttackPower);
   ~Ant();
+  
 
   void Promote();
   void Demote();
@@ -30,7 +35,7 @@ class Ant {
   Color GetColor() const;
 
   Direction GetDirection() const;
-  bool SetDirection(Direction direction);
+  void SetDirection(Direction direction);
 
   Hierarchy GetHierarchy() const;
   void SetHierarchy(Hierarchy hierarchy);
@@ -38,7 +43,7 @@ class Ant {
   int GetAttackPower() const;
   void SetAttackPower(int attackPower);
 
-  bool SetLocation(int x, int y);
+  bool SetLocation(Position pos);
   Position GetLocation() const;
 
   int GetEnergy() const;
