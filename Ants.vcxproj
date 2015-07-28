@@ -93,7 +93,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib glut32.lib glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -150,14 +150,12 @@
     <ClCompile Include="Source\Ant.cpp" />
     <ClCompile Include="Source\GameField.cpp" />
     <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\Table.cpp" />
-    <ClCompile Include="Source\TableNode.cpp" />
+    <ClCompile Include="Source\Hierarchy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Ant.h" />
     <ClInclude Include="Headers\GameField.h" />
-    <ClInclude Include="Headers\Table.h" />
-    <ClInclude Include="Headers\TableNode.h" />
+    <ClInclude Include="Headers\Hierarchy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,6 +15,9 @@ struct GameBlock {
 
 // Constructor
 GameField::GameField(int length, int width) {
+  if (length < 0) length *= -1;  // Invert Negative Inputs
+  if (width < 0) width *= -1;   // Invert Negative Inputs
+
   // Set member vars
   this->_length = length;
   this->_width = width;
