@@ -10,7 +10,7 @@ using namespace Ants;
 
 void bufferClear();
 void GameSetup();
-void combat(ant* a,ant* b);
+void Combat(Ant* a,Ant* b);
 GameField field;
 
 int main()
@@ -25,7 +25,8 @@ int main()
             << "Ants. They despise each other. . ." << std::endl;
 	std::cout << "Each side has a hierarchy of ant ranks: Worker ant, Soldier " 
             << "ant, and Knight ant (worker ant being the weakest and Knight " 
-            << "ant being the strongest)" << std::endl;
+            << "ant being the strongest. )" << std::endl;
+	std::cout << "Every Ant starts out as a worker ant and gets promoted as they battle, except Queen ants.\n";
 	std::cout << "Stronger ants can easily defeat weaker ants, but they will " 
             << "surely be damaged in battle" << std::endl;
 	std::cout << "If there are two evenly matched ants, fate shall decide who "
@@ -83,7 +84,7 @@ void GameSetup()
 		BKnight->Attack(RKnight);
 		BKnight->Attack(RQueen);
 }
-void combat(ant* a,ant* b)
+void combat(Ant* a,Ant* b)
 {
 	srand(time(NULL));
 	int q=rand()%3;
@@ -91,7 +92,7 @@ void combat(ant* a,ant* b)
 	b->Die();
 	else
 	{
-		if(a->->GetAttackPower()<b->GetAttackPower())
+		if(a->GetAttackPower()<b->GetAttackPower())
 		a->Die();
 	
 	else
