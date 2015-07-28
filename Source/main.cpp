@@ -10,6 +10,7 @@ using namespace Ants;
 
 void bufferClear();
 void GameSetup();
+GameField field;
 
 int main()
 {
@@ -57,82 +58,31 @@ GameField* CreateField() {
   return nullptr;
 }
 
-void GameSetup(int numberOfAntsToCreate);
+void::LocationFinder()
 {
-	int area = GameField * GameField;
-	int area1 = (GameField * GameField) - GameField;
-	Ant turns[area];
-	Ant turns1[area1];
-	if (GameField % 2 == 1) // for odd dimensions. 
-	{
-		string red = "red", blue = "blue", Worker = "Worker", soldier = "soldier", Knight = "Knight", Queen = "Queen";
+
+}
+
+void GameSetup()
+{
 		Ant * RQueen = new Ant(Color::red, Hierarchy::Queen, 0);
 		Ant * BQueen = new Ant(Color::blue, Hierarchy::Queen, 0);
-    RQueen->Attack(BQueen);
-		BQueen.Ant(blue, Queen, 0);
-		turns[0]=BQueen;
-		turns1[1]= RQueen;
-		for (int i = 2; i < area1; i++)
-		{
-			if (i < area1 / 2)
-			{
-				Ant Rsoldier; Rsoldier.Ant(red, Soldier, 2);
-				Ant Bsoldier; Bsoldier.Ant(blue, Soldier, 2);
-				turns[i] = Bsoldier;
-				i++;
-				turns1[i] = Rsoldier;
-			}
-			else if
-			{
-				Ant RWorker; RWorker.Ant(red, Worker, 1);
-				Ant BWorkere; BWorker.Ant(blue, Worker, 1);
-				turns[i] = BWorker;
-				i++;
-				turns1[i] = RWorker;
-			}
-			else
-			{
-				Ant RKnight; RKnight.Ant(red, Knight, 3);
-				And BKnight; BKnight.Ant(red, Knight, 3);
-				turns[i] = BKnight;
-				i++;
-				turns1[i] = RKnight;
-			}
-		}
-	}
-	else // for even dimensions
-	{
-		string red = "red", blue = "blue", Worker = "Worker", soldier = "soldier", Knight = "Knight", Queen = "Queen";
-		Ant RQueen;
-		RQueen.Ant(red, Queen, 0);
-		Ant BQueen;
-		BQueen.Ant(blue, Queen, 0);
-		turns[0] = BQueen;
-		turns1[1] = RQueen;
-		for (int i = 2; i < area; i++)
-		{
-			if (i <= area/2)
-			{
-				Ant Rsoldier; Rsoldier.Ant(red, Soldier, 2);
-				Ant Bsoldier; Bsoldier.Ant(blue, Soldier, 2);
-				turns[i] = Bsoldier;
-				i++;
-				turns1[i] = Rsoldier;
-			}
-			else if
-			{
-				Ant RWorker; RWorker.Ant(red, Worker, 1);
-				Ant BWorker; BWorker.Ant(blue, Worker, 1);
-				turns[i] = BWorker;
-				i++;
-				turns1[i] = RWorker;
-			}
-			else
-			{
-				Ant RKnight; RKnight.Ant(red, Knight, 3);
-				And BKnight; BKnight.Ant(red, Knight, 3);
-				turns[i] = BKnight;
-				i++;
-				turns1[i] = RKnight
-	}
+		Ant * RWorker = new Ant(Color::red, Hierarchy::Worker, 1);
+		Ant * BWorker = new Ant(Color::blue, Hierarchy::Worker, 1);
+		Ant * RSoldier = new Ant(Color::red, Hierarchy::Soldier, 2);
+		Ant * BSoldier = new Ant(Color::red, Hierarchy::Soldier, 2);
+		Ant * RKnight = new Ant(Color::red, Hierarchy::Knight, 3);
+		Ant * BKnight = new Ant(Color::blue, Hierarchy::Knight, 3);
+		RWorker->Attack(BWorker);
+		RWorker->Attack(BQueen);
+		BWorker->Attack(RWorker);
+		BWorker->Attack(RQueen);
+		RSoldier->Attack(BSoldier);
+		RSoldier->Attack(BQueen);
+		BSoldier->Attack(RSoldier);
+		BSoldier->Attack(RQueen);
+		RKnight->Attack(BKnight);
+		RKnight->Attack(BQueen);
+		BKnight->Attack(RKnight);
+		BKnight->Attack(RQueen);
 }
