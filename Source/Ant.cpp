@@ -6,6 +6,20 @@
 using namespace Ants;
 
 // Spawn an Ant!! But you first must construct more pylons!
+Ant::Ant(Color color,Heirarchy heirarchy)
+{
+  this->_color=color;
+  this->_heirarchy=heirarchy;
+  if(heirarchy==Heirarchy::Queen)
+  _attackPower=0;
+  if(heirarchy==Heirarchy::Worker)
+  _attackPower=1;
+  if(heirarchy==Heirarchy::Soldier)
+  _attackPower=2;
+  if(heirarchy==Heirarchy::Knight)
+  _attackPower=3;
+  _isdead=false;
+}
 Ant::Ant(Color color, Hierarchy hierarchy, int attackpower)
   : _color(color)
   , _hierarchy(hierarchy)
