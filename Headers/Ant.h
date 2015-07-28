@@ -3,8 +3,14 @@
 
 namespace Ants {
   enum Hierarchy { Worker = 1, Soldier, Knight, Queen };
+
+  // Helper Function for Demote()
+  // DO NOT CALL DIRECTLY
   Hierarchy& operator--(Hierarchy& hierarchy);
+  // Helper Function for Promote()
+  // DO NOT CALL DIRECTLY
   Hierarchy& operator++(Hierarchy& hierarchy);
+
   enum Direction { LEFT, RIGHT, UP, DOWN };
   enum Color { red, blue };
   struct Position { int x; int y; };
