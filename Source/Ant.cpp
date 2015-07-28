@@ -15,8 +15,10 @@ Ant::Ant(Color color, Hierarchy hierarchy, int attackpower)
 
 Ant::~Ant(){};
 
+// Return's Ant's Energy Value
 int Ant::GetEnergy() const { return _energy; }
 
+// Set Ant's Energy Value
 void Ant::SetEnergy(int energy) {
   if (energy >= 0) {
     this->_energy = energy;
@@ -25,22 +27,28 @@ void Ant::SetEnergy(int energy) {
   }
 }
 
-/**VARIOUS GETTERS AND SETTERS I THOUGHT USEFUL**/
+// Return's Ant's Location
 Position Ant::GetLocation() const { return this->_position;  }
 
+// Return's Ant's Attack Power
 int Ant::GetAttackPower() const { return this->_attackPower; }
 
+// Return's Ant's  Color Value
 Color Ant::GetColor() const { return this->_color; }
 
+// Return's Ant's Ranking in the Hierarchy
 Hierarchy Ant::GetHierarchy() const { return this->_hierarchy; }
 
-//////////////////////////////////////////
-// NOT YET DONE
-void SetAttackPower(int attackPower);
-bool SetLocation(int x, int y);
-// NOT YET DONE
-//////////////////////////////////////////
+// Set Ant's Attack Power
+void Ant::SetAttackPower(int attackPower) {
+  if (attackPower > 0) {
+    this->_attackPower = attackPower;
+  } else {
+    this->_attackPower = 0;
+  }
+}
 
+// Set Ant's Ranking in the Hierarchy
 void Ant::SetHierarchy(Hierarchy hierarchy) {
   if (this->_hierarchy > hierarchy) {
     this->Promote();
@@ -49,31 +57,40 @@ void Ant::SetHierarchy(Hierarchy hierarchy) {
   }
 }
 
+// Promote's Ant to next Highest Rank
 void Ant::Promote() {
   if (this->_hierarchy != Queen) {
     ++this->_hierarchy;  // Will not work if Hierarchy is non-continuous
   }
 }
 
+// Demote's Ant to next Lowest Rank
 void Ant::Demote() {
   if (this->_hierarchy != Worker) {
     --this->_hierarchy;  // Will not work if Hierarchy is non-continuous 
   }
 }
+
+// This Kills the Ant...
 void Ant::Die() {
   this->_isDead = true;
   std::cout << "A" << this
             << "has died honorably trying to fight its foe. . . .\n";
 }
 
+// Returns true if the Ant is Dead
+// False otherwise
 bool Ant::IsDead() const {
   return this->_isDead;
 }
 
 void Ant::Turn() {  }
 
-bool Ant::SetLocation(Position pos) {
-  if (GameField->SetBlock(pos.x, pos.y)) return true;
+// Manually Set's the Ant's Location to the given Position on the given
+// Field if that Location is availible
+// Returns true if Ant was set to the new location, false otherwise
+bool Ant::SetLocation(GameField &field, Position pos) {
+  if (field.SetBlock(pos.x, pos.y)) return true;
   return false;
 }
 

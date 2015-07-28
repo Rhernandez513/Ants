@@ -2,6 +2,8 @@
 #define ANT_H
 
 namespace Ants {
+  class GameField;
+
   enum Hierarchy { Worker = 1, Soldier, Knight, Queen };
 
   // Helper Function for Demote()
@@ -49,7 +51,7 @@ class Ant {
   int GetAttackPower() const;
   void SetAttackPower(int attackPower);
 
-  bool SetLocation(Position pos);
+  bool SetLocation(GameField &field, Position pos);
   Position GetLocation() const;
 
   int GetEnergy() const;
@@ -64,4 +66,3 @@ class Ant {
 };
 }
 #endif  // ANT_H
-
