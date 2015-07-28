@@ -14,15 +14,15 @@ void GameSetup();
 
 int main()
 {
-	cout << "Welcome to the battlefield!" << endl;
-	cout << " Here, on this kitchen table, the most epic battle between Ants will take place!" << endl;
-	cout << "On one side, there are the BLUE ants. The other side has RED Ants. They despise each other. . ." << endl;
-	cout << "Each side has a hierarchy of ant ranks: Worker ant, Soldier ant, and Knight ant (worker ant being the weakest and Knight ant being the strongest)"<<endl;
-	cout << "Stronger ants can easily defeat weaker ants, but they will surely be damaged in battle" << endl;
-	cout << "If there are two evenly matched ants, fate shall decide who wins, and who dies" << endl;
-	cout << "Each side has a weak spot, their Queen" << endl;
-	cout << "Whichever side defeats the other sides' Queen, wins the game!" << endl;
-	cout << "Are you ready?" << endl;
+	std::cout << "Welcome to the battlefield!" << std::endl;
+	std::cout << " Here, on this kitchen table, the most epic battle between Ants will take place!" << std::endl;
+	std::cout << "On one side, there are the BLUE ants. The other side has RED Ants. They despise each other. . ." << std::endl;
+	std::cout << "Each side has a hierarchy of ant ranks: Worker ant, Soldier ant, and Knight ant (worker ant being the weakest and Knight ant being the strongest)"<<std::endl;
+	std::cout << "Stronger ants can easily defeat weaker ants, but they will surely be damaged in battle" << std::endl;
+	std::cout << "If there are two evenly matched ants, fate shall decide who wins, and who dies" << std::endl;
+	std::cout << "Each side has a weak spot, their Queen" << std::endl;
+	std::cout << "Whichever side defeats the other sides' Queen, wins the game!" << std::endl;
+	std::cout << "Are you ready?" << std::endl;
 
   int numberOfAntsToCreate = (length * width) / 3;
 
