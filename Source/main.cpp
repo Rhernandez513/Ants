@@ -56,10 +56,6 @@ void bufferClear() {
   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-void::LocationFinder()
-{
-
-}
 
 void GameSetup()
 {
@@ -73,16 +69,36 @@ void GameSetup()
 		Ant * BKnight = new Ant(Color::blue, Hierarchy::Knight, 3);
 		RWorker->Attack(BWorker);
 		RWorker->Attack(BQueen);
+		RWorker->Attack(BSoldier);
+		RWorker->Attack(BKnight);
 		BWorker->Attack(RWorker);
 		BWorker->Attack(RQueen);
+		BWorker->Attack(RSoldier);
+		BWorker->Attack(RKnight);
+		BWorker->Attack(RSoldier);
 		RSoldier->Attack(BSoldier);
 		RSoldier->Attack(BQueen);
+		RSoldier->Attack(BWorker);
+		RSoldier->Attack(BKnight);
 		BSoldier->Attack(RSoldier);
 		BSoldier->Attack(RQueen);
+		BSoldier->Attack(RWorker);
+		BSoldier->Attack(RKnight);
+		RKnight->Attack(BWorker);
+		RKnight->Attack(BSoldier);
 		RKnight->Attack(BKnight);
 		RKnight->Attack(BQueen);
+		BKnight->Attack(RWorker);
+		BKnight->Attack(RSoldier);
 		BKnight->Attack(RKnight);
 		BKnight->Attack(RQueen);
+}
+
+void Populate() // class is meant to populate the field
+{
+	for (int n = 1; n < ;n++)
+		for
+
 }
 void combat(Ant* a,Ant* b)
 {

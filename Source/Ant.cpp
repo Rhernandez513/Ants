@@ -18,7 +18,7 @@ Ant::Ant(Color color,Hierarchy heirarchy)
   _attackPower=2;
   if(heirarchy==Hierarchy::Knight)
   _attackPower=3;
-  _isdead=false;
+  _isDead=false;
 }
 Ant::Ant(Color color, Hierarchy hierarchy, int attackpower)
   : _color(color)
