@@ -1,25 +1,14 @@
 #ifndef ANT_H
 #define ANT_H
+#include "Hierarchy.h"
 
 namespace Ants {
   class GameField;
-
-  enum Hierarchy { Worker = 1, Soldier, Knight, Queen };
-
-  // Helper Function for Demote()
-  // DO NOT CALL DIRECTLY
-  Hierarchy& operator--(Hierarchy& hierarchy);
-  // Helper Function for Promote()
-  // DO NOT CALL DIRECTLY
-  Hierarchy& operator++(Hierarchy& hierarchy);
-
+  struct Position { int x; int y; };
   enum Direction { LEFT, RIGHT, UP, DOWN };
   enum Color { red, blue };
-  struct Position { int x; int y; };
 class Ant {
  private:
-  //Tablenode *location;  // where this ant is
-
   const Color _color; // red or blue
   Hierarchy _hierarchy; // ant's "level"
   Direction _direction; // direction ant is facing
@@ -62,7 +51,7 @@ class Ant {
   void Turn();
   void Attack(Ant *Enemy);
 
-  std::ostream& operator<<(std::ostream& os);
+  //std::ostream& operator<<(std::ostream& os);
 };
 }
 #endif  // ANT_H

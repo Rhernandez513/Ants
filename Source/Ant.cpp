@@ -5,6 +5,7 @@
 
 using namespace Ants;
 
+// Spawn an Ant!! But you first must construct more pylons!
 Ant::Ant(Color color, Hierarchy hierarchy, int attackpower)
   : _color(color)
   , _hierarchy(hierarchy)
@@ -59,15 +60,17 @@ void Ant::SetHierarchy(Hierarchy hierarchy) {
 
 // Promote's Ant to next Highest Rank
 void Ant::Promote() {
-  if (this->_hierarchy != Queen) {
-    ++this->_hierarchy;  // Will not work if Hierarchy is non-continuous
+  if (this->_hierarchy != Hierarchy::Queen) {
+    // Will not work if Hierarchy is non-continuous
+    ++this->_hierarchy;
   }
 }
 
 // Demote's Ant to next Lowest Rank
 void Ant::Demote() {
-  if (this->_hierarchy != Worker) {
-    --this->_hierarchy;  // Will not work if Hierarchy is non-continuous 
+  if (this->_hierarchy != Hierarchy::Worker) {
+    // Will not work if Hierarchy is non-continuous 
+    --this->_hierarchy;
   }
 }
 
@@ -84,6 +87,7 @@ bool Ant::IsDead() const {
   return this->_isDead;
 }
 
+// NOT IMPLEMENTED
 void Ant::Turn() {  }
 
 // Manually Set's the Ant's Location to the given Position on the given
@@ -94,6 +98,7 @@ bool Ant::SetLocation(GameField &field, Position pos) {
   return false;
 }
 
+// The Ant slams it's enemy with a mighty blow!!
 void Ant::Attack(Ant *Enemy) {
   // if your ant wins
   if (this->GetEnergy() > Enemy->GetEnergy()) {
@@ -104,7 +109,7 @@ void Ant::Attack(Ant *Enemy) {
   } else {
     // they have equal attack power
     std::cout << "The two ants are equal in power!\n";
-    srand(time(NULL));
+    srand(time(nullptr));
     int temp = rand() % 8;
     if (temp % 2 == 0) {
       Enemy->Die();
@@ -112,60 +117,27 @@ void Ant::Attack(Ant *Enemy) {
   }
 }
 
-std::ostream& Ant::operator<<(std::ostream& os)
-{
-  if (this->_hierarchy && this->_color) {
-    os << " " << this->_hierarchy << " " << this->_color << " " << "Ant ";
-  } else {
-    os.setstate(std::ios_base::failbit);
-  }
-  return os;
-}
+// Prints This ant's Hierachy & Color
+// Example
+//// Ant red_ant(red, worker, 1);
+//// std::cout << red_ant << std::endl;
+//// (prints " Red Worker Ant ")
+//std::ostream& Ant::operator<<(std::ostream& os)
+//{
+//  if (this->_hierarchy && this->_color) {
+//    os << " " <<  this->_color << " " << this->_hierarchy << " " << "Ant ";
+//  } else {
+//    os.setstate(std::ios_base::failbit);
+//  }
+//  return os;
+//}
 
-
+// Returns the direction the Ant is facing
 Direction Ant::GetDirection() const {
   return this->_direction;
 }
 
+// Sets the direction the Ant is facing
 void Ant::SetDirection(Direction direction) {
   this->_direction = direction;
-}
-
-
-// Helper Function for Demote()
-// DO NOT CALL DIRECTLY
-Hierarchy & Ants::operator--(Hierarchy & hierarchy) {
-  switch (hierarchy) {
-    case(Queen):
-      hierarchy = Knight;
-      break;
-    case(Knight):
-      hierarchy = Worker;
-      break;
-    case(Soldier):
-      hierarchy = Worker;
-      break;
-    case(Worker):
-      break;
-  }
-  return hierarchy;
-}
-
-// Helper Function for Promote()
-// DO NOT CALL DIRECTLY
-Hierarchy & Ants::operator++(Hierarchy & hierarchy) {
-  switch (hierarchy) {
-    case(Queen):
-      break;
-    case(Knight):
-      hierarchy = Queen;
-      break;
-    case(Soldier):
-      hierarchy = Knight;
-      break;
-    case(Worker):
-      hierarchy = Knight;
-      break;
-  }
-  return hierarchy;
 }
