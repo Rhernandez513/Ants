@@ -1,5 +1,5 @@
 #include <iostream>
-//#include <glut.h>
+//#include <glut.h> 
 #include <time.h>
 #include <string>
 #include "..\\Headers\\Ant.h"
@@ -10,7 +10,7 @@ using namespace Ants;
 
 void bufferClear();
 void GameSetup();
-
+void combat(ant* a,ant* b);
 GameField field;
 
 int main()
@@ -83,7 +83,34 @@ void GameSetup()
 		BKnight->Attack(RKnight);
 		BKnight->Attack(RQueen);
 }
-
+void combat(ant* a,ant* b)
+{
+	srand(time(NULL));
+	int q=rand()%3;
+	if(a->GetAttackPower()>b->GetAttackPower())
+	b->Die();
+	else
+	{
+		if(a->->GetAttackPower()<b->GetAttackPower())
+		a->Die();
+	
+	else
+	{
+		if(q==0)
+		{
+			a->Die();
+			b->Die();
+		}
+		if(q==1)
+		{
+			a->Die();
+		}
+		else
+		b->Die();
+		
+	}
+	}
+}
 //
 //void GameSetup(int numberOfAntsToCreate);
 //{
