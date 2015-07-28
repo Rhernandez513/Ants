@@ -22,6 +22,7 @@ class Ant {
   int _energy;
 
  public:
+  Ant(Color color, Hierarchy hierarchy);
   Ant(Color color, Hierarchy hierarchy, int AttackPower);
   ~Ant();
   
