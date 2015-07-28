@@ -10,7 +10,8 @@ using namespace Ants;
 
 void bufferClear();
 void GameSetup();
-GameField* CreateField();
+
+GameField field;
 
 int main()
 {
@@ -52,6 +53,35 @@ int main()
 void bufferClear() {
   std::cin.clear();
   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+void::LocationFinder()
+{
+
+}
+
+void GameSetup()
+{
+		Ant * RQueen = new Ant(Color::red, Hierarchy::Queen, 0);
+		Ant * BQueen = new Ant(Color::blue, Hierarchy::Queen, 0);
+		Ant * RWorker = new Ant(Color::red, Hierarchy::Worker, 1);
+		Ant * BWorker = new Ant(Color::blue, Hierarchy::Worker, 1);
+		Ant * RSoldier = new Ant(Color::red, Hierarchy::Soldier, 2);
+		Ant * BSoldier = new Ant(Color::red, Hierarchy::Soldier, 2);
+		Ant * RKnight = new Ant(Color::red, Hierarchy::Knight, 3);
+		Ant * BKnight = new Ant(Color::blue, Hierarchy::Knight, 3);
+		RWorker->Attack(BWorker);
+		RWorker->Attack(BQueen);
+		BWorker->Attack(RWorker);
+		BWorker->Attack(RQueen);
+		RSoldier->Attack(BSoldier);
+		RSoldier->Attack(BQueen);
+		BSoldier->Attack(RSoldier);
+		BSoldier->Attack(RQueen);
+		RKnight->Attack(BKnight);
+		RKnight->Attack(BQueen);
+		BKnight->Attack(RKnight);
+		BKnight->Attack(RQueen);
 }
 
 //
@@ -134,3 +164,4 @@ void bufferClear() {
 //				turns1[i] = RKnight
 //	}
 //}
+
