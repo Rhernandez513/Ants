@@ -96,8 +96,6 @@ void GameSetup()
 
 void Populate() // class is meant to populate the field
 {
-	for (int n = 1; n < ;n++)
-		for
 
 }
 void combat(Ant* a,Ant* b)
