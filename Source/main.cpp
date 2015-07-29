@@ -5,6 +5,7 @@
 #include "..\\Headers\\Ant.h"
 #include "..\\Headers\\GameField.h"
 #include <vector>
+#include <stack>
 
 using namespace Ants;
 
@@ -48,7 +49,10 @@ int main()
   std::cout << "success!!" << std::endl;
   return 0;
 }
-
+struct Overlap{
+	Ant * ant1;
+	Ant * ant2;
+};
 // Helps with clearing std::cin buffer to prevent infinite loops
 // Can also work like std::cin.get() to accept a Return key press
 void bufferClear() {
@@ -94,36 +98,24 @@ void GameSetup()
 		BKnight->Attack(RQueen);
 }
 
-void Populate() // class is meant to populate the field
+void MainLoop(std::stack<Overlap>&stack) // if two ants overlap over a block, they will attack by getting popped from the stack
 {
-
-}
-void combat(Ant* a,Ant* b)
-{
-	srand(time(NULL));
-	int q=rand()%3;
-	if(a->GetAttackPower()>b->GetAttackPower())
-	b->Die();
-	else
-	{
-		if(a->GetAttackPower()<b->GetAttackPower())
-		a->Die();
-	
-	else
-	{
-		if(q==0)
+	Overlap temp;
+	stack.empty();
+	while (!stack.empty()){
+		temp = stack.top(); //First set both of the ants to NULL pointers
+		stack.pop();
+		while (!temp.ant1->IsDead() || !temp.ant2->IsDead()) // first while loop to check if either ant is dead
 		{
-			a->Die();
-			b->Die();
+			temp.ant1->Attack(temp.ant2);// ant 1 will attack ant 2
+			if (temp.ant2->IsDead()) // if ant 2 is dead, it will continue
+				break;
+			temp.ant2->Attack(temp.ant1);//ant 2 will attack ant 1
+			if (temp.ant1->IsDead())//if ant 1 is dead, it will continue
+				break;
 		}
-		if(q==1)
-		{
-			a->Die();
-		}
-		else
-		b->Die();
-		
-	}
+		temp.ant1 == nullptr; // set ant 1 to null
+		temp.ant2 == nullptr; // set ant 2 to null
 	}
 }
 //

@@ -149,12 +149,14 @@
   <ItemGroup>
     <ClCompile Include="Source\Ant.cpp" />
     <ClCompile Include="Source\GameField.cpp" />
+    <ClCompile Include="Source\GameField1.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Hierarchy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Ant.h" />
     <ClInclude Include="Headers\GameField.h" />
+    <ClInclude Include="Headers\GameField1.h" />
     <ClInclude Include="Headers\Hierarchy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
