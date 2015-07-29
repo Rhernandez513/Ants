@@ -1,4 +1,5 @@
 #include "..\\Headers\\GameField.h"
+#include "..\Headers\Ant.h"
 
 using namespace Ants;
 
@@ -11,6 +12,8 @@ int GameField::GetWidth() { return this->_width; }
 // Extensible Storage
 struct GameBlock {
   bool isFilled;
+  Ant * _ant1;
+  Ant * _ant2;
 } ** _gameField;
 
 // Constructor
@@ -57,4 +60,3 @@ bool GameField::SetBlock(int x, int y) {
  }
  return true;
 }
-
