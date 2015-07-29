@@ -127,24 +127,22 @@ void Ant::Attack(Ant *Enemy) {
     int temp = rand() % 8;
     if (temp % 2 == 0) {
       Enemy->Die();
+    } else {
+      this->Die();
     }
   }
 }
 
 // Prints This ant's Hierachy & Color
 // Example
-//// Ant red_ant(red, worker, 1);
-//// std::cout << red_ant << std::endl;
-//// (prints " Red Worker Ant ")
-//std::ostream& Ant::operator<<(std::ostream& os)
-//{
-//  if (this->_hierarchy && this->_color) {
-//    os << " " <<  this->_color << " " << this->_hierarchy << " " << "Ant ";
-//  } else {
-//    os.setstate(std::ios_base::failbit);
-//  }
-//  return os;
-//}
+// Ant red_ant(red, worker, 1);
+// std::cout << red_ant << std::endl;
+// (prints "Red Worker Ant")
+std::ostream& Ant::operator<<(std::ostream& os)
+{
+  os << " " <<  this->_color << " " << this->_hierarchy << " " << "Ant ";
+  return os;
+}
 
 // Returns the direction the Ant is facing
 Direction Ant::GetDirection() const {

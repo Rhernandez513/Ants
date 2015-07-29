@@ -52,7 +52,7 @@ class Ant {
   void Turn();
   void Attack(Ant *Enemy);
 
-  //std::ostream& operator<<(std::ostream& os);
+  std::ostream& operator<<(std::ostream& os);
 };
 }
 #endif  // ANT_H
