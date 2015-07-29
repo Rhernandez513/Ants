@@ -8,6 +8,9 @@
 
 using namespace Ants;
 
+struct Position { int x; int y; };
+enum class Direction { LEFT, RIGHT, UP, DOWN };
+enum class Color { red, blue };
 void bufferClear();
 void GameSetup();
 void Combat(Ant* a,Ant* b);
@@ -206,4 +209,3 @@ void combat(Ant* a,Ant* b)
 //				turns1[i] = RKnight
 //	}
 //}
-

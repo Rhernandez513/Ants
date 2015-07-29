@@ -3,7 +3,7 @@
 #include <iostream>
 
 namespace Ants {
-enum class Hierarchy { Worker = 1, Soldier, Knight, Queen };
+  enum class Hierarchy { Worker = 1, Soldier, Knight, Queen };
 
   Hierarchy& operator--(Hierarchy& hierarchy);
   Hierarchy& operator++(Hierarchy& hierarchy);
