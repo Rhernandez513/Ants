@@ -1,25 +1,33 @@
-#include <iostream>
-#include <time.h>
 #include "..\\Headers\\Ant.h"
 #include "..\\Headers\\GameField.h"
+#include "..\\Headers\Hierarchy.h"
+#include <time.h>
 
 using namespace Ants;
 
 // Spawn an Ant!! But you first must construct more pylons!
-Ant::Ant(Color color,Hierarchy heirarchy)
+Ant::Ant(Color color, Hierarchy heirarchy)
+  : _color(color)
+  , _hierarchy(heirarchy)
 {
-  this->_color=color;
-  this->_hierarchy=heirarchy;
-  if(heirarchy==Hierarchy::Queen)
-  _attackPower=0;
-  if(heirarchy==Hierarchy::Worker)
-  _attackPower=1;
-  if(heirarchy==Hierarchy::Soldier)
-  _attackPower=2;
-  if(heirarchy==Hierarchy::Knight)
-  _attackPower=3;
-  _isDead=false;
+  _isDead = false;
+  switch (this->_hierarchy) {
+    case(Hierarchy::Queen) :
+        _attackPower = 0;
+      break;
+    case(Hierarchy::Knight) :
+        _attackPower = 3;
+      break;
+    case(Hierarchy::Soldier) :
+        _attackPower = 2;
+      break;
+    case(Hierarchy::Worker) :
+        _attackPower = 1;
+      break;
+  }
 }
+
+// Spawn an Ant!! But you first must construct more pylons!
 Ant::Ant(Color color, Hierarchy hierarchy, int attackpower)
   : _color(color)
   , _hierarchy(hierarchy)
