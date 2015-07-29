@@ -10,12 +10,17 @@
 using namespace Ants;
 
 struct Position { int x; int y; };
+struct Overlap{ Ant * ant1; Ant * ant2; };
+
 enum class Direction { LEFT, RIGHT, UP, DOWN };
 enum class Color { red, blue };
+
 void bufferClear();
 void GameSetup();
 void Combat(Ant* a,Ant* b);
-GameField field;
+
+// PLACEHOLDER VALUES
+GameField field(50, 50);
 
 int main()
 {
@@ -52,10 +57,6 @@ int main()
   std::cout << "success!!" << std::endl;
   return 0;
 }
-struct Overlap{
-	Ant * ant1;
-	Ant * ant2;
-};
 // Helps with clearing std::cin buffer to prevent infinite loops
 // Can also work like std::cin.get() to accept a Return key press
 void bufferClear() {
@@ -64,63 +65,66 @@ void bufferClear() {
 }
 
 
-void GameSetup()
-{
-		Ant * RQueen = new Ant(Color::red, Hierarchy::Queen, 0);
-		Ant * BQueen = new Ant(Color::blue, Hierarchy::Queen, 0);
-		Ant * RWorker = new Ant(Color::red, Hierarchy::Worker, 1);
-		Ant * BWorker = new Ant(Color::blue, Hierarchy::Worker, 1);
-		Ant * RSoldier = new Ant(Color::red, Hierarchy::Soldier, 2);
-		Ant * BSoldier = new Ant(Color::red, Hierarchy::Soldier, 2);
-		Ant * RKnight = new Ant(Color::red, Hierarchy::Knight, 3);
-		Ant * BKnight = new Ant(Color::blue, Hierarchy::Knight, 3);
-		RWorker->Attack(BWorker);
-		RWorker->Attack(BQueen);
-		RWorker->Attack(BSoldier);
-		RWorker->Attack(BKnight);
-		BWorker->Attack(RWorker);
-		BWorker->Attack(RQueen);
-		BWorker->Attack(RSoldier);
-		BWorker->Attack(RKnight);
-		BWorker->Attack(RSoldier);
-		RSoldier->Attack(BSoldier);
-		RSoldier->Attack(BQueen);
-		RSoldier->Attack(BWorker);
-		RSoldier->Attack(BKnight);
-		BSoldier->Attack(RSoldier);
-		BSoldier->Attack(RQueen);
-		BSoldier->Attack(RWorker);
-		BSoldier->Attack(RKnight);
-		RKnight->Attack(BWorker);
-		RKnight->Attack(BSoldier);
-		RKnight->Attack(BKnight);
-		RKnight->Attack(BQueen);
-		BKnight->Attack(RWorker);
-		BKnight->Attack(RSoldier);
-		BKnight->Attack(RKnight);
-		BKnight->Attack(RQueen);
-}
+//void GameSetup()
+//{
+//		Ant * RQueen = new Ant(Color::red, Hierarchy::Queen, 0);
+//		Ant * BQueen = new Ant(Color::blue, Hierarchy::Queen, 0);
+//		Ant * RWorker = new Ant(Color::red, Hierarchy::Worker, 1);
+//		Ant * BWorker = new Ant(Color::blue, Hierarchy::Worker, 1);
+//		Ant * RSoldier = new Ant(Color::red, Hierarchy::Soldier, 2);
+//		Ant * BSoldier = new Ant(Color::red, Hierarchy::Soldier, 2);
+//		Ant * RKnight = new Ant(Color::red, Hierarchy::Knight, 3);
+//		Ant * BKnight = new Ant(Color::blue, Hierarchy::Knight, 3);
+//		RWorker->Attack(BWorker);
+//		RWorker->Attack(BQueen);
+//		RWorker->Attack(BSoldier);
+//		RWorker->Attack(BKnight);
+//		BWorker->Attack(RWorker);
+//		BWorker->Attack(RQueen);
+//		BWorker->Attack(RSoldier);
+//		BWorker->Attack(RKnight);
+//		BWorker->Attack(RSoldier);
+//		RSoldier->Attack(BSoldier);
+//		RSoldier->Attack(BQueen);
+//		RSoldier->Attack(BWorker);
+//		RSoldier->Attack(BKnight);
+//		BSoldier->Attack(RSoldier);
+//		BSoldier->Attack(RQueen);
+//		BSoldier->Attack(RWorker);
+//		BSoldier->Attack(RKnight);
+//		RKnight->Attack(BWorker);
+//		RKnight->Attack(BSoldier);
+//		RKnight->Attack(BKnight);
+//		RKnight->Attack(BQueen);
+//		BKnight->Attack(RWorker);
+//		BKnight->Attack(RSoldier);
+//		BKnight->Attack(RKnight);
+//		BKnight->Attack(RQueen);
+//}
 
-void MainLoop(std::stack<Overlap>&stack) // if two ants overlap over a block, they will attack by getting popped from the stack
+// if two ants overlap over a block, they will attack by
+// getting popped from the stack
+void MainLoop(std::stack<Overlap>&stack)
 {
 	Overlap temp;
-	stack.empty();
 	while (!stack.empty()){
 		temp = stack.top(); //First set both of the ants to NULL pointers
 		stack.pop();
-		while (!temp.ant1->IsDead() || !temp.ant2->IsDead()) // first while loop to check if either ant is dead
-		{
+		while (!temp.ant1->IsDead() || !temp.ant2->IsDead())
+		{ // first while loop to check if either ant is dead
 			temp.ant1->Attack(temp.ant2);// ant 1 will attack ant 2
-			if (temp.ant2->IsDead()) // if ant 2 is dead, it will continue
-				break;
-			temp.ant2->Attack(temp.ant1);//ant 2 will attack ant 1
-			if (temp.ant1->IsDead())//if ant 1 is dead, it will continue
-				break;
-		}
+      // if ant 2 is dead, it will continue
+			if (temp.ant2->IsDead()) break;
+      // ant 2 will attack ant 1
+			temp.ant2->Attack(temp.ant1);
+      // if ant 1 is dead, it will continue
+			if (temp.ant1->IsDead()) break;
+		} // End while
 		temp.ant1 == nullptr; // set ant 1 to null
 		temp.ant2 == nullptr; // set ant 2 to null
-	}
+	} // End outer while
 }
+  /////////*Use some of Syed's logic to implement initial Ant setup*/////////
 //
 //void GameSetup(int numberOfAntsToCreate);
 //{
