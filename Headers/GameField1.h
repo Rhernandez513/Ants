@@ -1,3 +1,7 @@
+#ifndef GAMEFIELD_H
+#define GAMEFIELD_H
+
+using namespace Ants;
 
 struct Block{
 bool full;
