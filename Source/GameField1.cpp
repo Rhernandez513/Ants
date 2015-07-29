@@ -5,12 +5,13 @@ using namespace Ants;
 
 struct Block{
 bool full;
-Ant *a;
+Ant* a;
   
 };
 class GameField1()
 {
-private:{
+private:
+{
 	int width;
 	int height;
 	int nblue, nred;
@@ -18,7 +19,7 @@ private:{
 	bool turn;//false for red, true for blue
 	Block** Field;
 	std::vector<Ant*> blueTeam, redTeam;
-};
+}
 
 public:
 GameField1(int width,int height,int n,int nblue,int nred)
@@ -87,8 +88,6 @@ while(i<nred)
    Field[x][y].a=new Ant(Color::Red,Heirarchy::Soldier);
    if(i%3==2)
    Field[x][y].a=new Ant(Color::Red,Heirarchy::Knight);
-   i++;
-   
+   i++;  
 }
 
-}
