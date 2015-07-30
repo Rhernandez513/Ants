@@ -94,12 +94,12 @@ public:
 		}
 	}
 		bool move(int x1, int y1, int x2, int y2)// return 1 if successful
-		{
+		{//this function moves an ant from position [x1][y1] to [x2][y2]
 			if ((!Field[x1][y1].full) || Field[x2][y2].full)
 				return false;
 
 			Field[x2][y2].a = Field[x1][y1].a;
-			Field[x1][y1].a = nullptr;
+			Field[x1][y1].a = nullptr; //emptying the first position
 			Field[x2][y2].full= true;
 			Field[x1][y1].full = false;
 			return true;
@@ -146,7 +146,7 @@ public:
 				int r1 = rand() % 3, r2 = rand() % 3;//choose a random spot
 				r1--;
 				r2--;
-				
+				// random generator; if friendly ant or out of bounds redo random generator
 				while ((r1 == 0 && r2 == 0) || adj[r1][r2] == -1 || adj[r1][r2] == 1)// if chosen spot is (0,0), chosen spot is out of bounds or friendly
 				{
 
@@ -156,7 +156,7 @@ public:
 				}
 				if (adj[r1][r2] == 0)// if spot is empty
 				{//movement
-				move(x,y,x+r1,y+r2);
+				move(x,y,x+r1,y+r2); //move ant from x,y to x+r1, y+r2
 
 
 				}
