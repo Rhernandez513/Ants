@@ -1,5 +1,6 @@
 #include "..\\Headers\\GameField.h"
 #include "..\Headers\Ant.h"
+#include <time.h>
 
 using namespace Ants;
 
@@ -33,8 +34,13 @@ GameField::GameField(int length, int width) {
   // Assign initial empty block values
   for (int i = 0; i < _length; ++i) {
     _gameField[i]->isFilled = false;
-    for (int j = 0; j < _width; ++j)
+    _gameField[i]->_ant1 = nullptr;
+    _gameField[i]->_ant2 = nullptr;
+    for (int j = 0; j < _width; ++j) {
       _gameField[i][j].isFilled = false;
+      _gameField[i][j]._ant1 = nullptr;
+      _gameField[i][j]._ant2 = nullptr;
+    }
   }
 }
 
@@ -46,78 +52,80 @@ GameField::~GameField() {
   delete _gameField;
 }
 
-// Returns True is block is currently Occupied, False otherwise
-bool GameField::GetBlock(int x, int y) {
-  return this->_gameField[x][y].isFilled;
+GameField::GameBlock * GameField::GetBlock(Position pos) {
+  return &this->_gameField[pos.x][pos.y]; 
 }
 
 // Sets the Specified Position to filled if it is empty
-bool GameField::SetBlock(int x, int y) {
- if (this->_gameField[x][y].isFilled) {
+bool GameField::SetBlock(Position pos, Ant * ant) {
+ if (this->_gameField[pos.x][pos.y].isFilled) { // Both spots are open
    return false;
- } else {
-  this->_gameField[x][y].isFilled = true;
  }
- return true;
+ if (!this->_gameField[pos.x][pos.y]._ant1) { // 1st ant* spot is open
+  this->_gameField[pos.x][pos.y]._ant1 = ant;
+  ant->SetLocation(pos);
+  return true;
+ }
+ if (!this->_gameField[pos.x][pos.y]._ant2) { // 2nd ant * spot is open
+   this->_gameField[pos.x][pos.y]._ant2 = ant;
+   ant->SetLocation(pos);
+   return true;
+ }
+ // Both spots are open and block wasn't properly set to full
+ this->_gameField[pos.x][pos.y].isFilled = true;
+ return false;
 }
 
-  /////////*Use some of majed's logic to implement initial Ant setup*/////////
-//
-////randomly fill field right side
-//int i=0,x,y;
-//
-//while(i<nblue)
-//{
-//  
-//  x=rand()%width/2;
-//  y=rand()%height;
-//  if(i==0)
-//  {
-//    Field[x+width/2][y].full=true;
-//    Field[x+width/2][y].a=new Ant(Color::Blue,Heirarchy::Queen);
-//    i++;
-//    continue;
-//  }
-//  
-//  if(Field[x+width/2][y].full)
-//    continue;
-//    
-//    
-//  Field[x+width/2][y].full=true;
-//  if(i%3==0)
-//   Field[x+width/2][y].a=new Ant(Color::Blue,Heirarchy::Worker);
-//  if(i%3==1)
-//   Field[x+width/2][y].a=new Ant(Color::Blue,Heirarchy::Soldier);
-//   if(i%3==2)
-//   Field[x+width/2][y].a=new Ant(Color::Blue,Heirarchy::Knight);
-//   i++;
-//   
-//}
-//
-//while(i<nred)
-//{
-//  
-//  x=rand()%width/2;
-//  y=rand()%height;
-//  if(i==0)
-//  {
-//    Field[x][y].full=true;
-//    Field[x][y].a=new Ant(Color::Red,Heirarchy::Queen);
-//    i++;
-//    continue;
-//  }
-//  
-//  if(Field[x][y].full)
-//    continue;
-//    
-//    
-//  Field[x][y].full=true;
-//  if(i%3==0)
-//   Field[x][y].a=new Ant(Color::Red,Heirarchy::Worker);
-//  if(i%3==1)
-//   Field[x][y].a=new Ant(Color::Red,Heirarchy::Soldier);
-//   if(i%3==2)
-//   Field[x][y].a=new Ant(Color::Red,Heirarchy::Knight);
-//   i++;  
-//}
-//
+// Currently only populates RED team
+void GameField::PopulateField(int numberOfAntsPerTeam) {
+  //randomly fill field right side
+  int i, x, y;
+  i = x = y = 0;
+  srand(static_cast<unsigned>(time(nullptr)));
+  while(i < numberOfAntsPerTeam)
+  {
+    x = (rand() % this->_width) / 2;
+    y = (rand() % this->_length) / 2;
+    Position antPos;
+    antPos.x = (x + this->_width) / 2;
+    antPos.y = (x + this->_length) / 2;
+
+    if (this->GetBlock(antPos)->isFilled) { continue; }
+
+    if(i == 0) {
+      this->SetBlock(antPos, new Ant(Color::red, Hierarchy::Queen));
+      ++i;
+      continue;
+    } else {
+      this->SetBlock(antPos, new Ant(Color::red, Hierarchy::Worker));
+      ++i;
+    }
+  }
+
+  //while(i<nred)
+  //{
+  //  
+  //  x=rand()%width/2;
+  //  y=rand()%height;
+  //  if(i==0)
+  //  {
+  //    Field[x][y].full=true;
+  //    Field[x][y].a=new Ant(Color::Red,Heirarchy::Queen);
+  //    i++;
+  //    continue;
+  //  }
+  //  
+  //  if(Field[x][y].full)
+  //    continue;
+  //    
+  //    
+  //  Field[x][y].full=true;
+  //  if(i%3==0)
+  //   Field[x][y].a=new Ant(Color::Red,Heirarchy::Worker);
+  //  if(i%3==1)
+  //   Field[x][y].a=new Ant(Color::Red,Heirarchy::Soldier);
+  //   if(i%3==2)
+  //   Field[x][y].a=new Ant(Color::Red,Heirarchy::Knight);
+  //   i++;  
+  //}
+}
