@@ -54,6 +54,7 @@ int main()
 
   int numOfAntsToCreatePerTeam = (length * width) / 3;
   GameField field(length, width);
+  field.PopulateField(numOfAntsToCreatePerTeam);
   std::cout << "success!!" << std::endl;
   return 0;
 }
@@ -120,8 +121,8 @@ void MainLoop(std::stack<Overlap>&stack)
       // if ant 1 is dead, it will continue
 			if (temp.ant1->IsDead()) break;
 		} // End while
-		temp.ant1 == nullptr; // set ant 1 to null
-		temp.ant2 == nullptr; // set ant 2 to null
+		temp.ant1 = nullptr; // set ant 1 to null
+		temp.ant2 = nullptr; // set ant 2 to null
 	} // End outer while
 }
   /////////*Use some of Syed's logic to implement initial Ant setup*/////////
