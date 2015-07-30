@@ -41,7 +41,7 @@ class Ant {
   int GetAttackPower() const;
   void SetAttackPower(int attackPower);
 
-  bool SetLocation(GameField &field, Position pos);
+  void SetLocation(Position pos);
   Position GetLocation() const;
 
   int GetEnergy() const;

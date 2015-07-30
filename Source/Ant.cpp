@@ -51,7 +51,7 @@ void Ant::SetEnergy(int energy) {
 }
 
 // Return's Ant's Location
-Position Ant::GetLocation() const { return this->_position;  }
+Ants::Position Ant::GetLocation() const { return this->_position;  }
 
 // Return's Ant's Attack Power
 int Ant::GetAttackPower() const { return this->_attackPower; }
@@ -115,9 +115,8 @@ void Ant::Turn() {  }
 // Manually Set's the Ant's Location to the given Position on the given
 // Field if that Location is availible
 // Returns true if Ant was set to the new location, false otherwise
-bool Ant::SetLocation(GameField &field, Position pos) {
-  if (field.SetBlock(pos.x, pos.y)) return true;
-  return false;
+void Ant::SetLocation(Position pos) {
+  this->_position = pos;
 }
 
 // The Ant slams it's enemy with a mighty blow!!
@@ -131,7 +130,7 @@ void Ant::Attack(Ant *Enemy) {
   } else {
     // they have equal attack power
     std::cout << "The two ants are equal in power!\n";
-    srand(time(nullptr));
+    srand(static_cast<unsigned>(time(nullptr)));
     int temp = rand() % 8;
     if (temp % 2 == 0) {
       Enemy->Die();
@@ -141,7 +140,7 @@ void Ant::Attack(Ant *Enemy) {
   }
 }
 
-// Prints This ant's Hierachy & Color
+// Prints This ant's Hierarchy & Color
 // Example
 // Ant red_ant(red, worker, 1);
 // std::cout << red_ant << std::endl;
