@@ -142,7 +142,7 @@ public:
 		
 		int Run(bool unlimited)
 		{
-			turn = false;
+			turn = false; // if false it's blue's turn, if true red
 			int i = 0, j = 0;
 			int x, y;
 			int res;
@@ -152,7 +152,7 @@ public:
 				{
 					if (turn == true)
 					{
-						pickant(x, y, Color::Blue);
+						pickant(x, y, Color::Blue); // choose a random blue ant
 						res = action(x, y);
 						if (res == -2)//ant we picked is blocked, choose another one
 							continue;
