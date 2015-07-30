@@ -1,0 +1,302 @@
+#include<time.h>
+
+struct Block{
+	bool full;
+	Ant* a;
+	
+		
+};
+class Kitchen
+{
+private:
+	int width, height;
+	int res;
+	int max_turns;
+	int nblue, nred;
+	int nummoves;
+	bool turn;//false for red, true for blue
+	Block** Field;
+	vector<Ant*> blueTeam, redTeam;
+
+public:
+
+	Kitchen(int width, int height, int n, int nblue, int nred,int m)
+	{
+		
+		srand(time(NULL));
+		this->width = width;
+		this->height = height;
+		turn = false;
+		max_turns = m;
+		this->nummoves = n;
+		this->nred = nred;
+		this->nblue = nblue;
+		Field = new Block*[height];
+		for (int i = 0; i < height; i++)
+		{
+			Field[i]=new Block[width];
+		}
+		
+		//randomly fill field right side
+		int i = 0, x, y;
+
+		while (i < nblue)
+		{
+
+			x = rand() % width / 2;
+			y = rand() % height;
+			if (i == 0)
+			{
+				Field[x + width / 2][y].full = true;
+				Field[x + width / 2][y].a = new Ant(Color::Blue, Heirarchy::Queen);
+				i++;
+				continue;
+			}
+
+			if (Field[x + width / 2][y].full)
+				continue;
+
+
+			Field[x + width / 2][y].full = true;
+			if (i % 3 == 0)
+				Field[x + width / 2][y].a = new Ant(Color::Blue, Heirarchy::Worker);
+			if (i % 3 == 1)
+				Field[x + width / 2][y].a = new Ant(Color::Blue, Heirarchy::Soldier);
+			if (i % 3 == 2)
+				Field[x + width / 2][y].a = new Ant(Color::Blue, Heirarchy::Knight);
+			i++;
+
+		}
+
+		while (i < nred)
+		{
+
+			x = rand() % width / 2;
+			y = rand() % height;
+			if (i == 0)
+			{
+				Field[x][y].full = true;
+				Field[x][y].a = new Ant(Color::Red, Heirarchy::Queen);
+				i++;
+				continue;
+			}
+
+			if (Field[x][y].full)
+				continue;
+
+
+			Field[x][y].full = true;
+			if (i % 3 == 0)
+				Field[x][y].a = new Ant(Color::Red, Heirarchy::Worker);
+			if (i % 3 == 1)
+				Field[x][y].a = new Ant(Color::Red, Heirarchy::Soldier);
+			if (i % 3 == 2)
+				Field[x][y].a = new Ant(Color::Red, Heirarchy::Knight);
+			i++;
+
+		}
+	}
+		bool move(int x1, int y1, int x2, int y2)// return 1 if successful
+		{
+			if ((!Field[x1][y1].full) || Field[x2][y2].full)
+				return false;
+
+			Field[x2][y2].a = Field[x1][y1].a;
+			Field[x1][y1].a = nullptr;
+			Field[x2][y2].full= true;
+			Field[x1][y1].full = false;
+			return true;
+			
+		}
+
+		void pickant(int& x,int &y,Color c)
+		{
+			
+			int skips;
+
+			srand(time(NULL));
+
+			if (c==Color::Blue)
+				skips = rand() % nblue;
+			else
+				skips = rand() % nred;
+				for (int i = 0; i < height; i++)
+				{
+					for (int j = 0; j < width; j++)
+					{
+						if (Field[i][j].a->color == c)
+						{
+							if (skips > 0)
+							{
+								skips--;
+								continue;
+							}
+							x = i;
+							y = j;
+							return;
+						}
+					}
+				}
+
+			}
+
+		
+		int Run(bool unlimited) //
+		{
+			turn = false; // if false it's blue's turn, it true red
+			int i = 0, j = 0;
+			int x, y;
+			int res;
+			while (i<max_turns||unlimited)
+			{
+				while (j < nummoves)
+				{
+					if (turn == false)
+					{
+						pickant(x, y, Color::Blue); // choose a random blue ant
+						res = action(x, y);
+						if (res == -2)//ant we picked is blocked, choose another one
+							continue; 
+
+						if (res == -1)
+							return 0; // both queens died
+						if (res == 3)
+							return 1;//blue won
+						if (res == 4)
+							return 2;//red won
+
+					}
+					else
+					{
+						pickant(x, y, Color::Red);
+						res = action(x, y);
+						if (res == -2)//ant we picked is blocked, choose another one
+							continue;
+						if (res == -1)
+							return 0;
+						if (res == 3)//red team won
+							return 2;
+						if (res == 4)//blue team won
+							return 1;
+
+
+
+
+					}
+
+					j++;
+				}
+				
+				blue = !blue;
+				j = 0;
+				i++;
+			}
+			return 3;//draw, end of trials
+		}
+
+		int action(int x, int y)//return combat result or 5 for no one killed
+		{
+			srand(time(NULL));
+			int adj[3][3];
+			
+			bool blocked = true;//if true, then an ant has no empty space or enemy nearby
+			//array of adjacent cells, -1 -> out of bounds,0-> empty, 1-> friendly, 2-> enemy
+			for (int i = -1; i < 2; i++)
+			{
+				for (int j = -1; j < 2; j++)
+				{
+					if (x + i<0 || x + i>width || y + j<0 || y + j>height)
+					{
+						adj[i + 1][j + 1] = -1;
+						i++;
+						continue;
+					}
+					if (!Field[x + i][y + j].full)
+					{
+						adj[i + 1][j + 1] = 0;
+						blocked = false;//empty space nearby
+					}
+					else{
+
+						if (Field[x][y].a->color == Field[x + i][y + j].a->color)
+						{
+							adj[i + 1][j + 1] = 1;//friendly 
+						}
+						else
+						{
+							adj[i + 1][j + 1] = 2;//enemy
+							blocked = false;
+						}
+					}
+				}
+			}
+				if (blocked)
+					return -2;
+
+				int r1 = rand() % 3, r2 = rand() % 3;//choose a random spot
+				r1--;
+				r2--;
+
+				while ((r1 == 0 && r2 == 0) || adj[r1][r2] == -1 || adj[r1][r2] == 1)// if chosen spot is (0,0), or chosen spot is out of bounds or friendly
+				{
+
+					r1 = rand() % 3, r2 = rand() % 3;//choose again
+					r1--;
+					r2--;
+				}
+				if (adj[r1][r2] == 0)// if spot is empty
+				{
+
+					if (move(x, y, x + r1, y + r2))//action successful
+						return 5;
+
+				}
+				else//spot has enemy
+				{
+					res = combat(x, y, x + r1, y + r2);
+					
+				}
+
+
+			}
+		
+			
+		//returns: -1: both queens killed, draw. 0: both ants killed, game not over yet. 1:first ant killed second. 2: second killed first. 3: queen 2 killed, team 1 won. 4: queen 1 killed, team 2 won
+		int combat(int x1,int y1,int x2, int y2)
+		{
+			Block a1 = Field[x1][y1];
+			Block a2 = Field[x2][y2];
+			int r;
+			srand(time(NULL));
+			r = rand() % 3;
+			int q1 = a1.a->getAttackPower();
+			int q2 = a2.a->getAttackPower();
+
+			if (q1 > q2||(q1==q2 && r==1))
+			{
+				if (q2 == 0)//if ant 2 is queen
+					return 3;//game over
+				a2.a = nullptr;//otherwise, a1 replaces a2
+				a2.full = false;
+				move(x1, y1, x2, y2);
+				return 1;
+
+			}
+			if (q1 < q2||(q1==q2&&r==2))	
+			{
+				if (a1.a->getAttackPower() == 0)//a1 is queen
+					return 4;//game over
+			a1.a = nullptr;//otherwise, a2 replaces a1
+			a1.full = false;
+			move(x2, y2, x1, y1);
+			return 2;
+			}
+			if(q1==0)//draw,both queens were killed
+				return -1;//game over, draw
+			a1.a = nullptr;//other wise, both ants got killed
+			a1.full = false;
+			a2.a = nullptr;
+			a2.full = false;
+			return 0;
+		}
+	}
