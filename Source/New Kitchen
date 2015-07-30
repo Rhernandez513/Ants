@@ -97,7 +97,7 @@ public:
 	}
 		bool move(int x1, int y1, int x2, int y2)// return 1 if successful
 		{
-			if ((!Field[x1][y1].full) || Field[x2][y2].full)
+			if ((!Field[x1][y1].full) || Field[x2][y2].full) //if first position is empty (not full) then ant cannot logically move from there. Likewise if the second position is full the ant cannot move there
 				return false;
 
 			Field[x2][y2].a = Field[x1][y1].a;
