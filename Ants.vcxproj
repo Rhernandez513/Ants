@@ -157,6 +157,9 @@
     <ClInclude Include="Headers\GameField.h" />
     <ClInclude Include="Headers\Hierarchy.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\New Kitchen" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
