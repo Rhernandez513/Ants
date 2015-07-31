@@ -64,7 +64,6 @@ int AntMover::CloseAnt(GameField &field, Ant* ant1)  // if an ant is close by, i
 	if (!tempBlock) // it it's empty then return 0
 		return 0;
 
-	if (tempBlock)
 	srand(time(NULL));
 	int adj[3][3];
 	bool blocked = true;  // if true, then an ant has no empty space or enemy nearby
