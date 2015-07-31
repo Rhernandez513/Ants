@@ -3,19 +3,22 @@
 #include "Hierarchy.h"
 
 namespace Ants {
-  class GameField;
-  struct Position { int x; int y; };
-  enum Direction { LEFT, RIGHT, UP, DOWN };
-  enum Color { red, blue };
+class GameField;
+struct Position {
+  int x;
+  int y;
+};
+enum Direction { LEFT, RIGHT, UP, DOWN };
+enum Color { red, blue };
 class Ant {
  private:
-  const Color _color; // red or blue
-  Hierarchy _hierarchy; // ant's "level"
-  Direction _direction; // direction ant is facing
+  const Color _color;    // red or blue
+  Hierarchy _hierarchy;  // ant's "level"
+  Direction _direction;  // direction ant is facing
   int _attackPower;
   bool _isDead;  // True if dead
-  
-  Position _position; // (x,y)
+
+  Position _position;  // (x,y)
 
   // the assigned energy that certain ants will have.
   // The higher the hierarchy of ants, the more energy
@@ -25,7 +28,6 @@ class Ant {
   Ant(Color color, Hierarchy hierarchy);
   Ant(Color color, Hierarchy hierarchy, int AttackPower);
   ~Ant();
-  
 
   void Promote();
   void Demote();
@@ -50,7 +52,7 @@ class Ant {
   void Die();
   bool IsDead() const;
   void Turn();
-  void Attack(Ant *Enemy);
+  void Attack(Ant* Enemy);
 
   std::ostream& operator<<(std::ostream& os);
 };

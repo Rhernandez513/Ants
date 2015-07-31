@@ -3,11 +3,10 @@
 #include <iostream>
 
 namespace Ants {
-  enum class Hierarchy { Worker = 1, Soldier, Knight, Queen };
+enum class Hierarchy { Worker = 1, Soldier, Knight, Queen };
 
-  Hierarchy& operator--(Hierarchy& hierarchy);
-  Hierarchy& operator++(Hierarchy& hierarchy);
-  std::ostream& operator<<(std::ostream& os, Hierarchy hierarchy);
-
+Hierarchy& operator--(Hierarchy& hierarchy);
+Hierarchy& operator++(Hierarchy& hierarchy);
+std::ostream& operator<<(std::ostream& os, Hierarchy hierarchy);
 }
-#endif // HIERARCHY_H
+#endif  // HIERARCHY_H

@@ -7,32 +7,27 @@ using namespace Ants;
 
 // Spawn an Ant!! But you first must construct more pylons!
 Ant::Ant(Color color, Hierarchy heirarchy)
-  : _color(color)
-  , _hierarchy(heirarchy)
-{
+    : _color(color), _hierarchy(heirarchy) {
   _isDead = false;
   switch (this->_hierarchy) {
-    case(Hierarchy::Queen) :
-        _attackPower = 0;
+    case (Hierarchy::Queen):
+      _attackPower = 0;
       break;
-    case(Hierarchy::Knight) :
-        _attackPower = 3;
+    case (Hierarchy::Knight):
+      _attackPower = 3;
       break;
-    case(Hierarchy::Soldier) :
-        _attackPower = 2;
+    case (Hierarchy::Soldier):
+      _attackPower = 2;
       break;
-    case(Hierarchy::Worker) :
-        _attackPower = 1;
+    case (Hierarchy::Worker):
+      _attackPower = 1;
       break;
   }
 }
 
 // Spawn an Ant!! But you first must construct more pylons!
 Ant::Ant(Color color, Hierarchy hierarchy, int attackpower)
-  : _color(color)
-  , _hierarchy(hierarchy)
-  , _attackPower(attackpower)
-{
+    : _color(color), _hierarchy(hierarchy), _attackPower(attackpower) {
   _isDead = false;
 };
 
@@ -51,7 +46,7 @@ void Ant::SetEnergy(int energy) {
 }
 
 // Return's Ant's Location
-Ants::Position Ant::GetLocation() const { return this->_position;  }
+Ants::Position Ant::GetLocation() const { return this->_position; }
 
 // Return's Ant's Attack Power
 int Ant::GetAttackPower() const { return this->_attackPower; }
@@ -91,7 +86,7 @@ void Ant::Promote() {
 // Demote's Ant to next Lowest Rank
 void Ant::Demote() {
   if (this->_hierarchy != Hierarchy::Worker) {
-    // Will not work if Hierarchy is non-continuous 
+    // Will not work if Hierarchy is non-continuous
     --this->_hierarchy;
   }
 }
@@ -105,22 +100,18 @@ void Ant::Die() {
 
 // Returns true if the Ant is Dead
 // False otherwise
-bool Ant::IsDead() const {
-  return this->_isDead;
-}
+bool Ant::IsDead() const { return this->_isDead; }
 
 // NOT IMPLEMENTED
-void Ant::Turn() {  }
+void Ant::Turn() {}
 
 // Manually Set's the Ant's Location to the given Position on the given
 // Field if that Location is availible
 // Returns true if Ant was set to the new location, false otherwise
-void Ant::SetLocation(Position pos) {
-  this->_position = pos;
-}
+void Ant::SetLocation(Position pos) { this->_position = pos; }
 
 // The Ant slams it's enemy with a mighty blow!!
-void Ant::Attack(Ant *Enemy) {
+void Ant::Attack(Ant* Enemy) {
   // if your ant wins
   if (this->GetEnergy() > Enemy->GetEnergy()) {
     Enemy->Die();
@@ -145,18 +136,14 @@ void Ant::Attack(Ant *Enemy) {
 // Ant red_ant(red, worker, 1);
 // std::cout << red_ant << std::endl;
 // (prints "Red Worker Ant")
-std::ostream& Ant::operator<<(std::ostream& os)
-{
-  os << " " <<  this->_color << " " << this->_hierarchy << " " << "Ant ";
+std::ostream& Ant::operator<<(std::ostream& os) {
+  os << " " << this->_color << " " << this->_hierarchy << " "
+     << "Ant ";
   return os;
 }
 
 // Returns the direction the Ant is facing
-Direction Ant::GetDirection() const {
-  return this->_direction;
-}
+Direction Ant::GetDirection() const { return this->_direction; }
 
 // Sets the direction the Ant is facing
-void Ant::SetDirection(Direction direction) {
-  this->_direction = direction;
-}
+void Ant::SetDirection(Direction direction) { this->_direction = direction; }
