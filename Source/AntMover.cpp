@@ -63,7 +63,9 @@ int AntMover::CloseAnt(GameField &field, Ant* ant1)  // if an ant is close by, i
 	GameBlock *tempBlock = field.GetBlock(ant1->GetLocation()); // setting tempBlock equal to the ants location on the block
 	if (!tempBlock) // it it's empty then return 0
 		return 0;
-
+	// just do tempBlock (x,y +1 / -1) and check if their full or empty
+	// Read SetBlock
+	// create temp variable that is equal to SetBLock
 	srand(time(NULL));
 	int adj[3][3];
 	bool blocked = true;  // if true, then an ant has no empty space or enemy nearby
