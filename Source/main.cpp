@@ -13,10 +13,7 @@ struct Position {
   int x;
   int y;
 };
-struct Overlap {
-  Ant* ant1;
-  Ant* ant2;
-};
+
 
 enum class Direction { LEFT, RIGHT, UP, DOWN };
 enum class Color { red, blue };
@@ -111,30 +108,27 @@ void bufferClear() {
 
 // if two ants overlap over a block, they will attack by
 // getting popped from the stack
-void ResolveCombat(std::stack<Overlap>& stack) {
-  Overlap temp;
+void ResolveCombat(std::stack<GameBlock>& stack) {
+  GameBlock temp;
   while (!stack.empty()) {
     temp = stack.top();  // First set both of the ants to NULL pointers
     stack.pop();
     while (
-        !temp.ant1->IsDead() ||
-        !temp.ant2
+        !temp._ant1->IsDead() ||
+        !temp._ant2
              ->IsDead()) {  // first while loop to check if either ant is dead
-      temp.ant1->Attack(temp.ant2);  // ant 1 will attack ant 2
+      temp._ant1->Attack(temp._ant2);  // ant 1 will attack ant 2
                                      // if ant 2 is dead, it will continue
-      if (temp.ant2->IsDead()) break;
+      if (temp._ant2->IsDead()) break;
       // ant 2 will attack ant 1
-      temp.ant2->Attack(temp.ant1);
+      temp._ant2->Attack(temp._ant1);
       // if ant 1 is dead, it will continue
-      if (temp.ant1->IsDead()) break;
+      if (temp._ant1->IsDead()) break;
     }                     // End while
-    temp.ant1 = nullptr;  // set ant 1 to null
-    temp.ant2 = nullptr;  // set ant 2 to null
+    temp._ant1 = nullptr;  // set ant 1 to null
+    temp._ant2 = nullptr;  // set ant 2 to null
   }                       // End outer while
 }
-
-// MOVEMENT FUNCTION NOT DONE, JUST TRYING TO FIGURE OUT LOGIC FOR NOW
-
 
 /////////*Use some of Syed's logic to implement initial Ant setup*/////////
 //

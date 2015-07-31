@@ -27,7 +27,7 @@
     <ClCompile Include="Source\Hierarchy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AntMover.cpp">
+    <ClCompile Include="Source\AntMover.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -39,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Hierarchy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\AntMover.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

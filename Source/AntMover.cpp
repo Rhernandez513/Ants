@@ -7,22 +7,17 @@
 
 using namespace Ants; 
 
-struct Block {
-	bool full;
-	Ant* a;
-};
-Mover::Mover(int width, int height, int n, int nblue, int nred, int m)
+
+int AntMover::Mover(int n, int nblue, int nred, int max_turns)
 {
 	srand(time(NULL));
-	this->width = width;
-	this->height = height;
-	turn = false;
-	max_turns = m;
-	this->nummoves = n;
-	this->nred = nred;
-	this->nblue = nblue;
+	_turn = false;
+	this->_max_turns = max_turns;
+	this->_nummoves = n;
+	this->_nred = nred;
+	this->_nblue = nblue;
 }
-bool Mover::move(Position position1, Position position2, GameField &field)  // return 1 if successful
+bool AntMover::move(Position position1, Position position2, GameField &field)  // return 1 if successful
 {
 	int temp; 
 	if ((!field[position1.x][position2.y].SetBlock) ||
@@ -39,17 +34,17 @@ bool Mover::move(Position position1, Position position2, GameField &field)  // r
 	return true;
 }
 
-void Mover::pickant(int& x, int& y, Color c, GameField &field) {
+void AntMover::pickant(int& x, int& y, Color c, GameField &field) {
 	int skips;
 
 	srand(time(NULL));
 
 	if (c == Color::blue)
-		skips = rand() % nblue;
+		skips = rand() % _nblue;
 	else
-		skips = rand() % nred;
-	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
+		skips = rand() % _nred;
+	for (int i = 0; i < field.GetLength(); i++) {
+		for (int j = 0; j < field.GetWidth(); j++) {
 			if (field[i][j].a->color == c) {
 				if (skips > 0) {
 					skips--;
@@ -63,14 +58,74 @@ void Mover::pickant(int& x, int& y, Color c, GameField &field) {
 	}
 }
 
-int Run(bool unlimited, int nblue, int nred, int nummoves,Position position1, Position position2) {
-	turn = false;  // if false it's blue's turn, if true red
+int AntMover::CloseAnt(GameField &field, Ant* ant1)  // if an ant is close by, it will do this
+{
+	GameBlock *tempBlock = field.GetBlock(ant1->GetLocation()); // setting tempBlock equal to the ants location on the block
+	if (!tempBlock) // it it's empty then return 0
+		return 0;
+
+	if (tempBlock)
+	srand(time(NULL));
+	int adj[3][3];
+	bool blocked = true;  // if true, then an ant has no empty space or enemy nearby
+	// array of adjacent cells, -1 -> out of bounds,0-> empty, 1-> friendly, 2->
+	// enemy
+	for (int i = -1; i < 2; i++) {
+		for (int j = -1; j < 2; j++) {
+			if () {
+				adj[i + 1][j + 1] = -1;
+				i++;
+				continue;
+			}
+			if (!field[position1 + i][position2 + j].full) {
+				adj[i + 1][j + 1] = 0;
+				blocked = false;  // empty space nearby
+			}
+			else {
+				if (field[position1][position2].a->color == field[&position1 + i][&position2 + j].a->color)
+					adj[i + 1][j + 1] = 1;  // friendly
+			}
+			else {
+				adj[i + 1][j + 1] = 2;  // enemy
+				blocked = false;
+			}
+		}
+		if (blocked) return -2;
+
+		int r1 = rand() % 3, r2 = rand() % 3;  // choose a random spot
+		r1--;
+		r2--;
+
+		while ((r1 == 0 && r2 == 0) || adj[r1][r2] == -1 ||
+			adj[r1][r2] == 1)  // if chosen spot is (0,0), or chosen spot is out
+			// of bounds or friendly
+		{
+			r1 = rand() % 3, r2 = rand() % 3;  // choose again
+			r1--;
+			r2--;
+		}
+		if (adj[r1][r2] == 0)  // if spot is empty
+		{
+			if (this->move(position1, position2, position1 + r1, position2 + r2))  // action successful
+				return 5;
+
+		}
+		else  // spot has enemy
+		{
+			return combat(x, y, x + r1, y + r2);
+		}
+	}
+	tempBlock = nullptr;
+}
+
+int AntMover::Run( int nblue, int nred,Position position1, Position position2) {
+	_turn = false;  // if false it's blue's turn, if true red
 	int i, j, x, y, res;
 	i = j = x = y = res = 0;
-	while (i < m || unlimited) {
-		while (j < nummoves) {
-			if (turn == true) {
-				pickant(x, y, Color::blue);  // choose a random blue ant
+	while (i < this->_max_turns) {
+		while (j < _nummoves) {
+			if (_turn == true) {
+				this->pickant(x, y, Color::blue);  // choose a random blue ant
 				res = action(x, y);
 				if (res == -2)  // ant we picked is blocked, choose another one
 					continue;
@@ -114,64 +169,12 @@ int Run(bool unlimited, int nblue, int nred, int nummoves,Position position1, Po
 		return 3;  // draw, end of trials
 	}
 
-int action(Position position1, Position position2, GameField &field)  // return combat result or 5 for no one killed
-{
-	srand(time(NULL));
-	int adj[3][3];
-	bool blocked = true;  // if true, then an ant has no empty space or enemy nearby
-		// array of adjacent cells, -1 -> out of bounds,0-> empty, 1-> friendly, 2->
-		// enemy
-	for (int i = -1; i < 2; i++) {
-		for (int j = -1; j < 2; j++) {
-			if (&position1 + i < 0 || &position1 + i > width || &position2 + j < 0 || &position2 + j > height) {
-				adj[i + 1][j + 1] = -1;
-				i++;
-				continue;
-			}
-			if (!field[x + i][y + j].full) {
-				adj[i + 1][j + 1] = 0;
-				blocked = false;  // empty space nearby
-			}
-			else {
-				if (field[x][y].a->color == field[&position1 + i][&position2 + j].a->color)
-					adj[i + 1][j + 1] = 1;  // friendly
-			}
-			else {
-				adj[i + 1][j + 1] = 2;  // enemy
-				blocked = false;
-			}
-		}
-		if (blocked) return -2;
 
-		int r1 = rand() % 3, r2 = rand() % 3;  // choose a random spot
-		r1--;
-		r2--;
-
-		while ((r1 == 0 && r2 == 0) || adj[r1][r2] == -1 ||
-			adj[r1][r2] == 1)  // if chosen spot is (0,0), or chosen spot is out
-				// of bounds or friendly
-		{
-			r1 = rand() % 3, r2 = rand() % 3;  // choose again
-			r1--;
-			r2--;
-		}
-		if (adj[r1][r2] == 0)  // if spot is empty
-		{
-			if (move(position1, position2, &position1 + r1, &position2 + r2))  // action successful
-				return 5;
-
-		}
-		else  // spot has enemy
-		{
-			return combat(x, y, x + r1, y + r2);
-		}
-	}
-}
 
 	// returns: -1: both queens killed, draw. 0: both ants killed, game not over
 	// yet. 1:first ant killed second. 2: second killed first. 3: queen 2 killed,
 	// team 1 won. 4: queen 1 killed, team 2 won
-int combat(Position position1, Position position2, GameField &field) {
+int AntMover::combat(Position position1, Position position2, GameField &field) {
 	Block a1 = field[position1.x][position2.y];
 	Block a2 = field[position1.x][position2.y];
 	int r;
@@ -185,7 +188,7 @@ int combat(Position position1, Position position2, GameField &field) {
 				return 3;  // game over
 			a2.a = nullptr;  // otherwise, a1 replaces a2
 			a2.full = false;
-			move(position1, position2);
+			this->move(position1, position2);
 			return 1;
 		}
 		if (q1 < q2 || (q1 == q2 && r == 2)) {

@@ -8,12 +8,7 @@ class GameField {
   int _length;  // x co-ordinates
   int _width;   // y co-ordinates
 
-  // Extensible Storage
-  struct GameBlock {
-    bool isFilled;
-    Ant* _ant1;
-    Ant* _ant2;
-  } * *_gameField;
+  GameBlock ** _gameField;
 
  public:
   GameField(int length, int width);
