@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AntMover.cpp" />
     <ClCompile Include="Source\Ant.cpp" />
     <ClCompile Include="Source\GameField.cpp" />
     <ClCompile Include="Source\main.cpp" />
@@ -156,9 +157,6 @@
     <ClInclude Include="Headers\Ant.h" />
     <ClInclude Include="Headers\GameField.h" />
     <ClInclude Include="Headers\Hierarchy.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Source\New Kitchen" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
