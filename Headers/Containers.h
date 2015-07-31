@@ -8,6 +8,5 @@ struct Position {
 };
 enum Direction { LEFT, RIGHT, UP, DOWN };
 enum Color { red, blue };
-// Extensible Storage
 }
 #endif // CONTAINERS_H
