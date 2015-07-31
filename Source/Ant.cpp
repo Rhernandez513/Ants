@@ -68,10 +68,12 @@ void Ant::SetAttackPower(int attackPower) {
 
 // Set Ant's Ranking in the Hierarchy
 void Ant::SetHierarchy(Hierarchy hierarchy) {
-  if (this->_hierarchy > hierarchy) {
-    this->Promote();
-  } else if (this->_hierarchy < hierarchy) {
-    this->Demote();
+  while(this->_hierarchy != hierarchy) {
+    if (this->_hierarchy > hierarchy) {
+      this->Promote();
+    } else if (this->_hierarchy < hierarchy) {
+      this->Demote();
+    }
   }
 }
 
@@ -147,3 +149,4 @@ Direction Ant::GetDirection() const { return this->_direction; }
 
 // Sets the direction the Ant is facing
 void Ant::SetDirection(Direction direction) { this->_direction = direction; }
+

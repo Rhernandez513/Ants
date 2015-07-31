@@ -25,33 +25,54 @@ class Ant {
   int _energy;
 
  public:
+  // Spawn an Ant!! But you first must construct more pylons!
   Ant(Color color, Hierarchy hierarchy);
+  // Spawn an Ant!! But you first must construct more pylons!
   Ant(Color color, Hierarchy hierarchy, int AttackPower);
   ~Ant();
 
+  // Promote's Ant to next Highest Rank
   void Promote();
+  // Demote's Ant to next Lowest Rank
   void Demote();
 
+  // Return's Ant's  Color Value
   Color GetColor() const;
 
+  // Returns the direction the Ant is facing
   Direction GetDirection() const;
+  // Sets the direction the Ant is facing
   void SetDirection(Direction direction);
 
+  // Return's Ant's Ranking in the Hierarchy
   Hierarchy GetHierarchy() const;
+  // Set Ant's Ranking in the Hierarchy
   void SetHierarchy(Hierarchy hierarchy);
 
+  // Return's Ant's Attack Power
   int GetAttackPower() const;
   void SetAttackPower(int attackPower);
 
   void SetLocation(Position pos);
+  // Return's Ant's Location
   Position GetLocation() const;
 
+  // Return's Ant's Energy Value
   int GetEnergy() const;
+  // Set Ant's Energy Value
   void SetEnergy(int energy);
 
+  // This Kills the Ant...
   void Die();
+  
+  // Returns true if the Ant is Dead
+  // False otherwise
   bool IsDead() const;
+
+  // NOT IMPLEMENTED
   void Turn();
+
+  // The Ant slams it's enemy with a mighty blow!!
   void Attack(Ant* Enemy);
 
   std::ostream& operator<<(std::ostream& os);
