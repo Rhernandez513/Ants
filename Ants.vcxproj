@@ -156,6 +156,8 @@
   <ItemGroup>
     <ClInclude Include="Headers\Ant.h" />
     <ClInclude Include="Headers\AntMover.h" />
+    <ClInclude Include="Headers\Containers.h" />
+    <ClInclude Include="Headers\Gameblock.h" />
     <ClInclude Include="Headers\GameField.h" />
     <ClInclude Include="Headers\Hierarchy.h" />
   </ItemGroup>

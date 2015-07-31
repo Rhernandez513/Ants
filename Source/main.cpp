@@ -4,6 +4,7 @@
 #include <string>
 #include "..\\Headers\\Ant.h"
 #include "..\\Headers\\GameField.h"
+#include "..\\Headers\Gameblock.h"
 #include <vector>
 #include <stack>
 
@@ -13,7 +14,6 @@ struct Position {
   int x;
   int y;
 };
-
 
 enum class Direction { LEFT, RIGHT, UP, DOWN };
 enum class Color { red, blue };
@@ -111,21 +111,21 @@ void bufferClear() {
 void ResolveCombat(std::stack<GameBlock>& stack) {
   GameBlock temp;
   while (!stack.empty()) {
-    temp = stack.top();  // First set both of the ants to NULL pointers
+    temp = stack.top();  // First set both of the._ants to NULL pointers
     stack.pop();
-    while (!temp.ant1->IsDead() || !temp.ant2 ->IsDead()) {
-      // first while loop to check if either ant is dead
+    while (!temp._ant1->IsDead() || !temp._ant2 ->IsDead()) {
+      // first while loop to check if either._ant is dead
 
-      // ant 1 will attack ant 2
-      temp.ant1->Attack(temp.ant2);
-      if (temp.ant2->IsDead()) break; // Inner loop
+      //._ant 1 will attack._ant 2
+      temp._ant1->Attack(temp._ant2);
+      if (temp._ant2->IsDead()) break; // Inner loop
 
-      // ant 2 will attack ant 1
-      temp.ant2->Attack(temp.ant1);
-      if (temp.ant1->IsDead()) break; // Inner loop
+      //._ant 2 will attack._ant 1
+      temp._ant2->Attack(temp._ant1);
+      if (temp._ant1->IsDead()) break; // Inner loop
     }
-    temp.ant1 = nullptr; // set ant 1 to null
-    temp.ant2 = nullptr; // set ant 2 to null
+    temp._ant1 = nullptr; // set._ant 1 to null
+    temp._ant2 = nullptr; // set._ant 2 to null
   }
 }
 

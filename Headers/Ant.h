@@ -1,21 +1,10 @@
 #ifndef ANT_H
 #define ANT_H
 #include "Hierarchy.h"
+#include "Containers.h"
 
 namespace Ants {
 class GameField;
-struct Position {
-  int x;
-  int y;
-};
-enum Direction { LEFT, RIGHT, UP, DOWN };
-enum Color { red, blue };
-// Extensible Storage
-struct GameBlock {
-	bool isFilled;
-	Ant* _ant1;
-	Ant* _ant2;
-};
 class Ant {
  private:
   const Color _color;    // red or blue

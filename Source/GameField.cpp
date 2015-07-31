@@ -1,6 +1,7 @@
 #include "..\\Headers\\GameField.h"
 #include "..\Headers\Ant.h"
 #include <time.h>
+#include "..\\Headers\\Gameblock.h"
 
 using namespace Ants;
 
@@ -56,7 +57,7 @@ GameField::~GameField() {
 }
 
 // Returns a reference to the GameBlock at the Specified Position
-GameField::GameBlock *GameField::GetBlock(Position pos) {
+GameBlock *GameField::GetBlock(Position pos) {
   GameBlock * block;
   if (CheckIfPositionValid(pos)) {
     block = &this->_gameField[pos.x][pos.y];
@@ -111,31 +112,33 @@ void GameField::PopulateField(int numberOfAntsPerTeam) {
       ++i;
     }
   }
-
-   while(i<nred)
-  {
-  
-    x=rand()%width/2;
-    y=rand()%height;
-    if(i==0)
-    {
-      Field[x][y].full=true;
-      Field[x][y].a=new Ant(Color::Red,Heirarchy::Queen);
-      i++;
-      continue;
-    }
-  
-    if(Field[x][y].full)
-      continue;
-  
-  
-    Field[x][y].full=true;
-    if(i%3==0)
-     Field[x][y].a=new Ant(Color::Red,Heirarchy::Worker);
-    if(i%3==1)
-     Field[x][y].a=new Ant(Color::Red,Heirarchy::Soldier);
-     if(i%3==2)
-     Field[x][y].a=new Ant(Color::Red,Heirarchy::Knight);
-     i++;
-  }
 }
+
+//
+//   while(i<nred)
+//  {
+//  
+//    x=rand()%width/2;
+//    y=rand()%height;
+//    if(i==0)
+//    {
+//      Field[x][y].full=true;
+//      Field[x][y].a=new Ant(Color::Red,Heirarchy::Queen);
+//      i++;
+//      continue;
+//    }
+//  
+//    if(Field[x][y].full)
+//      continue;
+//  
+//  
+//    Field[x][y].full=true;
+//    if(i%3==0)
+//     Field[x][y].a=new Ant(Color::Red,Heirarchy::Worker);
+//    if(i%3==1)
+//     Field[x][y].a=new Ant(Color::Red,Heirarchy::Soldier);
+//     if(i%3==2)
+//     Field[x][y].a=new Ant(Color::Red,Heirarchy::Knight);
+//     i++;
+//  }
+//}

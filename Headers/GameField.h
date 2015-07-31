@@ -1,6 +1,7 @@
 #ifndef GAMEFIELD_H
 #define GAMEFIELD_H
 #include "Ant.h"
+#include "Gameblock.h"
 
 namespace Ants {
 class GameField {
@@ -34,4 +35,3 @@ class GameField {
 };
 }
 #endif  // GAMEFIELD_H
-

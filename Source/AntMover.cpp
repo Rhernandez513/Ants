@@ -4,6 +4,7 @@
 #include "..\\Headers\\Ant.h"
 #include "..\\Headers\\GameField.h"
 #include "..\\Headers\\AntMover.h"
+#include "..\\Headers\Gameblock.h"
 
 using namespace Ants; 
 
