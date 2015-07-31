@@ -12,12 +12,7 @@ class GameField {
   bool CheckIfPositionValid(Position pos);
 
   // Extensible Storage
-  struct GameBlock {
-    bool isFilled;
-    Ant* _ant1;
-    Ant* _ant2;
-    Position _pos;
-  } * *_gameField;
+  GameBlock ** _gameField;
 
  public:
   // Constructor
@@ -39,3 +34,4 @@ class GameField {
 };
 }
 #endif  // GAMEFIELD_H
+

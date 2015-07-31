@@ -4,20 +4,21 @@
 #include "Ant.h"
 
 namespace Ants {
-	class Mover {
+	class AntMover {
 	private:
-		int width, height;
-		int res;
-		int max_turns;
-		int nblue, nred;
-		int nummoves;
-		bool turn;  // false for red, true for blue
+		int _res;
+		int _max_turns;
+		int _nblue, _nred;
+		int _nummoves;
+		bool _turn;  // false for red, true for blue
 
 	public:
-		Mover(int width, int height, int n, int nblue, int nred, int m);
+		int Mover(int n, int nblue, int nred, int m);
 		bool move(Position position1, Position position2, GameField &field);
 		void pickant(int& x, int& y, Color c, GameField &field);
-		int Run(bool unlimited);
+		int Run(int nblue, int nred, Position position1, Position position2);
+		int CloseAnt(GameField &field, Ant* ant1);
+		int combat(Position position1, Position position2, GameField &field);
 	};
 }
 #endif  // AntMover_H

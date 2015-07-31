@@ -13,10 +13,7 @@ struct Position {
   int x;
   int y;
 };
-struct Overlap {
-  Ant* ant1;
-  Ant* ant2;
-};
+
 
 enum class Direction { LEFT, RIGHT, UP, DOWN };
 enum class Color { red, blue };
@@ -111,8 +108,8 @@ void bufferClear() {
 
 // if two ants overlap over a block, they will attack by
 // getting popped from the stack
-void ResolveCombat(std::stack<Overlap>& stack) {
-  Overlap temp;
+void ResolveCombat(std::stack<GameBlock>& stack) {
+  GameBlock temp;
   while (!stack.empty()) {
     temp = stack.top();  // First set both of the ants to NULL pointers
     stack.pop();
@@ -131,3 +128,4 @@ void ResolveCombat(std::stack<Overlap>& stack) {
     temp.ant2 = nullptr; // set ant 2 to null
   }
 }
+
