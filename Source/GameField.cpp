@@ -66,7 +66,8 @@ GameBlock *GameField::GetBlock(Position pos) {
   return nullptr;
 }
 
-// Sets the Specified Position to filled if it is empty
+// Places the Ant at the Position provided
+// Returns true if operation succesfull, false otherwise
 bool GameField::SetBlock(Position pos, Ant *ant) {
   if (this->_gameField[pos.x][pos.y].isFilled) {  // Both spots are open
     return false;

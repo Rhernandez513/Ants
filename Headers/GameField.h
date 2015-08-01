@@ -21,7 +21,8 @@ class GameField {
   // Destructor
   ~GameField();
 
-  // Sets the Specified Position to filled if it is empty
+  // Places the Ant at the Position provided
+  // Returns true if operation succesfull, false otherwise
   bool SetBlock(Position pos, Ant* ant);
   GameBlock* GetBlock(Position pos);
 
