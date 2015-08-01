@@ -68,7 +68,7 @@ void Ant::SetAttackPower(int attackPower) {
 
 // Set Ant's Ranking in the Hierarchy
 void Ant::SetHierarchy(Hierarchy hierarchy) {
-  while(this->_hierarchy != hierarchy) {
+  while (this->_hierarchy != hierarchy) {
     if (this->_hierarchy > hierarchy) {
       this->Promote();
     } else if (this->_hierarchy < hierarchy) {
@@ -96,8 +96,9 @@ void Ant::Demote() {
 // This Kills the Ant...
 void Ant::Die() {
   this->_isDead = true;
+  EventListener::Update(this);
   std::cout << "A " << this
-    << " has died honorably trying to fight its foe. . . .\n";
+            << " has died honorably trying to fight its foe. . . .\n";
 }
 
 // Returns true if the Ant is Dead
@@ -112,7 +113,6 @@ void Ant::Turn() {}
 // Returns true if Ant was set to the new location, false otherwise
 void Ant::SetLocation(Position pos) { this->_position = pos; }
 
-
 // The Ant slams it's enemy with a mighty blow!!
 void Ant::Attack(Ant* Enemy) {
   // if your ant wins
@@ -123,7 +123,7 @@ void Ant::Attack(Ant* Enemy) {
     Enemy->Die();
   } else {
     // they have equal attack power
-    std::cout << "The " << this << " and " << Enemy 
+    std::cout << "The " << this << " and " << Enemy
               << "s are equal in power!\n";
     // Pick one to die randomly
     srand(static_cast<unsigned>(time(nullptr)));

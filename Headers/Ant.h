@@ -7,7 +7,7 @@ namespace Ants {
 class GameField;
 class Ant {
  private:
-  const Color _color;    // red or blue
+  Color _color;    // red or blue
   Hierarchy _hierarchy;  // ant's "level"
   Direction _direction;  // direction ant is facing
   int _attackPower;
@@ -18,6 +18,7 @@ class Ant {
   // the assigned energy that certain ants will have.
   // The higher the hierarchy of ants, the more energy
   int _energy;
+
  public:
   // Spawn an Ant!! But you first must construct more pylons!
   Ant(Color color, Hierarchy hierarchy);
@@ -59,7 +60,7 @@ class Ant {
 
   // This Kills the Ant...
   void Die();
-  
+
   // Returns true if the Ant is Dead
   // False otherwise
   bool IsDead() const;
