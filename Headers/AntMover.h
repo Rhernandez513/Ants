@@ -13,12 +13,12 @@ namespace Ants {
 		bool _turn;  // false for red, true for blue
 
 	public:
-		int Mover(int n, int nblue, int nred, int m);
+		AntMover(int n, int nblue, int nred, int m);
 		bool move(Position position, GameField &field, Ant* ant);
-		void pickant(int& x, int& y, Color c, GameField &field);
-		int Run(int nblue, int nred, Position position1, Position position2);
+		void pickant(Position position, Color c, GameField &field);
+		int Run(int nblue, int nred, Position position);
 		int CloseAnt(GameField &field, Ant* ant1);
-		int combat(Position position1, Position position2, GameField &field);
+		int combat(Position position, GameField &field);
 	};
 }
 #endif  // AntMover_H

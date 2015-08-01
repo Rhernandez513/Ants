@@ -8,8 +8,7 @@
 
 using namespace Ants; 
 
-
-int AntMover::Mover(int n, int nblue, int nred, int max_turns)
+AntMover::AntMover(int n, int nblue, int nred, int max_turns)
 {
 	srand(time(NULL));
 	_turn = false;
@@ -18,18 +17,19 @@ int AntMover::Mover(int n, int nblue, int nred, int max_turns)
 	this->_nred = nred;
 	this->_nblue = nblue;
 }
-bool AntMover::move(Position position,GameField &field, Ant *ant)  // return 1 if successful
+bool AntMover::move(Position position,GameField &field, Ant *ant)  // checks if positions nearby are empty or not
 {
-	while (field.SetBlock() != true)
-		if (position.x + 1 || position.x - 1 || position.y + 1 || position.y - 1)
-		{
-
-		}
+	int r = (rand() % 4) + 1; // randomly choosing four directions
+	while (field.SetBlock(position, ant) != true) // while the position is not true
+	{
+		position.x + 1;
+		position.x - 2;
+		position.y + 1;
+		position.y - 2;
+	}
 }
-
-void AntMover::pickant(int& x, int& y, Color c, GameField &field) {
+void AntMover::pickant(Position position, Color c, GameField &field) { // this function was supposed to pick a ant on either side of the field
 	int skips;
-
 	srand(time(NULL));
 
 	if (c == Color::blue)
@@ -38,7 +38,7 @@ void AntMover::pickant(int& x, int& y, Color c, GameField &field) {
 		skips = rand() % _nred;
 	for (int i = 0; i < field.GetLength(); i++) {
 		for (int j = 0; j < field.GetWidth(); j++) {
-			if (field[i][j].a->color == c) {
+			//(commented out just now)if (field[position.x][position.y].a->color == c) { // operands do not match, probably would have to delete this function anyway
 				if (skips > 0) {
 					skips--;
 					continue;
@@ -54,14 +54,10 @@ void AntMover::pickant(int& x, int& y, Color c, GameField &field) {
 int AntMover::CloseAnt(GameField &field, Ant* ant1)  // if an ant is close by, it will do this
 {
 	GameBlock *tempBlock = field.GetBlock(ant1->GetLocation()); // setting tempBlock equal to the ants location on the block
-	if (!tempBlock) // it it's empty then return 0
+	/*if (!tempBlock) // it it's empty then return 0
 		return 0;
-
-	// just do tempBlock (x,y +1 / -1) and check if their full or empty
-	// Read SetBlock
-	// create temp variable that is equal to SetBLock
 	srand(time(NULL));
-	bool blocked = true;
+	bool blocked = true;*/
 }
 // if true, then an ant has no empty space or enemy nearby
 	// array of adjacent cells, -1 -> out of bounds,0-> empty, 1-> friendly, 2->
@@ -114,15 +110,15 @@ int AntMover::CloseAnt(GameField &field, Ant* ant1)  // if an ant is close by, i
 	//tempBlock = nullptr;
 //}
 
-int AntMover::Run( int nblue, int nred,Position position1, Position position2) {
+/*int AntMover::Run( int nblue, int nred,Position position) {
 	_turn = false;  // if false it's blue's turn, if true red
 	int i, j, x, y, res;
 	i = j = x = y = res = 0;
 	while (i < this->_max_turns) {
 		while (j < _nummoves) {
 			if (_turn == true) {
-				this->pickant(x, y, Color::blue);  // choose a random blue ant
-				res = CloseAnt(x, y);
+				this->pickant(position.x, position.y, Color::blue);  // tries to call the pickant function from a random position and color
+				res = CloseAnt(x, y);// don't know what's going on here
 				if (res == -2)  // ant we picked is blocked, choose another one
 					continue;
 
@@ -138,8 +134,8 @@ int AntMover::Run( int nblue, int nred,Position position1, Position position2) {
 
 			}
 			else {
-				pickant(x, y, Color::red);
-				res = CloseAnt(x, y);
+				pickant(x, y, Color::red); // I guess he was trying to use the "pickant" function to take a turn
+				res = CloseAnt(x, y); // don't know what's going on here
 				if (res == -2)  // ant we picked is blocked, choose another one
 					continue;
 				if (res == -1) return 0;
@@ -154,37 +150,31 @@ int AntMover::Run( int nblue, int nred,Position position1, Position position2) {
 				if (res == 1) nblue--;
 				if (res == 2) nred--;
 				}
-
 				j++;
 			}
-
-			Color = !blue;
-			j = 0;
-			i++;
 		}
 		return 3;  // draw, end of trials
 	}
-
+	
 
 
 	// returns: -1: both queens killed, draw. 0: both ants killed, game not over
 	// yet. 1:first ant killed second. 2: second killed first. 3: queen 2 killed,
 	// team 1 won. 4: queen 1 killed, team 2 won
-int AntMover::combat(Position position1, Position position2, GameField &field) {
-	Block a1 = field[position1.x][position2.y];
-	Block a2 = field[position1.x][position2.y];
+int AntMover::combat(Position position, GameField &field) {
+	// Majed set the positions of the two queens on either side of the board, they were originally called "a1" "a2" 
 	int r;
 	srand(time(NULL));
 	r = rand() % 3;
-	int q1 = a1.a->GetAttackPower();
-	int q2 = a2.a->GetAttackPower();
+	int q1 = a1.a->GetAttackPower(); // "a1" is queens set position
+	int q2 = a2.a->GetAttackPower(); // "a2" is the second queens position
 
 		if (q1 > q2 || (q1 == q2 && r == 1)) {
 			if (q2 == 0)  // if ant 2 is queen
 				return 3;  // game over
 			a2.a = nullptr;  // otherwise, a1 replaces a2
 			a2.full = false;
-			this->move(position1, position2);
+			this->move(position.x, position.y); // moves the position of the ant to the new position of it's foe
 			return 1;
 		}
 		if (q1 < q2 || (q1 == q2 && r == 2)) {
@@ -205,3 +195,4 @@ int AntMover::combat(Position position1, Position position2, GameField &field) {
 		}
 	}
 }
+*/
