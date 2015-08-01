@@ -12,15 +12,13 @@ int GameField::GetWidth() { return this->_width; }
 
 // Returns True if the Position is within the Gamefield false otherwise
 bool GameField::CheckIfPositionValid(Position pos) {
-  if (pos.x > _length || pos.x < 0) return false; // x co-ordinates
-  if (pos.y > _width || pos.y < 0) return false;  // y co-ordinates
+  if (pos.x > _length || pos.x < 0) return false;  // x co-ordinates
+  if (pos.y > _width || pos.y < 0) return false;   // y co-ordinates
   return true;
 }
 
 // Constructor
-GameField::GameField(int size)
-  : _length(size), _width(size)
-{
+GameField::GameField(int size) : _length(size), _width(size) {
   if (this->_length < 0) this->_length *= -1;  // Invert Negative Inputs
   if (this->_width < 0) this->_width *= -1;    // Invert Negative Inputs
 
@@ -54,7 +52,7 @@ GameField::~GameField() {
 
 // Returns a reference to the GameBlock at the Specified Position
 GameBlock *GameField::GetBlock(Position pos) {
-  GameBlock * block;
+  GameBlock *block;
   if (CheckIfPositionValid(pos)) {
     block = &this->_gameField[pos.x][pos.y];
     if (block) return block;
@@ -67,8 +65,10 @@ GameBlock *GameField::GetBlock(Position pos) {
 bool GameField::SetBlock(Position pos, Ant *ant) {
   if (this->_gameField[pos.x][pos.y].isFilled) {  // Both spots are open
     return false;
+  } else if (!CheckIfPositionValid(pos)) {        // Off the Grid
+    return false;
   }
-  if (!this->_gameField[pos.x][pos.y]._ant1) {  // 1st ant* spot is open
+  if (!this->_gameField[pos.x][pos.y]._ant1) {  // 1st ant * spot is open
     this->_gameField[pos.x][pos.y]._ant1 = ant;
     ant->SetLocation(pos);
     return true;
@@ -107,12 +107,14 @@ void GameField::PopulateFieldHelper(int num, Color inColor) {
     if (attemps == upperLimit) {
       throw new std::exception("Buffer Overflow");
     }
-    x = (rand() % this->_length) / 2; // x co-ordinates
-    y = (rand() % this->_width) / 2;  // y co-ordinates
+    x = (rand() % this->_length) / 2;  // x co-ordinates
+    y = (rand() % this->_width) / 2;   // y co-ordinates
     antPos.x = (x + this->_width) / 2;
     antPos.y = (y + this->_length) / 2;
 
-    if (this->GetBlock(antPos)->isFilled) { continue; }
+    if (this->GetBlock(antPos)->isFilled) {
+      continue;
+    }
 
     if (i == 0) {
       // Attempts to set the Queen until Successful

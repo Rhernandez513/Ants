@@ -13,10 +13,11 @@ class GameField {
   bool CheckIfPositionValid(Position pos);
 
   // Extensible Storage
-  GameBlock ** _gameField;
+  GameBlock** _gameField;
 
   // Heavy lifting for PopulateField(int numberOfAntsPerTeam)
   void PopulateFieldHelper(int num, Color inColor);
+
  public:
   // Constructor
   GameField(int size);

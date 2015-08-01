@@ -231,8 +231,8 @@ class Kitchen {
     int q2 = a2.a->getAttackPower();
 
     if (q1 > q2 || (q1 == q2 && r == 1)) {
-      if (q2 == 0)  // if ant 2 is queen
-        return 3;  // game over
+      if (q2 == 0)     // if ant 2 is queen
+        return 3;      // game over
       a2.a = nullptr;  // otherwise, a1 replaces a2
       a2.full = false;
       move(x1, y1, x2, y2);
@@ -240,13 +240,13 @@ class Kitchen {
     }
     if (q1 < q2 || (q1 == q2 && r == 2)) {
       if (a1.a->getAttackPower() == 0)  // a1 is queen
-        return 4;  // game over
-      a1.a = nullptr;  // otherwise, a2 replaces a1
+        return 4;                       // game over
+      a1.a = nullptr;                   // otherwise, a2 replaces a1
       a1.full = false;
       return 2;
     }
-    if (q1 == 0)  // draw,both queens were killed
-      return -1;  // game over, draw
+    if (q1 == 0)     // draw,both queens were killed
+      return -1;     // game over, draw
     a1.a = nullptr;  // other wise, both ants got killed
     a1.full = false;
     a2.a = nullptr;
