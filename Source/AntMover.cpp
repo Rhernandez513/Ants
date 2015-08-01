@@ -18,21 +18,13 @@ int AntMover::Mover(int n, int nblue, int nred, int max_turns)
 	this->_nred = nred;
 	this->_nblue = nblue;
 }
-bool AntMover::move(Position position1, Position position2, GameField &field)  // return 1 if successful
+bool AntMover::move(Position position,GameField &field, Ant *ant)  // return 1 if successful
 {
-	int temp; 
-	if ((!field[position1.x][position2.y].SetBlock) ||
-		field[position1.x][position2.y].SetBlock)  // if first position is empty (not full) then ant
-			// cannot logically move from there. Likewise if
-			// the second position is full the ant cannot move
-			// there
-		return false;
+	while (field.SetBlock() != true)
+		if (position.x + 1 || position.x - 1 || position.y + 1 || position.y - 1)
+		{
 
-	field[position1.x][position2.y].SetBlock = field[position1.x][position2.y].SetBlock;
-	field[position1.x][position2.y].SetBlock = nullptr;
-	field[position1.x][position2.y].SetBlock = true;
-	field[position1.x][position2.y].SetBlock = false;
-	return true;
+		}
 }
 
 void AntMover::pickant(int& x, int& y, Color c, GameField &field) {
@@ -64,61 +56,63 @@ int AntMover::CloseAnt(GameField &field, Ant* ant1)  // if an ant is close by, i
 	GameBlock *tempBlock = field.GetBlock(ant1->GetLocation()); // setting tempBlock equal to the ants location on the block
 	if (!tempBlock) // it it's empty then return 0
 		return 0;
+
 	// just do tempBlock (x,y +1 / -1) and check if their full or empty
 	// Read SetBlock
 	// create temp variable that is equal to SetBLock
 	srand(time(NULL));
-	int adj[3][3];
-	bool blocked = true;  // if true, then an ant has no empty space or enemy nearby
+	bool blocked = true;
+}
+// if true, then an ant has no empty space or enemy nearby
 	// array of adjacent cells, -1 -> out of bounds,0-> empty, 1-> friendly, 2->
 	// enemy
-	for (int i = -1; i < 2; i++) {
-		for (int j = -1; j < 2; j++) {
-			if () {
-				adj[i + 1][j + 1] = -1;
-				i++;
-				continue;
-			}
-			if (!field[position1 + i][position2 + j].full) {
-				adj[i + 1][j + 1] = 0;
-				blocked = false;  // empty space nearby
-			}
-			else {
-				if (field[position1][position2].a->color == field[&position1 + i][&position2 + j].a->color)
-					adj[i + 1][j + 1] = 1;  // friendly
-			}
-			else {
-				adj[i + 1][j + 1] = 2;  // enemy
-				blocked = false;
-			}
-		}
-		if (blocked) return -2;
+	//for (int i = -1; i < 2; i++) {
+	//	for (int j = -1; j < 2; j++) {
+		//	if () {
+			//	adj[i + 1][j + 1] = -1;
+			//	i++;
+				//continue;
+			//}
+			//if (!field[position1 + i][position2 + j].full) {
+				//adj[i + 1][j + 1] = 0;
+				//blocked = false;  // empty space nearby
+			//}
+			//else {
+				//if (field[position1][position2].a->color == field[&position1 + i][&position2 + j].a->color)
+					//adj[i + 1][j + 1] = 1;  // friendly
+		//	}
+			//else {
+				//adj[i + 1][j + 1] = 2;  // enemy
+				//blocked = false;
+			//}
+		//}
+		//if (blocked) return -2;
 
-		int r1 = rand() % 3, r2 = rand() % 3;  // choose a random spot
-		r1--;
-		r2--;
+		//int r1 = rand() % 3, r2 = rand() % 3;  // choose a random spot
+		//r1--;
+		//r2--;
 
-		while ((r1 == 0 && r2 == 0) || adj[r1][r2] == -1 ||
-			adj[r1][r2] == 1)  // if chosen spot is (0,0), or chosen spot is out
+		//while ((r1 == 0 && r2 == 0) || adj[r1][r2] == -1 ||
+			//adj[r1][r2] == 1)  // if chosen spot is (0,0), or chosen spot is out
 			// of bounds or friendly
-		{
-			r1 = rand() % 3, r2 = rand() % 3;  // choose again
-			r1--;
-			r2--;
-		}
-		if (adj[r1][r2] == 0)  // if spot is empty
-		{
-			if (this->move(position1, position2, position1 + r1, position2 + r2))  // action successful
-				return 5;
+		//{
+			//r1 = rand() % 3, r2 = rand() % 3;  // choose again
+			//r1--;
+			//r2--;
+		//}
+		//if (adj[r1][r2] == 0)  // if spot is empty
+		//{
+		//	if (this->move(position1, position2, position1 + r1, position2 + r2))  // action successful
+			//	return 5;
 
-		}
-		else  // spot has enemy
-		{
-			return combat(x, y, x + r1, y + r2);
-		}
-	}
-	tempBlock = nullptr;
-}
+		//}
+	//	else  // spot has enemy
+	//	{
+		//	return combat(x, y, x + r1, y + r2);
+	//	}
+	//}
+	//tempBlock = nullptr;
+//}
 
 int AntMover::Run( int nblue, int nred,Position position1, Position position2) {
 	_turn = false;  // if false it's blue's turn, if true red
@@ -128,7 +122,7 @@ int AntMover::Run( int nblue, int nred,Position position1, Position position2) {
 		while (j < _nummoves) {
 			if (_turn == true) {
 				this->pickant(x, y, Color::blue);  // choose a random blue ant
-				res = action(x, y);
+				res = CloseAnt(x, y);
 				if (res == -2)  // ant we picked is blocked, choose another one
 					continue;
 
@@ -145,7 +139,7 @@ int AntMover::Run( int nblue, int nred,Position position1, Position position2) {
 			}
 			else {
 				pickant(x, y, Color::red);
-				res = action(x, y);
+				res = CloseAnt(x, y);
 				if (res == -2)  // ant we picked is blocked, choose another one
 					continue;
 				if (res == -1) return 0;

@@ -14,7 +14,7 @@ namespace Ants {
 
 	public:
 		int Mover(int n, int nblue, int nred, int m);
-		bool move(Position position1, Position position2, GameField &field);
+		bool move(Position position, GameField &field, Ant* ant);
 		void pickant(int& x, int& y, Color c, GameField &field);
 		int Run(int nblue, int nred, Position position1, Position position2);
 		int CloseAnt(GameField &field, Ant* ant1);
