@@ -24,6 +24,7 @@ class GameField {
   // Places the Ant at the Position provided
   // Returns true if operation succesfull, false otherwise
   bool SetBlock(Position pos, Ant* ant);
+  // Returns a reference to the GameBlock at the Specified Position
   GameBlock* GetBlock(Position pos);
 
   // Returns Length (x-axis) of the Field
