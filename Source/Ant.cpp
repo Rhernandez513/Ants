@@ -1,6 +1,6 @@
 #include "..\\Headers\\Ant.h"
-#include "..\\Headers\\GameField.h"
 #include "..\\Headers\Hierarchy.h"
+#include "..\\Headers\AntHelper.h"
 #include <time.h>
 
 using namespace Ants;
@@ -38,10 +38,10 @@ int Ant::GetEnergy() const { return _energy; }
 
 // Set Ant's Energy Value
 void Ant::SetEnergy(int energy) {
-  if (energy >= 0) {
+  if (energy > 0) {
     this->_energy = energy;
   } else {
-    this->_energy = 0;
+    this->_energy = 1;
   }
 }
 
@@ -62,7 +62,7 @@ void Ant::SetAttackPower(int attackPower) {
   if (attackPower > 0) {
     this->_attackPower = attackPower;
   } else {
-    this->_attackPower = 0;
+    this->_attackPower = 1;
   }
 }
 
@@ -96,8 +96,8 @@ void Ant::Demote() {
 // This Kills the Ant...
 void Ant::Die() {
   this->_isDead = true;
-  std::cout << "A" << this
-            << "has died honorably trying to fight its foe. . . .\n";
+  std::cout << "A " << this
+    << " has died honorably trying to fight its foe. . . .\n";
 }
 
 // Returns true if the Ant is Dead
@@ -112,17 +112,20 @@ void Ant::Turn() {}
 // Returns true if Ant was set to the new location, false otherwise
 void Ant::SetLocation(Position pos) { this->_position = pos; }
 
+
 // The Ant slams it's enemy with a mighty blow!!
 void Ant::Attack(Ant* Enemy) {
   // if your ant wins
-  if (this->GetEnergy() > Enemy->GetEnergy()) {
+  if (this->GetAttackPower() > Enemy->GetAttackPower()) {
     Enemy->Die();
-  } else if (this->GetEnergy() < Enemy->GetEnergy()) {
+  } else if (this->GetAttackPower() < Enemy->GetAttackPower()) {
     // if the Enemy ant wins
     Enemy->Die();
   } else {
     // they have equal attack power
-    std::cout << "The two ants are equal in power!\n";
+    std::cout << "The " << this << " and " << Enemy 
+              << "s are equal in power!\n";
+    // Pick one to die randomly
     srand(static_cast<unsigned>(time(nullptr)));
     int temp = rand() % 8;
     if (temp % 2 == 0) {
@@ -133,20 +136,8 @@ void Ant::Attack(Ant* Enemy) {
   }
 }
 
-// Prints This ant's Hierarchy & Color
-// Example
-// Ant red_ant(red, worker, 1);
-// std::cout << red_ant << std::endl;
-// (prints "Red Worker Ant")
-std::ostream& Ant::operator<<(std::ostream& os) {
-  os << " " << this->_color << " " << this->_hierarchy << " "
-     << "Ant ";
-  return os;
-}
-
 // Returns the direction the Ant is facing
 Direction Ant::GetDirection() const { return this->_direction; }
 
 // Sets the direction the Ant is facing
 void Ant::SetDirection(Direction direction) { this->_direction = direction; }
-

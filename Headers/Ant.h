@@ -18,7 +18,6 @@ class Ant {
   // the assigned energy that certain ants will have.
   // The higher the hierarchy of ants, the more energy
   int _energy;
-
  public:
   // Spawn an Ant!! But you first must construct more pylons!
   Ant(Color color, Hierarchy hierarchy);
@@ -46,6 +45,7 @@ class Ant {
 
   // Return's Ant's Attack Power
   int GetAttackPower() const;
+  // Set's Ant's Attack Power
   void SetAttackPower(int attackPower);
 
   void SetLocation(Position pos);
@@ -69,8 +69,6 @@ class Ant {
 
   // The Ant slams it's enemy with a mighty blow!!
   void Attack(Ant* Enemy);
-
-  std::ostream& operator<<(std::ostream& os);
 };
 }
 #endif  // ANT_H

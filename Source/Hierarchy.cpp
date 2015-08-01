@@ -50,6 +50,9 @@ std::ostream& Ants::operator<<(std::ostream& os, Hierarchy hierarchy) {
     case (Hierarchy::Worker):
       os << "Worker";
       break;
+    default:
+      os << "";
+      break;
   }
   return os;
 }

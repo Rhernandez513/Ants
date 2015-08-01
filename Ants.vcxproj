@@ -147,19 +147,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Headers\Containers.cpp" />
     <ClCompile Include="Source\Ant.cpp" />
-    <ClCompile Include="Source\AntMover.cpp" />
+    <ClCompile Include="Source\AntHelper.cpp" />
     <ClCompile Include="Source\GameField.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Hierarchy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Ant.h" />
-    <ClInclude Include="Headers\AntMover.h" />
+    <ClInclude Include="Headers\AntHelper.h" />
     <ClInclude Include="Headers\Containers.h" />
     <ClInclude Include="Headers\Gameblock.h" />
     <ClInclude Include="Headers\GameField.h" />
     <ClInclude Include="Headers\Hierarchy.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="WelcomeMsg.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,9 +15,11 @@ class GameField {
   // Extensible Storage
   GameBlock ** _gameField;
 
+  // Heavy lifting for PopulateField(int numberOfAntsPerTeam)
+  void PopulateFieldHelper(int num, Color inColor);
  public:
   // Constructor
-  GameField(int length, int width);
+  GameField(int size);
   // Destructor
   ~GameField();
 
@@ -32,7 +34,6 @@ class GameField {
   // Returns Width (y-axis) of the Field
   int GetWidth();
 
-  // Currently only populates RED team
   void PopulateField(int numberOfAntsPerTeam);
 };
 }

@@ -27,7 +27,10 @@
     <ClCompile Include="Source\Hierarchy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AntMover.cpp">
+    <ClCompile Include="Headers\Containers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AntHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,14 +44,17 @@
     <ClInclude Include="Headers\Hierarchy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\AntMover.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Headers\Containers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Headers\Gameblock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Headers\AntHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="WelcomeMsg.txt" />
   </ItemGroup>
 </Project>

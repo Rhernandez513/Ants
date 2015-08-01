@@ -1,67 +1,76 @@
-#include <iostream>
-//#include <glut.h>
-#include <time.h>
-#include <string>
 #include "..\\Headers\\Ant.h"
 #include "..\\Headers\\GameField.h"
 #include "..\\Headers\Gameblock.h"
-#include <vector>
+#include <iostream>
+//#include <glut.h>
+#include <string>
 #include <stack>
+#include <fstream>
 
 using namespace Ants;
 
-struct Position {
-  int x;
-  int y;
-};
-
-enum class Direction { LEFT, RIGHT, UP, DOWN };
-enum class Color { red, blue };
-
+// Helps with clearing std::cin buffer to prevent infinite loops
+// Can also work like std::cin.get() to accept a Return key press
 void bufferClear();
+// Combat testing method
 void GameSetup();
-void Combat(Ant* a, Ant* b);
+// If two ants overlap over a block, they will attack by
+// Getting popped from the stack
+void ResolveCombat(std::stack<GameBlock>& stack);
+// Flags checking if the queen has died.
+bool red_queen_is_dead = false, blue_queen_is_dead = false;
 
-// PLACEHOLDER VALUES
-GameField field(50, 50);
+
+// Prints to stdout the WelcomeMsg
+bool PrintWelcome() {
+  // Setup
+  std::string file_name = "WelcomeMsg.txt";
+  std::fstream rdr(file_name);
+  rdr.open(file_name);
+  if (!rdr.is_open()) return false;
+  rdr.clear();
+  // Parsing & Printing
+  std::string tempLineString;
+  while (rdr.peek() != EOF) {
+    std::getline(rdr, tempLineString);
+    std::cout << tempLineString << std::endl;
+    if (tempLineString == "") {
+      std::cout << std::endl;
+    }
+    std::cout << std::endl;
+  }
+  // Cleanup
+  rdr.close();
+  return true;
+}
 
 int main() {
-  bool red_flag = false,
-       blue_flag = false;  // flags checking if the queen has died.
-  int length, width;
-
-  std::cout << "Welcome to the battlefield!" << std::endl;
-  std::cout << " Here, on this kitchen table, the most epic battle between "
-            << "Ants will take place!" << std::endl;
-  std::cout << "On one side, there are the BLUE ants. The other side has RED "
-            << "Ants. They despise each other. . ." << std::endl;
-  std::cout << "Each side has a hierarchy of ant ranks: Worker ant, Soldier "
-            << "ant, and Knight ant (worker ant being the weakest and Knight "
-            << "ant being the strongest. )" << std::endl;
-  std::cout << "Every Ant starts out as a worker ant and gets promoted as they "
-               "battle, except Queen ants.\n";
-  std::cout << "Stronger ants can easily defeat weaker ants, but they will "
-            << "surely be damaged in battle" << std::endl;
-  std::cout << "If there are two evenly matched ants, fate shall decide who "
-            << "wins, and who dies" << std::endl;
-  std::cout << "Each side has a weak spot, their Queen" << std::endl;
-  std::cout << "Whichever side defeats the other sides' Queen, wins the game!"
-            << std::endl;
-  std::cout << "Are you ready?" << std::endl;
-
-  std::cout << "How long should the Field of Battle be? ";
-  std::cin >> length;
-  bufferClear();
-  std::cout << "How wide should the Field of Battle be? ";
-  std::cin >> width;
+  if (!PrintWelcome()) return 1;
   bufferClear();
 
-  int numOfAntsToCreatePerTeam = (length * width) / 3;
-  GameField field(length, width);
+  int size = 0, numOfAntsToCreatePerTeam = 0;
+  std::stack<GameBlock> blockStack;
+
+  std::cout << "How Large should the field of battle be?\n"
+    << "The battlefield will be square with sides equal to your choice...\n\n";
+  std::cin >> size;
+  bufferClear();
+
+  std::cout << "How large should each colony be? ";
+  std::cin >> numOfAntsToCreatePerTeam;
+  GameField field(size);
   field.PopulateField(numOfAntsToCreatePerTeam);
-  std::cout << "success!!" << std::endl;
+  GameSetup();
+  //for (int i = 0; i < 10; ++i) {
+  //  Position temp = { 1,2 };
+  //  blockStack.push(*field.GetBlock(temp));
+  //}
+  //ResolveCombat(blockStack);
+  std::cout << "\n\n\t\tsuccess!!" << std::endl;
+  bufferClear();
   return 0;
 }
+
 // Helps with clearing std::cin buffer to prevent infinite loops
 // Can also work like std::cin.get() to accept a Return key press
 void bufferClear() {
@@ -69,6 +78,7 @@ void bufferClear() {
   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
+//// Combat testing method
  void GameSetup()
 {
 		Ant * RQueen = new Ant(Ants::Color::red, Hierarchy::Queen, 0);
@@ -106,13 +116,14 @@ void bufferClear() {
 		BKnight->Attack(RQueen);
 }
 
-// if two ants overlap over a block, they will attack by
-// getting popped from the stack
+// If two ants overlap over a block, they will attack by
+// Getting popped from the stack
 void ResolveCombat(std::stack<GameBlock>& stack) {
   GameBlock temp;
   while (!stack.empty()) {
     temp = stack.top();  // First set both of the._ants to NULL pointers
     stack.pop();
+    if (!temp._ant1 || !temp._ant2) continue; // Check for non-paired ants
     while (!temp._ant1->IsDead() || !temp._ant2 ->IsDead()) {
       // first while loop to check if either._ant is dead
 
@@ -128,4 +139,3 @@ void ResolveCombat(std::stack<GameBlock>& stack) {
     temp._ant2 = nullptr; // set._ant 2 to null
   }
 }
-

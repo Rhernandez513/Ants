@@ -1,0 +1,20 @@
+Welcome to the battlefield!
+Here, on this kitchen table, the most epic battle between Ants is unfolding...
+
+On one side, there are the BLUE ants.
+The other side has RED Ants.
+  They despise each other. . .
+
+Each side has a hierarchy of ant ranks:
+  Worker Ant, Soldier Ant, and Knight Ant, and the Queen...
+
+Every Ant starts out as a Worker Ant gains strength as they battle.
+Queen Ants do not gain strength, but rather are the weakest Ant!
+
+Stronger ants can easily defeat weaker ants, but they will surely be damaged
+If there are two evenly matched ants, fate shall decide who wins, and who dies
+
+Each side has a weak spot, their Queen.
+Whichever side defeats the other sides' Queen, wins the game!
+
+Are you ready..?

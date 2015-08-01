@@ -1,7 +1,7 @@
 #include "..\\Headers\\GameField.h"
 #include "..\Headers\Ant.h"
-#include <time.h>
 #include "..\\Headers\\Gameblock.h"
+#include <time.h>
 
 using namespace Ants;
 
@@ -18,15 +18,11 @@ bool GameField::CheckIfPositionValid(Position pos) {
 }
 
 // Constructor
-GameField::GameField(int length, int width)
-  : _length(length), _width(width)
+GameField::GameField(int size)
+  : _length(size), _width(size)
 {
-  if (length < 0) length *= -1;  // Invert Negative Inputs
-  if (width < 0) width *= -1;    // Invert Negative Inputs
-
-  // Set member vars
-  this->_length = length; // x co-ordinates
-  this->_width = width;   // y co-ordinates
+  if (this->_length < 0) this->_length *= -1;  // Invert Negative Inputs
+  if (this->_width < 0) this->_width *= -1;    // Invert Negative Inputs
 
   // Instantiate the gameboard
   // Field is a 2D array of GameBlocks
@@ -87,59 +83,49 @@ bool GameField::SetBlock(Position pos, Ant *ant) {
   return false;
 }
 
-// Currently only populates RED team
+// Populates The Gamefield with 2x numberOfAntsPerTream
+// OR ((length * width) * 2/3), whichever is greater
 void GameField::PopulateField(int numberOfAntsPerTeam) {
-  // randomly fill field right side
+  PopulateFieldHelper(numberOfAntsPerTeam, Color::red);
+  PopulateFieldHelper(numberOfAntsPerTeam, Color::blue);
+}
+
+// Heavy lifting for PopulateField(int numberOfAntsPerTeam)
+void GameField::PopulateFieldHelper(int num, Color inColor) {
+  int x, y;
+  int attemps = 0;
+  int upperLimit = std::numeric_limits<int>::max();
   Position antPos;
-  int i, x, y;
-  i = x = y = 0;
+
+  // Upper limit on Ant amount to prevent over flow
+  if (num > ((this->_length * this->_width) / 3)) {
+    num = (this->_length * this->_width) / 3;
+  }
+  // randomly fill field right side
   srand(static_cast<unsigned>(time(nullptr)));
-  while (i < numberOfAntsPerTeam) {
+  for (int i = 0; i < num; ++i) {
+    if (attemps == upperLimit) {
+      throw new std::exception("Buffer Overflow");
+    }
     x = (rand() % this->_length) / 2; // x co-ordinates
     y = (rand() % this->_width) / 2;  // y co-ordinates
     antPos.x = (x + this->_width) / 2;
     antPos.y = (y + this->_length) / 2;
 
-    if (this->GetBlock(antPos)->isFilled) {
-      continue;
-    }
+    if (this->GetBlock(antPos)->isFilled) { continue; }
 
     if (i == 0) {
-      this->SetBlock(antPos, new Ant(Color::red, Hierarchy::Queen));
-      ++i;
-      continue;
+      // Attempts to set the Queen until Successful
+      if (!this->SetBlock(antPos, new Ant(inColor, Hierarchy::Queen))) {
+        --i;
+        ++attemps;
+      }
     } else {
-      this->SetBlock(antPos, new Ant(Color::red, Hierarchy::Worker));
-      ++i;
+      // Attempts to set an Ant until Successful
+      if (!this->SetBlock(antPos, new Ant(inColor, Hierarchy::Worker))) {
+        --i;
+        ++attemps;
+      }
     }
   }
 }
-
-//
-//   while(i<nred)
-//  {
-//  
-//    x=rand()%width/2;
-//    y=rand()%height;
-//    if(i==0)
-//    {
-//      Field[x][y].full=true;
-//      Field[x][y].a=new Ant(Color::Red,Heirarchy::Queen);
-//      i++;
-//      continue;
-//    }
-//  
-//    if(Field[x][y].full)
-//      continue;
-//  
-//  
-//    Field[x][y].full=true;
-//    if(i%3==0)
-//     Field[x][y].a=new Ant(Color::Red,Heirarchy::Worker);
-//    if(i%3==1)
-//     Field[x][y].a=new Ant(Color::Red,Heirarchy::Soldier);
-//     if(i%3==2)
-//     Field[x][y].a=new Ant(Color::Red,Heirarchy::Knight);
-//     i++;
-//  }
-//}
