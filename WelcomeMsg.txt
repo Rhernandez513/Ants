@@ -15,6 +15,6 @@ Stronger ants can easily defeat weaker ants, but they will surely be damaged
 If there are two evenly matched ants, fate shall decide who wins, and who dies
 
 Each side has a weak spot, their Queen.
-Whichever side defeats the other sides' Queen, wins the game!
+Whichever side defeats the other sides' Queen, or defeats a majority of ants, wins the game!
 
 Are you ready..?
