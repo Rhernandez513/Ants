@@ -19,7 +19,6 @@ AntMover::AntMover(int n, int nblue, int nred, int max_turns) {
 
 // Checks if positions nearby are empty or not
 bool AntMover::Move(Position position, GameField &field, Ant *ant) {
-  int r = (rand() % 4) + 1;  // randomly choosing four directions
   for (int i = 0; i < 4; ++i) {
     if (field.SetBlock(position, ant)) {
       EventListener::Update(field.GetBlock(ant->GetLocation()));
@@ -45,12 +44,17 @@ bool AntMover::Move(Position position, GameField &field, Ant *ant) {
 }
 
 // this function picks an ant on either side of the field and moves it until the win condition
-void AntMover::pickant(Position position, GameField &field, Ant *ant1, Ant *ant2) {
+void AntMover::pickant(Position position, GameField &field, int *ant1, int *ant2) {
 	while (!red_queen_is_dead || !blue_queen_is_dead);
-	{
-		ant1 = rand() % _nblue; // cannot manipualte ant pointer with random operator
-		Move.ant; // will finish
+	{ // not implemented correctly because lack of compiler and debugger
+		ant1 == rand() % _nblue; // cannot manipualte ant pointer with random operator
+		Move.ant1; // 
+		ant2 == rand() % _nred; // cannot work,
+		Move.ant2;
 	}
+	return 0;
+}
+
 
 // if an ant is close by, it will do this
 /*int AntMover::CloseAnt(GameField &field, Ant *ant1) {
