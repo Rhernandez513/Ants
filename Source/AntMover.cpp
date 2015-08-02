@@ -70,7 +70,7 @@ void AntMover::pickant(Position position, Color c, GameField &field) {
 }
 
 // if an ant is close by, it will do this
-int AntMover::CloseAnt(GameField &field, Ant *ant1) {
+/*int AntMover::CloseAnt(GameField &field, Ant *ant1) {
   GameBlock *tempBlock = field.GetBlock(ant1->GetLocation());  // setting tempBlock equal to the ants location on the block
   if (!tempBlock) // it it's empty then return 0
     return 0;
@@ -210,3 +210,4 @@ int AntMover::combat(Position position, GameField &field) {
   }
 }
 
+*/
