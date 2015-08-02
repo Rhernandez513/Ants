@@ -154,6 +154,7 @@
     <ClCompile Include="Source\Containers.cpp" />
     <ClCompile Include="Source\EventListener.cpp" />
     <ClCompile Include="Source\GameField.cpp" />
+    <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\Logger.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Hierarchy.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="Headers\Gameblock.h" />
     <ClInclude Include="Headers\GameField.h" />
     <ClInclude Include="Headers\Hierarchy.h" />
+    <ClInclude Include="Headers\Log.h" />
     <ClInclude Include="Headers\Logger.h" />
   </ItemGroup>
   <ItemGroup>

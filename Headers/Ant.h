@@ -15,21 +15,24 @@ class Ant {
 
   Position _position;  // (x,y)
 
-  // the assigned energy that certain ants will have.
-  // The higher the hierarchy of ants, the more energy
-  int _energy;
+                  /*DEPRECATED*/
+  //// the assigned energy that certain ants will have.
+  //// The higher the hierarchy of ants, the more energy
+  //int _energy;
 
  public:
   // Spawn an Ant!! But you first must construct more pylons!
   Ant(Color color, Hierarchy hierarchy);
   // Spawn an Ant!! But you first must construct more pylons!
   Ant(Color color, Hierarchy hierarchy, int AttackPower);
+  // Destructor
   ~Ant();
 
   // Promote's Ant to next Highest Rank
   void Promote();
-  // Demote's Ant to next Lowest Rank
-  void Demote();
+             /*DEPRECATED*/
+  //// Demote's Ant to next Lowest Rank
+  //void Demote();
 
   // Return's Ant's  Color Value
   Color GetColor() const;
@@ -53,10 +56,11 @@ class Ant {
   // Return's Ant's Location
   Position GetLocation() const;
 
-  // Return's Ant's Energy Value
-  int GetEnergy() const;
-  // Set Ant's Energy Value
-  void SetEnergy(int energy);
+       /* DEPRECATED */
+  //// Return's Ant's Energy Value
+  //int GetEnergy() const;
+  //// Set Ant's Energy Value
+  //void SetEnergy(int energy);
 
   // This Kills the Ant...
   void Die();

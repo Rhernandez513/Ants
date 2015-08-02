@@ -1,5 +1,6 @@
 #ifndef LOGGER_H
 #define LOGGER_H
+#define TURN_ON_LOGGING
 #include <string>
 #include <ostream>
 #include <sstream>
@@ -7,8 +8,7 @@
 #include <memory>
 
 namespace Ants {
-namespace Logger {
-  class Logger {
+ class Logger {
     private:
       
       std::string file_name;
@@ -18,17 +18,14 @@ namespace Logger {
       void Close_ostream();
       void WriteToLog(const std::string& data);
 
+      void Annotate_impl();
       template<typename First, typename...Rest >
       void Annotate_impl(First param1, Rest...param);
-      void Ants::Logger::Logger::Annotate_impl();
     public:
       template<typename...Args>
       void Annotate(Args...args);
-      Logger(std::string input);
+      Logger();
       ~Logger();
   };
 }
-}
-
 #endif //LOGGER_H
-
