@@ -44,13 +44,11 @@ bool AntMover::Move(Position position, GameField &field, Ant *ant) {
 }
 
 // this function picks an ant on either side of the field and moves it until the win condition
-void AntMover::pickant(Position position, GameField &field, int *ant1, int *ant2) {
+void AntMover::pickant(Position position, GameField &field, Ant *ant) {
+
 	while (!red_queen_is_dead || !blue_queen_is_dead);
-	{ // not implemented correctly because lack of compiler and debugger
-		ant1 == rand() % _nblue; // cannot manipualte ant pointer with random operator
-		Move.ant1; // 
-		ant2 == rand() % _nred; // cannot work,
-		Move.ant2;
+	{ 
+		
 	}
 	return 0;
 }

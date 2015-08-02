@@ -9,9 +9,6 @@ class GameField {
   int _length;  // x co-ordinates
   int _width;   // y co-ordinates
 
-  // Returns True if the Position is within the Gamefield false otherwise
-  bool CheckIfPositionValid(Position pos);
-
   // Extensible Storage
   GameBlock** _gameField;
 
@@ -23,6 +20,9 @@ class GameField {
   GameField(int size);
   // Destructor
   ~GameField();
+
+  // Returns True if the Position is within the Gamefield false otherwise
+  bool CheckIfPositionValid(Position pos);
 
   // Places the Ant at the Position provided
   // Returns true if operation succesfull, false otherwise
