@@ -14,7 +14,7 @@ class AntMover {
   bool _turn;  // false for red, true for blue
 
  public:
-  AntMover(int n, int nblue, int nred, int m);
+  //AntMover(int n, int nblue, int nred, int m);
   bool Move(Position position, GameField &field, Ant *ant);
   void pickant(Position position, GameField &field, Ant *ant);
   //int Run(int nblue, int nred, Position position);

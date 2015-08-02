@@ -8,7 +8,7 @@
 
 using namespace Ants;
 
-AntMover::AntMover(int n, int nblue, int nred, int max_turns) {
+/*AntMover::AntMover(int n, int nblue, int nred, int max_turns) {
   srand(static_cast<unsigned>(time(nullptr)));
   _turn = false;
   this->_max_turns = max_turns;
@@ -16,7 +16,7 @@ AntMover::AntMover(int n, int nblue, int nred, int max_turns) {
   this->_nred = nred;
   this->_nblue = nblue;
 }
-
+*/
 // Checks if positions nearby are empty or not
 bool AntMover::Move(Position position, GameField &field, Ant *ant) {
   for (int i = 0; i < 4; ++i) {
@@ -48,9 +48,12 @@ void AntMover::pickant(Position position, GameField &field, Ant *ant) {
 
 	while (!red_queen_is_dead || !blue_queen_is_dead);
 	{ 
-		
+		while (GameField::GetBlock != nullptr)
+		{
+			
+		}
 	}
-	return 0;
+	return false;
 }
 
 
