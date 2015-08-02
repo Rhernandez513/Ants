@@ -14,6 +14,6 @@ void Update(Ant* ant);
 // Ant red_ant(red, worker, 1);
 // std::cout << red_ant << std::endl;
 // (prints "Red Worker Ant")
-std::ostream& operator<<(std::ostream& os, Ants::Ant* ant);
+std::ostream& operator<<(std::ostream& os, Ants::Ant* const ant);
 }
 #endif  // ANTHELPER_H

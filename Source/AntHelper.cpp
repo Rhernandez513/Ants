@@ -16,7 +16,7 @@ void AntHelper::Update(Ants::Ant* ant) {
 // Ant red_ant(red, worker, 1);
 // std::cout << red_ant << std::endl;
 // (prints "Red Worker Ant")
-std::ostream& Ants::operator<<(std::ostream& os, Ants::Ant* ant) {
+std::ostream& Ants::operator<<(std::ostream& os, Ants::Ant* const ant) {
   os << ant->GetColor() << " " << ant->GetHierarchy() << " Ant";
   return os;
 }

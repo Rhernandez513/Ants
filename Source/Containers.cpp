@@ -4,7 +4,7 @@
 
 using namespace Ants;
 
-std::ostream& Ants::operator<<(std::ostream& os, Color color) {
+std::ostream& Ants::operator<<(std::ostream& os, Color const color) {
   switch (color) {
     case (Color::red):
       os << "Red";

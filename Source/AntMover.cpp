@@ -44,30 +44,30 @@ bool AntMover::Move(Position position, GameField &field, Ant *ant) {
 }
 
 // this function was supposed to pick a ant on either side of the field
-void AntMover::pickant(Position position, Color c, GameField &field) {
-  int skips;
-  srand(time(nullptr));
-
-  if (c == Color::blue)
-    skips = rand() % _nblue;
-  else
-    skips = rand() % _nred;
-  for (int i = 0; i < field.GetLength(); i++) {
-    for (int j = 0; j < field.GetWidth(); j++) {
-      //(commented out just now)if (field[position.x][position.y].a->color == c)
-      //{ // operands do not match, probably would have to delete this function
-      //anyway
-      if (skips > 0) {
-        skips--;
-        continue;
-      }
-      x = i;
-      y = j;
-      return;
-    }
-  }
-}
-}
+//void AntMover::pickant(Position position, Color c, GameField &field) {
+//  int skips;
+//  srand(time(nullptr));
+//
+//  if (c == Color::blue)
+//    skips = rand() % _nblue;
+//  else
+//    skips = rand() % _nred;
+//  for (int i = 0; i < field.GetLength(); i++) {
+//    for (int j = 0; j < field.GetWidth(); j++) {
+//      //(commented out just now)if (field[position.x][position.y].a->color == c)
+//      //{ // operands do not match, probably would have to delete this function
+//      //anyway
+//      if (skips > 0) {
+//        skips--;
+//        continue;
+//      }
+//      x = i;
+//      y = j;
+//      return;
+//    }
+//  }
+//}
+//}
 //
 //// if an ant is close by, it will do this
 //int AntMover::CloseAnt(GameField &field, Ant *ant1) {
@@ -209,3 +209,4 @@ void AntMover::pickant(Position position, Color c, GameField &field) {
 //    return 0;
 //  }
 //}
+
