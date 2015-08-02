@@ -1,7 +1,11 @@
 #include "..\\Headers\\GameField.h"
 #include "..\Headers\Ant.h"
 #include "..\\Headers\\Gameblock.h"
+#include "..\\Headers\\EventListener.h"
+#define TURN_ON_LOGGING
+#include "..\\Headers\\Log.h"
 #include <time.h>
+#include <string>
 
 using namespace Ants;
 
@@ -86,16 +90,35 @@ bool GameField::SetBlock(Position pos, Ant *ant) {
 // Populates The Gamefield with 2x numberOfAntsPerTream
 // OR ((length * width) * 2/3), whichever is greater
 void GameField::PopulateField(int numberOfAntsPerTeam) {
-  PopulateFieldHelper(numberOfAntsPerTeam, Color::red);
-  PopulateFieldHelper(numberOfAntsPerTeam, Color::blue);
+  if (_fieldPopAttempts >= _maxFieldPopAttempts) {
+    std::string error_msg = "Field Population failed after 5 attempts";
+    EventListener::SetGameFailure(error_msg);
+  }
+  std::string msg1, msg2, good_msg;
+  good_msg = "Things are going well.";
+  msg1 = PopulateFieldHelper(numberOfAntsPerTeam, Color::red);
+  msg2 = PopulateFieldHelper(numberOfAntsPerTeam, Color::blue);
+  if(msg1 != good_msg) {
+    LOG("<!!WARN!!>", msg1.c_str(), " #", _fieldPopAttempts);
+  }
+  if(msg2 != good_msg) {
+    LOG("<!!WARN!!>", msg2.c_str(), " #", _fieldPopAttempts);
+    this->PopulateField(numberOfAntsPerTeam);
+  }
 }
 
 // Heavy lifting for PopulateField(int numberOfAntsPerTeam)
-void GameField::PopulateFieldHelper(int num, Color inColor) {
+std::string GameField::PopulateFieldHelper(int num, Color inColor) {
+  std::string color_string;
   int x, y;
-  int attemps = 0;
+  int attempts = 0;
   int upperLimit = std::numeric_limits<int>::max();
   Position antPos;
+  if (inColor == Color::red) {
+    color_string = "red";
+  } else {
+    color_string = "blue";
+  }
 
   // Upper limit on Ant amount to prevent over flow
   if (num > ((this->_length * this->_width) / 3)) {
@@ -104,8 +127,10 @@ void GameField::PopulateFieldHelper(int num, Color inColor) {
   // randomly fill field right side
   srand(static_cast<unsigned>(time(nullptr)));
   for (int i = 0; i < num; ++i) {
-    if (attemps == upperLimit) {
-      throw new std::exception("Buffer Overflow");
+    if (attempts == upperLimit) {
+      std::string msg("Buffer Overflow, while trying to populate "
+                      + color_string + " field");
+      return msg;
     }
     x = (rand() % this->_length) / 2;  // x co-ordinates
     y = (rand() % this->_width) / 2;   // y co-ordinates
@@ -120,14 +145,15 @@ void GameField::PopulateFieldHelper(int num, Color inColor) {
       // Attempts to set the Queen until Successful
       if (!this->SetBlock(antPos, new Ant(inColor, Hierarchy::Queen))) {
         --i;
-        ++attemps;
+        ++attempts;
       }
     } else {
       // Attempts to set an Ant until Successful
       if (!this->SetBlock(antPos, new Ant(inColor, Hierarchy::Worker))) {
         --i;
-        ++attemps;
+        ++attempts;
       }
     }
   }
+  return nullptr; // If operation is successful
 }

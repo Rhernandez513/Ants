@@ -1,13 +1,19 @@
 #include "..\\Headers\\Ant.h"
 #include "..\\Headers\Hierarchy.h"
 #include "..\\Headers\AntHelper.h"
+#include "..\Headers\EventListener.h"
+#define TURN_ON_LOGGING
+#include "..\\Headers\\Log.h"
 #include <time.h>
 
 using namespace Ants;
 
 // Spawn an Ant!! But you first must construct more pylons!
 Ant::Ant(Color color, Hierarchy heirarchy)
-    : _color(color), _hierarchy(heirarchy) {
+    :// _num_kills(0)
+  /*,*/_color(color)
+    , _hierarchy(heirarchy)
+{
   _isDead = false;
   switch (this->_hierarchy) {
     case (Hierarchy::Queen):
@@ -27,23 +33,28 @@ Ant::Ant(Color color, Hierarchy heirarchy)
 
 // Spawn an Ant!! But you first must construct more pylons!
 Ant::Ant(Color color, Hierarchy hierarchy, int attackpower)
-    : _color(color), _hierarchy(hierarchy), _attackPower(attackpower) {
+  : _color(color)
+  , _hierarchy(hierarchy)
+  , _attackPower(attackpower)
+{
   _isDead = false;
 };
 
-Ant::~Ant(){};
+// Destructor
+Ant::~Ant() { } ;
 
-// Return's Ant's Energy Value
-int Ant::GetEnergy() const { return _energy; }
-
-// Set Ant's Energy Value
-void Ant::SetEnergy(int energy) {
-  if (energy > 0) {
-    this->_energy = energy;
-  } else {
-    this->_energy = 1;
-  }
-}
+          /*DEPRECATED*/
+//// Return's Ant's Energy Value
+//int Ant::GetEnergy() const { return _energy; }
+//
+//// Set Ant's Energy Value
+//void Ant::SetEnergy(int energy) {
+//  if (energy > 0) {
+//    this->_energy = energy;
+//  } else {
+//    this->_energy = 1;
+//  }
+//}
 
 // Return's Ant's Location
 Ants::Position Ant::GetLocation() const { return this->_position; }
@@ -59,11 +70,10 @@ Hierarchy Ant::GetHierarchy() const { return this->_hierarchy; }
 
 // Set Ant's Attack Power
 void Ant::SetAttackPower(int attackPower) {
-  if (attackPower > 0) {
-    this->_attackPower = attackPower;
-  } else {
-    this->_attackPower = 1;
+  if (attackPower < 0) {
+    attackPower *= -1; // Invert Negative Input
   }
+  this->_attackPower = attackPower;
 }
 
 // Set Ant's Ranking in the Hierarchy
@@ -71,9 +81,11 @@ void Ant::SetHierarchy(Hierarchy hierarchy) {
   while (this->_hierarchy != hierarchy) {
     if (this->_hierarchy > hierarchy) {
       this->Promote();
-    } else if (this->_hierarchy < hierarchy) {
-      this->Demote();
     }
+              /*DEPRECATED*/
+    /* else if (this->_hierarchy < hierarchy) {
+      this->Demote();
+    }*/
   }
 }
 
@@ -85,20 +97,19 @@ void Ant::Promote() {
   }
 }
 
-// Demote's Ant to next Lowest Rank
-void Ant::Demote() {
-  if (this->_hierarchy != Hierarchy::Worker) {
-    // Will not work if Hierarchy is non-continuous
-    --this->_hierarchy;
-  }
-}
+/* DEPRECATED */
+//// Demote's Ant to next Lowest Rank
+//void Ant::Demote() {
+//  if (this->_hierarchy != Hierarchy::Worker) {
+//    // Will not work if Hierarchy is non-continuous
+//    --this->_hierarchy;
+//  }
+//}
 
 // This Kills the Ant...
 void Ant::Die() {
   this->_isDead = true;
-  EventListener::Update(this);
-  std::cout << "A " << this
-            << " has died honorably trying to fight its foe. . . .\n";
+  AntHelper::Update(this);
 }
 
 // Returns true if the Ant is Dead
@@ -115,11 +126,13 @@ void Ant::SetLocation(Position pos) { this->_position = pos; }
 
 // The Ant slams it's enemy with a mighty blow!!
 void Ant::Attack(Ant* Enemy) {
-  // if your ant wins
   if (this->GetAttackPower() > Enemy->GetAttackPower()) {
-    Enemy->Die();
+    // if your ant wins
+    Enemy->Promote();
+    this->Die();
   } else if (this->GetAttackPower() < Enemy->GetAttackPower()) {
     // if the Enemy ant wins
+    this->Promote();
     Enemy->Die();
   } else {
     // they have equal attack power
@@ -127,10 +140,11 @@ void Ant::Attack(Ant* Enemy) {
               << "s are equal in power!\n";
     // Pick one to die randomly
     srand(static_cast<unsigned>(time(nullptr)));
-    int temp = rand() % 8;
-    if (temp % 2 == 0) {
+    if ((rand() % 8) % 2 == 0) {
+      this->Promote();
       Enemy->Die();
     } else {
+      Enemy->Promote();
       this->Die();
     }
   }

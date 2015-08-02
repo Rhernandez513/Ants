@@ -2,6 +2,8 @@
 #include "..\\Headers\\GameField.h"
 #include "..\\Headers\Gameblock.h"
 #include "..\\Headers\\EventListener.h"
+#define TURN_ON_LOGGING
+#include "..\\Headers\\Log.h"
 #include <iostream>
 //#include <glut.h>
 #include <string>
@@ -59,14 +61,7 @@ int main() {
   GameField field(size);
   field.PopulateField(numOfAntsToCreatePerTeam);
   GameSetup();
-  std::cout << "\n\n\t\tsuccess!!" << std::endl;
-  if(red_queen_is_dead) {
-    std::cout << "The Blue Ant's have triumphed!" << std::endl;
-  } else if (blue_queen_is_dead) {
-    std::cout << "The Red Ant's have triumphed!" << std::endl;
-  } else {
-    std::cout << "Both colonies limp back home, there are no winners in war...";
-  }
+  LOG("\n\n\t\tsuccess!!");
   bufferClear();
   return 0;
 }

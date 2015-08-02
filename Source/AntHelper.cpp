@@ -1,6 +1,9 @@
-#include <iostream>
 #include "..\\Headers\\Ant.h"
 #include "..\\Headers\\AntHelper.h"
+#include "..\Headers\EventListener.h"
+#define TURN_ON_LOGGING
+#include "..\\Headers\\Log.h"
+#include <iostream>
 
 using namespace Ants;
 
@@ -16,7 +19,7 @@ void AntHelper::Update(Ants::Ant* ant) {
 // Ant red_ant(red, worker, 1);
 // std::cout << red_ant << std::endl;
 // (prints "Red Worker Ant")
-std::ostream& Ants::operator<<(std::ostream& os, Ants::Ant* const ant) {
+std::ostream& Ants::operator<<(std::ostream& os, Ants::Ant* ant) {
   os << ant->GetColor() << " " << ant->GetHierarchy() << " Ant";
   return os;
 }
