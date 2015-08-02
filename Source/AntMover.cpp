@@ -1,20 +1,20 @@
 #include "..\\Headers\\Ant.h"
 #include "..\\Headers\\GameField.h"
 #include "..\\Headers\\AntMover.h"
-#include "..\\Headers\\CommandRunner.h"
-//#include "..\\Headers\Gameblock.h"
+#include "..\Headers\EventListener.h"
 #include <iostream>
 #include <time.h>
 
 using namespace Ants;
 
-AntMover::AntMover(int n, int nblue, int nred, int max_turns) {
+AntMover::AntMover(int n, int nblue, int nred, int max_turns)
+ : _max_turns(max_turns)
+ , _nblue(nblue)
+ , _nred(nred)
+ , _nummoves(n)
+ , _turn(false)
+{
   srand(static_cast<unsigned>(time(nullptr)));
-  _turn = false;
-  this->_max_turns = max_turns;
-  this->_nummoves = n;
-  this->_nred = nred;
-  this->_nblue = nblue;
 }
 
 // Checks if positions nearby are empty or not
@@ -44,14 +44,14 @@ bool AntMover::Move(Position position, GameField &field, Ant *ant) {
   return false;
 }
 
-// this function picks an ant on either side of the field and moves it until the win condition
-void AntMover::pickant(Position position, GameField &field, Ant *ant1, Ant *ant2) {
-	while (!red_queen_is_dead || !blue_queen_is_dead);
-	{
-		ant1 = rand() % _nblue; // cannot manipualte ant pointer with random operator
-		Move.ant; // will finish
-	}
-
+//// this function picks an ant on either side of the field and moves it until the win condition
+//void AntMover::pickant(Position position, GameField &field, Ant *ant1, Ant *ant2) {
+//  while (!red_queen_is_dead || !blue_queen_is_dead);
+//  {
+//    ant1 = rand() % _nblue; // cannot manipualte ant pointer with random operator
+//    Move.ant; // will finish
+//  }
+//}
 // if an ant is close by, it will do this
 /*int AntMover::CloseAnt(GameField &field, Ant *ant1) {
   GameBlock *tempBlock = field.GetBlock(ant1->GetLocation());  // setting tempBlock equal to the ants location on the block

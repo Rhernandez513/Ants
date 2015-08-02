@@ -2,7 +2,6 @@
 #define ANTMOVER_H
 #include "Ant.h"
 #include "GameField.h"
-#include "EventListener.h"
 
 namespace Ants {
 class AntMover {
@@ -16,7 +15,7 @@ class AntMover {
  public:
   AntMover(int n, int nblue, int nred, int m);
   bool Move(Position position, GameField &field, Ant *ant);
-  void pickant(Position position, GameField &field, Ant *ant, Ant *ant2);
+  //void pickant(Position position, GameField &field, Ant *ant, Ant *ant2);
   //int Run(int nblue, int nred, Position position);
   //int CloseAnt(GameField &field, Ant *ant1);
   //int combat(Position position, GameField &field);
