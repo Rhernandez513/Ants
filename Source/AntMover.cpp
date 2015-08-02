@@ -44,12 +44,13 @@ bool AntMover::Move(Position position, GameField &field, Ant *ant) {
 }
 
 // this function picks an ant on either side of the field and moves it until the win condition
-void AntMover::pickant(Position position, GameField &field, Ant *ant) {
+void AntMover::pickant(Position position, GameField &field, Ant *ant) { // so far, should not work because implementation and logic is not sound. Cannot check because lack of laptop
+	int x, y; 
 	while (!red_queen_is_dead || !blue_queen_is_dead);
 	{ 
 		while (GameField::GetBlock != nullptr)
 		{
-			Move (this->ant); 
+			Move(ant);
 		}
 	}
 	return false;
