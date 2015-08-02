@@ -13,4 +13,4 @@ USERS GUIDE
  4. Next, it will ask for the size of each Ant Colony(Side) 
  5. Enter the side of the colony on each side
  6. The game will then print out the various scenarios that have taken place, such as what an ant will do when it meets an enemy ant.
- 7. The game will end by stating if a Queen ant has been vanquished! (NOTE: it is possible that no Queen has been vanquished and it is a draw)  
+ 7. The game will end with three conditions: A) The Queen of either side has been slain. B) More than 90% of Ants on either side has been elimated. C) The game ends in a draw. 
