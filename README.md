@@ -11,4 +11,4 @@ USERS GUIDE
  2. The code will ask for length and width of the game field.
  3. Enter a length and width.
  4. The game will then print out the various scenarios that have taken place, such as what an ant will do when it meets an enemy ant.
- 5. The game will end by stating if a Queen ant has been vanquished! 
+ 5. The game will end by stating if a Queen ant has been vanquished! (NOTE: it is possible that no Queen has been vanquished and it is a draw)  
