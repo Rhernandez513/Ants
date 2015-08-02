@@ -33,7 +33,7 @@ Ant::Ant(Color color, Hierarchy hierarchy, int attackpower)
 
 Ant::~Ant(){};
 
-// Return's Ant's Energy Value
+/*// Return's Ant's Energy Value
 int Ant::GetEnergy() const { return _energy; }
 
 // Set Ant's Energy Value
@@ -44,7 +44,7 @@ void Ant::SetEnergy(int energy) {
     this->_energy = 1;
   }
 }
-
+*/
 // Return's Ant's Location
 Ants::Position Ant::GetLocation() const { return this->_position; }
 
@@ -84,7 +84,7 @@ void Ant::Promote() {
     ++this->_hierarchy;
   }
 }
-
+/*
 // Demote's Ant to next Lowest Rank
 void Ant::Demote() {
   if (this->_hierarchy != Hierarchy::Worker) {
@@ -92,7 +92,7 @@ void Ant::Demote() {
     --this->_hierarchy;
   }
 }
-
+*/
 // This Kills the Ant...
 void Ant::Die() {
   this->_isDead = true;

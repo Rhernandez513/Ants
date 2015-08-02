@@ -29,7 +29,7 @@ class Ant {
   // Promote's Ant to next Highest Rank
   void Promote();
   // Demote's Ant to next Lowest Rank
-  void Demote();
+  //void Demote();
 
   // Return's Ant's  Color Value
   Color GetColor() const;
@@ -54,9 +54,9 @@ class Ant {
   Position GetLocation() const;
 
   // Return's Ant's Energy Value
-  int GetEnergy() const;
+  //int GetEnergy() const;
   // Set Ant's Energy Value
-  void SetEnergy(int energy);
+  //void SetEnergy(int energy);
 
   // This Kills the Ant...
   void Die();
