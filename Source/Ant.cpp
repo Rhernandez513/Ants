@@ -35,8 +35,8 @@ Ant::Ant(Color color, Hierarchy hierarchy, int attackpower)
   : _color(color)
   , _hierarchy(hierarchy)
   , _attackPower(attackpower)
+  , _isDead(false)
 {
-  _isDead = false;
 };
 
 // Destructor
@@ -125,10 +125,15 @@ void Ant::SetLocation(Position pos) { this->_position = pos; }
 
 // The Ant slams it's enemy with a mighty blow!!
 void Ant::Attack(Ant* Enemy) {
+  if (!Enemy) { // Check for nullptr
+    LOG("<!!WARN!!> Ant Attempted to Attack non-existent Enemy.");
+    return;
+  }
   if (this->GetAttackPower() > Enemy->GetAttackPower()) {
     // if your ant wins
     Enemy->Promote();
     this->Die();
+    return;
   } else if (this->GetAttackPower() < Enemy->GetAttackPower()) {
     // if the Enemy ant wins
     this->Promote();

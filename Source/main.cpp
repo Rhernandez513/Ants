@@ -109,7 +109,6 @@ void TestCombat() {
   Ant* BSoldier = new Ant(Ants::Color::red, Hierarchy::Soldier, 2);
   Ant* RKnight = new Ant(Ants::Color::red, Hierarchy::Knight, 3);
   Ant* BKnight = new Ant(Ants::Color::blue, Hierarchy::Knight, 3);
-  RWorker->Attack(BWorker);
   RWorker->Attack(BQueen);
   RWorker->Attack(BSoldier);
   RWorker->Attack(BKnight);

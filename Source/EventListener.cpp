@@ -11,32 +11,34 @@ namespace {
 struct deadAntCount {
   struct colorHolder {
     int count;
-  };
-  colorHolder red_holder;
-  colorHolder blue_holder;
-  int totalAntPerTeamCount = 0;
+  } red_holder, blue_holder;
+  int totalAntPerTeamCount;
 } count;
 
-void TrackWinConditon(Color color) {
-  CommandRunner::SetWinner(color);
+// Someone must have won the game
+void SetWinningTeam(Color color) {
+  if (CommandRunner::SetWinner(color)) {
+    EventListener::SetGameSuccess();
+  }
 }
 
 // If you look closely you'll see this is where the magic happens
 void TrackDeadAnts(Ant * ant) {
   if (ant->GetHierarchy() == Hierarchy::Queen) {
-    TrackWinConditon(ant->GetColor()); // If the ant that just died is a Queen
-                                       // Set the win condition
-  } else { // If it's not the Queen we have to actually do stuff  (-.-)
-    if (ant->GetColor() == Color::red) {
-      ++count.red_holder.count;
-    } else if (ant->GetColor() == Color::blue) {
-      ++count.blue_holder.count;
+    // If the ant that just died is a Queen Set the win condition
+    SetWinningTeam(ant->GetColor()); // Exits Game
+  }
+   // If it's not the Queen we have to actually do stuff  (-.-)
+  double temp_num = (double)count.totalAntPerTeamCount * .9;
+  if (ant->GetColor() == Color::red) {
+    ++count.red_holder.count;
+    if (count.red_holder.count > temp_num) {
+      SetWinningTeam(Color::blue); // 90% of red ants dead, blue team wins
     }
-    ++count.totalAntPerTeamCount;
-    if (count.red_holder.count >= (count.totalAntPerTeamCount * (9 / 10))) {
-      TrackWinConditon(Color::blue); // 90% of red ants dead, blue team wins
-    } else if (count.blue_holder.count >= (count.totalAntPerTeamCount * (9 / 10))) {
-      TrackWinConditon(Color::red); // 90% of blue ants dead, red team wins
+  } else if (ant->GetColor() == Color::blue) {
+    ++count.blue_holder.count;
+    if (count.blue_holder.count > temp_num) {
+      SetWinningTeam(Color::red); // 90% of blue ants dead, red team wins
     }
   }
 }
@@ -89,7 +91,7 @@ void Ants::EventListener::Update(Ant* ant) {
 
 // Magic, do not touch
 void Ants::EventListener::Update(GameBlock * _block) {
-  CheckBlock(_block);
+  if (_block) CheckBlock(_block);
 }
 
 // Magic, do not touch

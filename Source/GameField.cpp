@@ -66,6 +66,7 @@ GameBlock *GameField::GetBlock(Position pos) {
 // Places the Ant at the Position provided
 // Returns true if operation succesfull, false otherwise
 bool GameField::SetBlock(Position pos, Ant *ant) {
+  if (!ant) return false; // Check for bad ant input
   if (this->_gameField[pos.x][pos.y].isFilled) {  // Both spots are open
     return false;
   } else if (!CheckIfPositionValid(pos)) {        // Off the Grid
