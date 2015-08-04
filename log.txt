@@ -1,0 +1,205 @@
+
+Welcome to the battlefield!
+
+
+Here, on this kitchen table, the most epic battle between Ants is unfolding...
+
+
+
+
+
+On one side, there are the BLUE ants.
+
+
+The other side has RED Ants.
+
+
+  They despise each other. . .
+
+
+
+
+
+Each side has a hierarchy of ant ranks:
+
+
+  Worker Ant, Soldier Ant, and Knight Ant, and the Queen...
+
+
+(Press Enter to Continue...)
+
+
+Every Ant starts out as a Worker Ant gains strength as they battle.
+
+
+Queen Ants do not gain strength, but rather are the weakest Ant!
+
+
+
+
+
+Stronger ants can easily defeat weaker ants, but they will surely be damaged
+
+
+If there are two evenly matched ants, fate shall decide who wins, and who dies
+
+
+
+
+
+Each side has a weak spot, their Queen.
+
+
+To win, one colony must:
+
+
+Either wipe out at least 90% of the other population.
+
+
+Or destroy the opposing colony's Queen.
+
+
+
+
+
+Are you ready..?  (Press Enter to Continue...)
+
+
+How Large should the field of battle be?
+
+
+The battlefield will be square with sides equal to your choice...
+
+
+
+
+
+The Red Worker Ant and Blue Worker Ants are equal in power!
+
+
+
+A Red Worker Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Worker Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Soldier Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+The Blue Knight Ant and Red Queen Ants are equal in power!
+
+
+
+A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Soldier Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Soldier Ant has died honorably trying to fight its foe. . . .
+
+
+
+The Red Soldier Ant and Red Soldier Ants are equal in power!
+
+
+
+A Red Soldier Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Soldier Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Soldier Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+The Red Knight Ant and Red Knight Ants are equal in power!
+
+
+
+A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+The Red Knight Ant and Blue Knight Ants are equal in power!
+
+
+
+A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Blue Queen Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Blue Queen Ant has died honorably trying to fight its foe. . . .
+
+
+
+The Blue Queen Ant and Red Knight Ants are equal in power!
+
+
+
+A Blue Queen Ant has died honorably trying to fight its foe. . . .
+
+
+
+A Blue Queen Ant has died honorably trying to fight its foe. . . .
+
+
+
+
+		Success!! Simulation ran to End!!
+
+
+Logging Complete!

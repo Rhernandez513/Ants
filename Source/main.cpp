@@ -16,12 +16,15 @@ using namespace Ants;
 // Can also work like std::cin.get() to accept a Return key press
 void bufferClear();
 // Combat testing method
+void TestCombat();
+// Set's up gameboard etc
 void GameSetup();
+// Executes if game reaches end
+void GameTearDown();
 
-// Prints to stdout the WelcomeMsg
-bool PrintWelcome() {
+// Prints to stdout & logs the supplied file contents
+bool PrintFile(std::string file_name) {
   // Setup
-  std::string file_name = "WelcomeMsg.txt";
   std::fstream rdr(file_name);
   rdr.open(file_name);
   if (!rdr.is_open()) return false;
@@ -31,6 +34,7 @@ bool PrintWelcome() {
   while (rdr.peek() != EOF) {
     std::getline(rdr, tempLineString);
     std::cout << tempLineString << std::endl;
+    LOG(tempLineString);
     if (tempLineString == "") {
       std::cout << std::endl;
     }
@@ -42,28 +46,35 @@ bool PrintWelcome() {
 }
 
 int main() {
-  if (!PrintWelcome()) return 1;
-  bufferClear();
+  try {
+    GameSetup();
+    int size = 0, numOfAntsToCreatePerTeam = 0;
+    std::stack<GameBlock> blockStack;
+    std::string question = "How Large should the field of battle be?\n" newline
+      "\nThe battlefield will be square with sides equal to your choice...\n\n";
+    LOG(question + newline);
+    for (int i = 0; i < 20; ++i) {
+      std::cout << newline << std::endl;
+    }
+    std::cout << question;
+    std::cin >> size;
+    bufferClear();
 
-  int size = 0, numOfAntsToCreatePerTeam = 0;
-  std::stack<GameBlock> blockStack;
-
-  std::cout << "How Large should the field of battle be?\n"
-    << "The battlefield will be square with sides equal to your "
-    "choice...\n\n";
-  std::cin >> size;
-  std::cout << size;
-  bufferClear();
-
-  std::cout << "How large should each colony be? ";
-  std::cin >> numOfAntsToCreatePerTeam;
-  EventListener::SetStartCond(numOfAntsToCreatePerTeam);
-  GameField field(size);
-  field.PopulateField(numOfAntsToCreatePerTeam);
-  GameSetup();
-  Ants::Logger::LOG("\n\n\t\tsuccess!!");
-  bufferClear();
-  return 0;
+    std::cout << "\n\nHow large should each colony be? " newline;
+    std::cin >> numOfAntsToCreatePerTeam;
+    EventListener::SetStartCond(numOfAntsToCreatePerTeam);
+    GameField field(size);
+    field.PopulateField(numOfAntsToCreatePerTeam);
+    TestCombat();
+    LOG(newline "\t\tSuccess!! Simulation ran to End!!");
+    bufferClear();
+  }
+  catch (std::runtime_error e) {
+    std::cout << e.what() << std::endl;
+    Ants::EventListener::SetGameFailure(); // Terminate Program not "Happy path"
+  }
+  GameTearDown(); // Terminate program "Happy path"
+  return 0; // Should not reach
 }
 
 // Helps with clearing std::cin buffer to prevent infinite loops
@@ -75,6 +86,21 @@ void bufferClear() {
 
 // Combat testing method
 void GameSetup() {
+  std::string file_name = "WelcomeMsg.txt";
+  PrintFile(file_name);
+  bufferClear();
+  file_name = "WelcomeMsg2.txt";
+  PrintFile(file_name);
+  bufferClear();
+}
+
+// Executes if game reaches end
+void GameTearDown() {
+  Ants::EventListener::SetGameSuccess();
+}
+
+// Simple method for testing some functionality
+void TestCombat() {
   Ant* RQueen = new Ant(Ants::Color::red, Hierarchy::Queen, 0);
   Ant* BQueen = new Ant(Ants::Color::blue, Hierarchy::Queen, 0);
   Ant* RWorker = new Ant(Ants::Color::red, Hierarchy::Worker, 1);

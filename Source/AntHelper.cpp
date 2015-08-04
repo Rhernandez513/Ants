@@ -1,6 +1,9 @@
 #include "..\\Headers\\Ant.h"
 #include "..\\Headers\\AntHelper.h"
 #include "..\Headers\EventListener.h"
+#include "..\\Headers\\Containers.h"
+#include "..\\Headers\\Hierarchy.h"
+#include <string>
 #include <iostream>
 
 using namespace Ants;
@@ -18,6 +21,9 @@ void AntHelper::Update(Ants::Ant* ant) {
 // std::cout << red_ant << std::endl;
 // (prints "Red Worker Ant")
 std::ostream& Ants::operator<<(std::ostream& os, Ants::Ant* ant) {
-  os << ant->GetColor() << " " << ant->GetHierarchy() << " Ant";
+  std::string color_string = Color_to_String(ant->GetColor());
+  std::string hierarchy_string = Hierarchy_to_String(ant->GetHierarchy());
+  os << color_string << " " 
+     << hierarchy_string << " Ant";
   return os;
 }

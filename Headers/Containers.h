@@ -6,6 +6,7 @@ namespace Ants {
 struct Position { int x; int y; };
 enum class Direction { LEFT, RIGHT, UP, DOWN };
 enum class Color { red, blue };
+std::string Color_to_String(Ants::Color color);
 std::ostream& operator<<(std::ostream& os, Color color);
 
 // Flags checking if the queen has died.

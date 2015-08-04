@@ -1,4 +1,5 @@
 #include "..\\Headers\\Hierarchy.h"
+#include <string>
 
 using namespace Ants;
 
@@ -36,23 +37,29 @@ Hierarchy& Ants::operator++(Hierarchy& hierarchy) {
   return hierarchy;
 }
 
-std::ostream& Ants::operator<<(std::ostream& os, Hierarchy hierarchy) {
+std::string Ants::Hierarchy_to_String(Ants::Hierarchy hierarchy) {
+  std::string out_hierarchy;
   switch (hierarchy) {
     case (Hierarchy::Queen):
-      os << "Queen";
+      out_hierarchy = "Queen";
       break;
     case (Hierarchy::Knight):
-      os << "Knight";
+      out_hierarchy = "Knight";
       break;
     case (Hierarchy::Soldier):
-      os << "Soldier";
+      out_hierarchy = "Soldier";
       break;
     case (Hierarchy::Worker):
-      os << "Worker";
+      out_hierarchy = "Worker";
       break;
     default:
-      os << "";
+      out_hierarchy = "";
       break;
   }
+  return out_hierarchy;
+}
+
+std::ostream& Ants::operator<<(std::ostream& os, Hierarchy hierarchy) {
+  os << Hierarchy_to_String(hierarchy);
   return os;
 }

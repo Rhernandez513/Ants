@@ -6,18 +6,24 @@
 
 using namespace Ants;
 
-std::ostream& Ants::operator<<(std::ostream& os, Color color) {
+std::string Ants::Color_to_String(Ants::Color color) {
+  std::string out_color;
   switch (color) {
     case (Color::red):
-      os << "Red";
+      out_color = "Red";
       break;
     case (Color::blue):
-      os << "Blue";
+      out_color = "Blue";
       break;
     default:
-      os << "";
+      out_color = "";
       break;
   }
+  return out_color;
+}
+
+std::ostream& Ants::operator<<(std::ostream& os, Color color) {
+  os << Color_to_String(color);
   return os;
 }
 

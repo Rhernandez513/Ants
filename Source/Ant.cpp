@@ -2,6 +2,7 @@
 #include "..\\Headers\Hierarchy.h"
 #include "..\\Headers\AntHelper.h"
 #include "..\Headers\EventListener.h"
+#include "..\\Headers\\Logger.h"
 #include <time.h>
 
 using namespace Ants;
@@ -95,7 +96,7 @@ void Ant::Promote() {
   }
 }
 
-/* DEPRECATED */
+        /* DEPRECATED */
 //// Demote's Ant to next Lowest Rank
 //void Ant::Demote() {
 //  if (this->_hierarchy != Hierarchy::Worker) {
@@ -114,8 +115,8 @@ void Ant::Die() {
 // False otherwise
 bool Ant::IsDead() const { return this->_isDead; }
 
-// NOT IMPLEMENTED
-void Ant::Turn() {}
+//// NOT IMPLEMENTED
+//void Ant::Turn() {}
 
 // Manually Set's the Ant's Location to the given Position on the given
 // Field if that Location is availible
@@ -134,8 +135,10 @@ void Ant::Attack(Ant* Enemy) {
     Enemy->Die();
   } else {
     // they have equal attack power
-    std::cout << "The " << this << " and " << Enemy
+    std::ostringstream stream;
+    stream << "The " << this << " and " << Enemy
               << "s are equal in power!\n";
+    LOG(stream.str());
     // Pick one to die randomly
     srand(static_cast<unsigned>(time(nullptr)));
     if ((rand() % 8) % 2 == 0) {
@@ -148,9 +151,10 @@ void Ant::Attack(Ant* Enemy) {
   }
 }
 
-// Returns the direction the Ant is facing
-Direction Ant::GetDirection() const { return this->_direction; }
-
-// Sets the direction the Ant is facing
-void Ant::SetDirection(Direction direction) { this->_direction = direction; }
-
+          /* DEPRECATED */
+//// Returns the direction the Ant is facing
+//Direction Ant::GetDirection() const { return this->_direction; }
+//
+//// Sets the direction the Ant is facing
+//void Ant::SetDirection(Direction direction) { this->_direction = direction; }
+//

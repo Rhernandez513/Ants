@@ -37,10 +37,11 @@ class Ant {
   // Return's Ant's  Color Value
   Color GetColor() const;
 
-  // Returns the direction the Ant is facing
-  Direction GetDirection() const;
-  // Sets the direction the Ant is facing
-  void SetDirection(Direction direction);
+             /*DEPRECATED*/
+  //// Returns the direction the Ant is facing
+  //Direction GetDirection() const;
+  //// Sets the direction the Ant is facing
+  //void SetDirection(Direction direction);
 
   // Return's Ant's Ranking in the Hierarchy
   Hierarchy GetHierarchy() const;
@@ -69,8 +70,8 @@ class Ant {
   // False otherwise
   bool IsDead() const;
 
-  // NOT IMPLEMENTED
-  void Turn();
+  //// NOT IMPLEMENTED
+  //void Turn();
 
   // The Ant slams it's enemy with a mighty blow!!
   void Attack(Ant* Enemy);

@@ -80,5 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="WelcomeMsg.txt" />
+    <Text Include="Welcomemsg2.txt" />
   </ItemGroup>
 </Project>

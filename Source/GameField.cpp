@@ -89,29 +89,29 @@ bool GameField::SetBlock(Position pos, Ant *ant) {
 // Populates The Gamefield with 2x numberOfAntsPerTream
 // OR ((length * width) * 2/3), whichever is greater
 void GameField::PopulateField(int numberOfAntsPerTeam) {
-  if (_fieldPopAttempts >= _maxFieldPopAttempts) {
+  if (this->_fieldPopAttempts >= this->_maxFieldPopAttempts) {
     std::string error_msg = "Field Population failed after 5 attempts";
-    EventListener::SetGameFailure(error_msg);
+    EventListener::SetGameFailure(error_msg); // Exits program w/ error_msg
   }
-  std::string msg1, msg2, good_msg;
-  good_msg = "Things are going well.";
+  std::shared_ptr<std::string> msg1,  msg2;
   msg1 = PopulateFieldHelper(numberOfAntsPerTeam, Color::red);
   msg2 = PopulateFieldHelper(numberOfAntsPerTeam, Color::blue);
-  if(msg1 != good_msg) {
-    std::stringstream stream;
-    stream << "<!!WARN!!>" << msg1.c_str() << " #" << _fieldPopAttempts;
-    Ants::Logger::LOG(stream.str());
+  if(msg1) { // We expect a nullptr to be returned if the call was good
+    std::ostringstream stream;
+    stream << "<!!WARN!!>" << msg1->c_str() << " #" << _fieldPopAttempts;
+    LOG(stream.str());
+    this->PopulateField(numberOfAntsPerTeam);
   }
-  if(msg2 != good_msg) {
-    std::stringstream stream;
-    stream << "<!!WARN!!>" << msg2.c_str() << " #" << _fieldPopAttempts;
-    Ants::Logger::LOG(stream.str());
+  if(msg2) { // We expect a nullptr to be returned if the call was good
+    std::ostringstream stream;
+    stream << "<!!WARN!!>" << msg2->c_str() << " #" << _fieldPopAttempts;
+    LOG(stream.str());
     this->PopulateField(numberOfAntsPerTeam);
   }
 }
 
 // Heavy lifting for PopulateField(int numberOfAntsPerTeam)
-std::string GameField::PopulateFieldHelper(int num, Color inColor) {
+std::shared_ptr<std::string> GameField::PopulateFieldHelper(int num, Color inColor) {
   std::string color_string;
   int x, y, attempts;
   x = y = attempts = 0;
@@ -135,7 +135,8 @@ std::string GameField::PopulateFieldHelper(int num, Color inColor) {
     if (attempts == upperLimit) {
       std::string msg("Buffer Overflow, while trying to populate "
                       + color_string + " field");
-      return msg;
+      std::shared_ptr<std::string> msg_ptr(&msg);
+      return msg_ptr;
     }
     x = (rand() % this->_length) / 2;  // x co-ordinates
     y = (rand() % this->_width) / 2;   // y co-ordinates

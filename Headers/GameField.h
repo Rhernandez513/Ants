@@ -2,6 +2,7 @@
 #define GAMEFIELD_H
 #include "Ant.h"
 #include "Gameblock.h"
+#include <memory>
 
 namespace Ants {
 class GameField {
@@ -15,7 +16,7 @@ class GameField {
   GameBlock** _gameField;
 
   // Heavy lifting for PopulateField(int numberOfAntsPerTeam)
-  std::string PopulateFieldHelper(int num, Color inColor);
+  std::shared_ptr<std::string> PopulateFieldHelper(int num, Color inColor);
 
  public:
   // Constructor
