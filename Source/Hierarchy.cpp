@@ -36,7 +36,7 @@ Hierarchy& Ants::operator++(Hierarchy& hierarchy) {
   return hierarchy;
 }
 
-std::ostream& Ants::operator<<(std::ostream& os, Hierarchy const hierarchy) {
+std::ostream& Ants::operator<<(std::ostream& os, Hierarchy hierarchy) {
   switch (hierarchy) {
     case (Hierarchy::Queen):
       os << "Queen";

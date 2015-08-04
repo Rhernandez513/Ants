@@ -8,12 +8,14 @@ class GameField {
  private:
   int _length;  // x co-ordinates
   int _width;   // y co-ordinates
+  int _fieldPopAttempts = 0;
+  int _maxFieldPopAttempts = 5;
 
   // Extensible Storage
   GameBlock** _gameField;
 
   // Heavy lifting for PopulateField(int numberOfAntsPerTeam)
-  void PopulateFieldHelper(int num, Color inColor);
+  std::string PopulateFieldHelper(int num, Color inColor);
 
  public:
   // Constructor
@@ -35,6 +37,8 @@ class GameField {
   // Returns Width (y-axis) of the Field
   int GetWidth();
 
+  // Populates The Gamefield with 2x numberOfAntsPerTream
+  // OR ((length * width) * 2/3), whichever is greater
   void PopulateField(int numberOfAntsPerTeam);
 };
 }

@@ -1,10 +1,12 @@
 #include "..\\Headers\\Containers.h"
 #include "..\\Headers\\Ant.h"
+#define TURN_ON_LOGGING
+#include "..\\Headers\\Logger.h"
 #include <iostream>
 
 using namespace Ants;
 
-std::ostream& Ants::operator<<(std::ostream& os, Color const color) {
+std::ostream& Ants::operator<<(std::ostream& os, Color color) {
   switch (color) {
     case (Color::red):
       os << "Red";
