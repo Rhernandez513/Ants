@@ -2,8 +2,7 @@
 #include "..\\Headers\\GameField.h"
 #include "..\\Headers\Gameblock.h"
 #include "..\\Headers\\EventListener.h"
-#define TURN_ON_LOGGING
-#include "..\\Headers\\Log.h"
+#include "..\\Headers\\Logger.h"
 #include <iostream>
 //#include <glut.h>
 #include <string>
@@ -53,6 +52,7 @@ int main() {
     << "The battlefield will be square with sides equal to your "
     "choice...\n\n";
   std::cin >> size;
+  std::cout << size;
   bufferClear();
 
   std::cout << "How large should each colony be? ";
@@ -61,7 +61,7 @@ int main() {
   GameField field(size);
   field.PopulateField(numOfAntsToCreatePerTeam);
   GameSetup();
-  LOG("\n\n\t\tsuccess!!");
+  Ants::Logger::LOG("\n\n\t\tsuccess!!");
   bufferClear();
   return 0;
 }

@@ -1,8 +1,6 @@
 #include "..\\Headers\\Ant.h"
 #include "..\\Headers\\AntHelper.h"
 #include "..\Headers\EventListener.h"
-#define TURN_ON_LOGGING
-#include "..\\Headers\\Log.h"
 #include <iostream>
 
 using namespace Ants;

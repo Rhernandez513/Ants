@@ -1,7 +1,6 @@
 #include "..\\Headers\\EventListener.h"
 #include "..\\Headers\\CommandRunner.h"
-#define TURN_ON_LOGGING
-#include "..\\Headers\\Log.h"
+#include "..\\Headers\\Logger.h"
 
 using namespace Ants;
 
@@ -71,7 +70,7 @@ void CheckBlock(GameBlock * _block) {
       Ants::CommandRunner::PrepForCombat(_block);
     }
   } else {
-    // Aparently we are missing an ant somewhere
+    // Apparently we are missing an ant somewhere
     _block->isFilled = false;
   }
 }
@@ -80,7 +79,9 @@ void CheckBlock(GameBlock * _block) {
 // Magic, do not touch
 void Ants::EventListener::Update(Ant* ant) {
   if (ant->IsDead()) {
-    LOG("A ", ant, " has died honorably trying to fight its foe. . . .\n");
+    std::stringstream stream;
+    stream << "A " << ant << " has died honorably trying to fight its foe. . . .\n";
+    Ants::Logger::LOG(stream.str());
     TrackDeadAnts(ant);
   }
 }

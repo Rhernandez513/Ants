@@ -1,6 +1,4 @@
 #include "..\\Headers\\Hierarchy.h"
-#define TURN_ON_LOGGING
-#include "..\\Headers\\Log.h"
 
 using namespace Ants;
 

@@ -2,8 +2,6 @@
 #include "..\\Headers\\GameField.h"
 #include "..\\Headers\\AntMover.h"
 #include "..\Headers\EventListener.h"
-#define TURN_ON_LOGGING
-#include "..\\Headers\\Log.h"
 #include <iostream>
 #include <time.h>
 

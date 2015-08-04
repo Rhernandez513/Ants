@@ -1,7 +1,6 @@
 #include "..\\Headers\\CommandRunner.h"
 #include "..\\Headers\\EventListener.h"
-#define TURN_ON_LOGGING
-#include "..\\Headers\\Log.h"
+#include "..\\Headers\\Logger.h"
 
 // Exits program depending on input, optional message
 void Ants::CommandRunner::TriggerExit(bool good_exit) {
@@ -10,7 +9,7 @@ void Ants::CommandRunner::TriggerExit(bool good_exit) {
 
 // Exits program depending on input, optional message
 void Ants::CommandRunner::TriggerExit(bool good_exit, std::string msg) {
-  LOG(msg);
+  Ants::Logger::LOG(msg);
   TriggerExit(good_exit);
 }
 

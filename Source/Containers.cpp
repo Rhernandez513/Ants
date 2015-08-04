@@ -1,7 +1,7 @@
 #include "..\\Headers\\Containers.h"
 #include "..\\Headers\\Ant.h"
 #define TURN_ON_LOGGING
-#include "..\\Headers\\Log.h"
+#include "..\\Headers\\Logger.h"
 #include <iostream>
 
 using namespace Ants;

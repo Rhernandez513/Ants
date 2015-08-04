@@ -2,8 +2,6 @@
 #include "..\\Headers\Hierarchy.h"
 #include "..\\Headers\AntHelper.h"
 #include "..\Headers\EventListener.h"
-#define TURN_ON_LOGGING
-#include "..\\Headers\\Log.h"
 #include <time.h>
 
 using namespace Ants;

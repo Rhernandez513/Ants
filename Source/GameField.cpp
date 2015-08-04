@@ -2,8 +2,7 @@
 #include "..\Headers\Ant.h"
 #include "..\\Headers\\Gameblock.h"
 #include "..\\Headers\\EventListener.h"
-#define TURN_ON_LOGGING
-#include "..\\Headers\\Log.h"
+#include "..\\Headers\\Logger.h"
 #include <time.h>
 #include <string>
 
@@ -29,7 +28,7 @@ GameField::GameField(int size) : _length(size), _width(size) {
   // Instantiate the gameboard
   // Field is a 2D array of GameBlocks
   _gameField = new GameBlock *[_length];
-  for (int i = 0; i < _width; ++i) {
+  for (int i = 0; i < _length; ++i) {
     _gameField[i] = new GameBlock[_width];
   }
   // Assign initial empty block values
@@ -99,10 +98,14 @@ void GameField::PopulateField(int numberOfAntsPerTeam) {
   msg1 = PopulateFieldHelper(numberOfAntsPerTeam, Color::red);
   msg2 = PopulateFieldHelper(numberOfAntsPerTeam, Color::blue);
   if(msg1 != good_msg) {
-    LOG("<!!WARN!!>", msg1.c_str(), " #", _fieldPopAttempts);
+    std::stringstream stream;
+    stream << "<!!WARN!!>" << msg1.c_str() << " #" << _fieldPopAttempts;
+    Ants::Logger::LOG(stream.str());
   }
   if(msg2 != good_msg) {
-    LOG("<!!WARN!!>", msg2.c_str(), " #", _fieldPopAttempts);
+    std::stringstream stream;
+    stream << "<!!WARN!!>" << msg2.c_str() << " #" << _fieldPopAttempts;
+    Ants::Logger::LOG(stream.str());
     this->PopulateField(numberOfAntsPerTeam);
   }
 }
@@ -110,10 +113,12 @@ void GameField::PopulateField(int numberOfAntsPerTeam) {
 // Heavy lifting for PopulateField(int numberOfAntsPerTeam)
 std::string GameField::PopulateFieldHelper(int num, Color inColor) {
   std::string color_string;
-  int x, y;
-  int attempts = 0;
+  int x, y, attempts;
+  x = y = attempts = 0;
   int upperLimit = std::numeric_limits<int>::max();
   Position antPos;
+  GameBlock * temp = nullptr;
+
   if (inColor == Color::red) {
     color_string = "red";
   } else {
@@ -136,8 +141,15 @@ std::string GameField::PopulateFieldHelper(int num, Color inColor) {
     y = (rand() % this->_width) / 2;   // y co-ordinates
     antPos.x = (x + this->_width) / 2;
     antPos.y = (y + this->_length) / 2;
-
-    if (this->GetBlock(antPos)->isFilled) {
+    
+    temp = this->GetBlock(antPos);
+    if (temp) { // Check for nullptr
+      if (temp->isFilled) {
+        continue;
+      }
+    }
+    else {
+      // If temp is a nullptr
       continue;
     }
 
