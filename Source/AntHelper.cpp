@@ -4,7 +4,7 @@
 #include "..\\Headers\\Containers.h"
 #include "..\\Headers\\Hierarchy.h"
 #include "..\\Headers\\GameField.h"
-#include <time.h>
+#include "..\\Headers\\RandomHelper.h"
 #include <string>
 #include <iostream>
 
@@ -13,9 +13,7 @@ using namespace Ants;
 // Updates various Game Status's
 void AntHelper::Update(Ants::Ant* ant) {
   if (!ant) return;
-  if (ant->IsDead()) {
-    EventListener::Update(ant);
-  }
+  EventListener::Update(ant);
 }
 
 // Prints This ant's Hierarchy & Color
@@ -36,25 +34,59 @@ std::ostream& Ants::operator<<(std::ostream& os, Ants::Ant* ant) {
 // Returns true if operation successful, false otherwise
 bool Ants::AntHelper::Move(Position position, GameField &field, Ant *ant) {
   if (!ant) return false; // Check for bad pointer input
-  for (int i = 0; i < 4; ++i) {
+  for (int i = 0; i < 256; ++i) {
+    if (position.x < 0) position.x *= -1;  // invert neg
+    if (position.y < 0) position.y *= -1;  // invert neg
     if (field.SetBlock(position, ant)) {
       EventListener::Update(field.GetBlock(ant->GetLocation()));
       return true;
     }
-    int random_choice = std::rand() % 4;
+    int random_choice = RandomHelper::GetRand() % 12;
+    int val = (RandomHelper::GetRand() % 4) + 1; // Avoid 0
     switch (random_choice) {
       case (0) :
-        position.x += 1;
+        position.x += val;
         break;
-      case(1) :
-        position.x -= 2; // Move x to "-1"
+      case (1) :
+        position.x -= val;
         break;
-      case(2) :
-        position.x += 1; // Reset's x back to "0"
-        position.y += 1;
+      case (2) :
+        position.x += val;
+        position.y += val;
         break;
       case (3) :
-        position.y -= 2; // Move y to "-1"
+        position.x -= val;
+        position.y -= val;
+        break;
+      case (4) :
+        position.x -= val;
+        position.y += val;
+        break;
+      case (5) :
+        position.x += val;
+        position.y -= val;
+        break;
+      case (6) :
+        position.y += val;
+        break;
+      case (7) :
+        position.y -= val;
+        break;
+      case (8) :
+        position.x *= val;
+        position.y /= val;
+        break;
+      case (9) :
+        position.x /= val;
+        position.y *= val;
+        break;
+      case (10) :
+        position.x *= val;
+        position.y *= val;
+        break;
+      case (11) :
+        position.x /= val;
+        position.y /= val;
         break;
     }
   }
@@ -65,28 +97,18 @@ bool Ants::AntHelper::Move(Position position, GameField &field, Ant *ant) {
 // on said field.  If a valid Ant is found in a valid position, returns a pointer
 // to said Ant, returns nullptr otherwise
 Ants::Ant * Ants::AntHelper::PickAnt(GameField &field) {
-  std::srand(static_cast<unsigned>(time(nullptr)));
-  Ants::Ant * temp_ant;
-
-  Ants::Position temp_pos;
-  temp_pos.x = std::rand() % field.GetLength();
-  temp_pos.y = std::rand() % field.GetWidth();
-  GameBlock * temp_block = field.GetBlock(temp_pos);
-
-  if (temp_block) { // Check for invalid positions
-    int ant_to_choose = std::rand() % 2;
-    // Random # is even -> pick _ant1
-    if (ant_to_choose == 0) {
-      temp_ant = temp_block->_ant1;
-      temp_block = nullptr;
-      if (temp_ant) return temp_ant;
-    } 
+  GameBlock * temp_block = field.GetRandomBlock();
+  if (temp_block) { // Check for invalid blocks
+    if ((RandomHelper::GetRand() % 2) == 0) {
+      // Random # is even -> pick _ant1
+      if (temp_block->_ant1) return temp_block->_ant1;
+    }
     // Random # is even -> pick _ant2
-    temp_ant = temp_block->_ant2;
-    temp_block = nullptr;
-    if (temp_ant) return temp_ant;
+    // AND/OR (since the block was already proven to be good
+    // if _ant1 is null, attempt to chose _ant2)
+    if (temp_block->_ant2) return temp_block->_ant2;
   }
   // Position chosen wasn't valid
-  // OR Ant Chosen was nullptr
+  // OR both Ants were nullptr
   return nullptr;
 }

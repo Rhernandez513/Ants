@@ -15,10 +15,10 @@ int GameField::GetLength() { return this->_length; }
 // Returns Width (y-axis) of the Field
 int GameField::GetWidth() { return this->_width; }
 
-// Returns True if the Position is within the Gamefield false otherwise
+// Returns True if the Position is within the Game field false otherwise
 bool GameField::CheckIfPositionValid(Position pos) {
-  if (pos.x > _length || pos.x < 0) return false;  // x co-ordinates
-  if (pos.y > _width || pos.y < 0) return false;   // y co-ordinates
+  if (pos.x >= this->GetLength() || pos.x < 0) return false;  // x co-ordinates
+  if (pos.y >= this->GetWidth()  || pos.y < 0) return false;  // y co-ordinates
   return true;
 }
 
@@ -58,10 +58,8 @@ GameField::~GameField() {
 // If the position is valid, returns a reference to the GameBlock
 // at the Specified Position, else returns nullptr
 GameBlock *GameField::GetBlock(Position pos) {
-  GameBlock *block;
   if (this->CheckIfPositionValid(pos)) {
-    block = &this->_gameField[pos.x][pos.y];
-    if (block) return block;
+    return &this->_gameField[pos.x][pos.y];
   }
   return nullptr;
 }
@@ -70,11 +68,8 @@ GameBlock *GameField::GetBlock(Position pos) {
 // Returns true if operation successful, false otherwise
 bool GameField::SetBlock(Position pos, Ant *ant) {
   if (!ant) return false; // Check for bad ant input
-  if (this->_gameField[pos.x][pos.y].isFilled) {  // Both spots are open
-    return false;
-  } else if (!CheckIfPositionValid(pos)) {        // Off the Grid
-    return false;
-  }
+  if (!CheckIfPositionValid(pos)) return false; // Off the Grid
+  if (this->_gameField[pos.x][pos.y].isFilled) return false; // Both spots taken
   if (!this->_gameField[pos.x][pos.y]._ant1) {  // 1st ant * spot is open
     this->_gameField[pos.x][pos.y]._ant1 = ant;
     ant->SetLocation(pos);
@@ -97,29 +92,29 @@ void GameField::PopulateField(int numberOfAntsPerTeam) {
     std::string error_msg = "Field Population failed after 5 attempts";
     EventListener::SetGameFailure(error_msg); // Exits program w/ error_msg
   }
-  std::string * msg1,  msg2;
+  std::string msg1, msg2;
   msg1 = PopulateFieldHelper(numberOfAntsPerTeam, Color::red);
   msg2 = PopulateFieldHelper(numberOfAntsPerTeam, Color::blue);
-  if(msg1) { // We expect a nullptr to be returned if the call was good
+  if(!msg1.empty()) { // We expect an empty string to be returned
     std::ostringstream stream;
-    stream << "<!!WARN!!>" << msg1->c_str() << " #" << _fieldPopAttempts;
+    stream << "<!!WARN!!>" << msg1.c_str() << " #" << _fieldPopAttempts;
     LOG(stream.str());
     this->PopulateField(numberOfAntsPerTeam);
   }
-  if(msg2) { // We expect a nullptr to be returned if the call was good
+  if(!msg2.empty()) { // We expect an empty string to be returned
     std::ostringstream stream;
-    stream << "<!!WARN!!>" << msg2->c_str() << " #" << _fieldPopAttempts;
+    stream << "<!!WARN!!>" << msg2.c_str() << " #" << _fieldPopAttempts;
     LOG(stream.str());
     this->PopulateField(numberOfAntsPerTeam);
   }
 }
 
 // Heavy lifting for PopulateField(int numberOfAntsPerTeam)
-std::string * GameField::PopulateFieldHelper(int num, Color inColor) {
-  std::string color_string;
+std::string GameField::PopulateFieldHelper(int num, Color inColor) {
+  std::string color_string, msg;
   int x, y, attempts;
   x = y = attempts = 0;
-  int upperLimit = std::numeric_limits<int>::max();
+  int upperLimit = std::numeric_limits<int>::max() / 20;  // approx 100million
   Position antPos;
   GameBlock * temp = nullptr;
 
@@ -130,32 +125,21 @@ std::string * GameField::PopulateFieldHelper(int num, Color inColor) {
   }
 
   // Upper limit on Ant amount to prevent over flow
-  if (num > ((this->GetLength() * this->GetWidth()) / 3)) {
-    num = (this->GetLength() * this->GetWidth()) / 3;
+  if (num > ((this->GetLength() * this->GetWidth()) / 4)) {
+    num = (this->GetLength() * this->GetWidth()) / 4;
   }
   // randomly fill field right side
   for (int i = 0; i < num; ++i) {
     if (attempts == upperLimit) {
-      std::string msg("Buffer Overflow, while trying to populate "
-                      + color_string + " field");
-      std::string * msg_ptr(&msg);
-      return msg_ptr;
+      msg = "Buffer Overflow, while trying to populate "
+                      + color_string + " field";
+      return msg;
     }
-    x = (RandomHelper::GetRand() % this->_length) / 2;  // x co-ordinates
-    y = (RandomHelper::GetRand() % this->_width) / 2;   // y co-ordinates
-    antPos.x = (x + this->_width) / 2;
-    antPos.y = (y + this->_length) / 2;
-    
+
+    antPos = this->GetRandomValidPosition();
     temp = this->GetBlock(antPos);
-    if (temp) { // Check for nullptr
-      if (temp->isFilled) {
-        continue;
-      }
-    }
-    else {
-      // If temp is a nullptr
-      continue;
-    }
+    if (!temp) continue;
+    if (temp->isFilled) continue; 
 
     if (i == 0) {
       // Attempts to set the Queen until Successful
@@ -171,7 +155,7 @@ std::string * GameField::PopulateFieldHelper(int num, Color inColor) {
       }
     }
   }
-  return nullptr; // If operation is successful
+  return msg; // If operation is successful should be empty
 }
 
 // Returns a random block within the Field 
@@ -187,6 +171,6 @@ Ants::Position Ants::GameField::GetRandomValidPosition() {
   temp_pos.x = RandomHelper::GetRand() % this->GetLength();
   temp_pos.y = RandomHelper::GetRand() % this->GetWidth();
   return
-    this->CheckIfPositionValid(temp_pos) 
+    this->CheckIfPositionValid(temp_pos)
     ? temp_pos : this->GetRandomValidPosition();
 }

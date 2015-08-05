@@ -3,7 +3,7 @@
 
 namespace Ants {
   namespace RandomHelper {
-    int GetRand();
+    unsigned int GetRand();
   }
 }
 #endif // RANDOM_HELPER_H

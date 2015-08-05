@@ -11,5 +11,5 @@ std::ostream& operator<<(std::ostream& os, Color color);
 
 // Flags checking if the queen has died.
 static bool red_queen_is_dead = false, blue_queen_is_dead = false;
-}
+};
 #endif  // CONTAINERS_H

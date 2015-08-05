@@ -2,11 +2,15 @@
 #include "..\\Headers\\CommandRunner.h"
 #include "..\\Headers\\AntHelper.h"
 #include "..\\Headers\\Logger.h"
+#include "..\\Headers\\Containers.h"
 #include <sstream>
+#include <stack>
 
 using namespace Ants;
 
 namespace {
+
+std::stack<Ant> Dead_Ants;
 
 // Don't mind me, just a data-type
 struct deadAntCount {
@@ -51,21 +55,37 @@ void SetTotalAntsPerTeam(int num) {
 
 // Wipes that nasty Ant residue off of your block
 // Leaves it Shiny and Chrome
-bool CleanAnt(Ant * ant) {
-  if (ant) {
-    if (ant->IsDead()) {
-      delete ant;
-      ant = nullptr;
-      return true;
-    }
-  }
-  return false;
-}
+//bool CleanAnt(Ant * ant) {
+//  if (ant) {
+//    if (ant->IsDead()) {
+//      delete ant;
+//      ant = nullptr;
+//      return true;
+//    }
+//  }
+//  return false;
+//}
 
 // MAGIC
 void CheckBlock(GameBlock * _block) {
-  if (CleanAnt(_block->_ant1) || CleanAnt(_block->_ant2)) {
-    _block->isFilled = false; // Update Filled Value if scrubbed
+  if (_block->_ant1) {
+    EventListener::Update(_block->_ant1);
+    if (_block->_ant1->IsDead()) {
+      Ant * temp = _block->_ant1;
+      Dead_Ants.push(*temp);
+      _block->_ant1 = nullptr;
+    }
+  }
+  if (_block->_ant2) {
+    EventListener::Update(_block->_ant2);
+    if (_block->_ant2->IsDead()) {
+      Ant * temp = _block->_ant2;
+      Dead_Ants.push(*temp);
+      _block->_ant1 = nullptr;
+    }
+  }
+  if(!_block->_ant1 || !_block->_ant2) {
+    _block->isFilled = false; // Update Filled Value if missing one
   }
   if (_block->_ant1 && _block->_ant2) {
     if (_block->_ant1->GetColor() != _block->_ant2->GetColor()) {
@@ -73,9 +93,6 @@ void CheckBlock(GameBlock * _block) {
       // They must engage in GLORIOUS COMBAT!!
       Ants::CommandRunner::PrepForCombat(_block);
     }
-  } else {
-    // Apparently we are missing an ant somewhere
-    _block->isFilled = false;
   }
 }
 } // End Anon namespace
@@ -85,9 +102,12 @@ void Ants::EventListener::Update(Ant* ant) {
   if (!ant) return;
   if (ant->IsDead()) {
     std::ostringstream stream;
-    stream << "A " << ant << " has died honorably trying to fight its foe. . . .\n";
+    stream << "A "
+           << ant
+           << " has died honorably trying to fight its foe. . . .\n";
     LOG(stream.str());
     TrackDeadAnts(ant);
+    //CleanAnt(ant);
   }
 }
 

@@ -19,7 +19,7 @@ using namespace Ants;
 void bufferClear();
 // Combat testing method
 void TestCombat();
-// Set's up gameboard etc
+// Set's up game board etc
 void GameSetup();
 // Executes if game reaches end
 void GameTearDown();
@@ -71,12 +71,13 @@ int main() {
 
 
     //TestCombat();
-    for (int i = 0, max = std::numeric_limits<int>::max(); i < max; ++i) {
+    int max = std::numeric_limits<int>::max() / 20; // approx 100 million
+    for (int i = 0; i < max; ++i) {
       temp_ant = Ants::AntHelper::PickAnt(field);
       if (!temp_ant) {
         continue;
       }
-      Ants::AntHelper::Move(field.GetRandomBlock()->_pos, field, temp_ant);
+      Ants::AntHelper::Move(field.GetRandomValidPosition(), field, temp_ant);
       Ants::CommandRunner::ResolveCombat(blockStack);
     }
     bufferClear();
