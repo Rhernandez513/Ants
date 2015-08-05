@@ -24,3 +24,11 @@ std::ostream& Ants::operator<<(std::ostream& os, Color color) {
   os << Color_to_String(color);
   return os;
 }
+
+// Extensible Storage
+struct GameBlock {
+  bool isFilled = false;
+  Ant* _ant1 = nullptr;
+  Ant* _ant2 = nullptr;
+  Position _pos;
+};

@@ -8,8 +8,8 @@ enum class Direction { LEFT, RIGHT, UP, DOWN };
 enum class Color { red, blue };
 std::string Color_to_String(Ants::Color color);
 std::ostream& operator<<(std::ostream& os, Color color);
+
 // Flags checking if the queen has died.
-static bool red_queen_is_dead = false;
-static bool blue_queen_is_dead = false;
+static bool red_queen_is_dead = false, blue_queen_is_dead = false;
 }
 #endif  // CONTAINERS_H

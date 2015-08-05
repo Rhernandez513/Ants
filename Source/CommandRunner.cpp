@@ -1,7 +1,6 @@
 #include "..\\Headers\\CommandRunner.h"
 #include "..\\Headers\\EventListener.h"
 #include "..\\Headers\\Logger.h"
-#include <memory>
 #include <iostream>
 
 // Exits program depending on input, optional message
@@ -14,7 +13,6 @@ void Ants::CommandRunner::TriggerExit(bool good_exit) {
 // Exits program depending on input, optional message
 void Ants::CommandRunner::TriggerExit(bool good_exit, std::string msg) {
   std::cout << msg << std::endl;
-  LOG(msg);
   TriggerExit(good_exit);
 }
 
@@ -33,17 +31,17 @@ bool Ants::CommandRunner::SetWinner(Ants::Color color) {
 
 // If we determine that the overlapping ants are of different colonies
 // They must engage in GLORIOUS COMBAT!!
-void Ants::CommandRunner::PrepForCombat(GameBlock * _block) {
+void Ants::CommandRunner::PrepForCombat(Ants::GameBlock * _block) {
   // Put the ACTUAL block into the stack
-  if (_block) Ants::blockStack.push(_block);
+  if (_block) Ants::blockStack.push(*_block);
 }
 
 // If two ants overlap over a block, they will attack by
 // Getting popped from the stack
-void Ants::CommandRunner::ResolveCombat(std::stack<GameBlock*>& stack) {
-  GameBlock * temp = nullptr;
+void Ants::CommandRunner::ResolveCombat(std::stack<Ants::GameBlock>& stack) {
+  Ants::GameBlock * temp = nullptr;
   while (!stack.empty()) {
-    temp = stack.top(); // used to manipulate actual blocks on the board
+    temp = &stack.top(); // used to manipulate actual blocks on the board
     stack.pop();
     if (!temp) { continue; } // Check for null blocks
     if (!temp->_ant1 || !temp->_ant2) continue;  // Check for non-paired ants

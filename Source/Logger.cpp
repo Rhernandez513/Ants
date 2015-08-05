@@ -56,7 +56,6 @@ bool logging_started = false;
 }
 
 void Ants::Logger::Log(std::string msg) {
-  std::cout << msg << std::endl;
   if (!logging_started) { StartLogging(); }
   Annotate_impl(msg);
 }
