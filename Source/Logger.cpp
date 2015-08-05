@@ -1,7 +1,10 @@
-#include "..\\Headers\\Logger.h"
-#include "..\\Headers\\AntHelper.h"
 #include "..\\Headers\\Ant.h"
-#include <iostream>
+#include "..\\Headers\\AntHelper.h"
+#include "..\\Headers\\Logger.h"
+#include <string>
+#include <sstream>
+#include <fstream>
+#include <memory>
 
 using namespace Ants::Logger;
 
@@ -25,8 +28,9 @@ bool logging_started = false;
   }
 
   void DestroyLogger() {
-    std::string msg = newline "\t\tLogging Complete!";
+    std::string msg = (newline "\t\tLogging Complete!");
     WriteToLog(msg);
+    LOG(newline "\t\tSuccess!! Logger Closed Properly!!");
     Close_ostream();
   }
 

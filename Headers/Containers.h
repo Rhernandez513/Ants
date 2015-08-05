@@ -1,6 +1,6 @@
 #ifndef CONTAINERS_H
 #define CONTAINERS_H
-#include <iostream>
+#include <ostream>
 
 namespace Ants {
 struct Position { int x; int y; };

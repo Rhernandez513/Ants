@@ -3,7 +3,8 @@
 #include "..\\Headers\AntHelper.h"
 #include "..\Headers\EventListener.h"
 #include "..\\Headers\\Logger.h"
-#include <time.h>
+#include "..\\Headers\\RandomHelper.h"
+#include <sstream>
 
 using namespace Ants;
 
@@ -119,7 +120,7 @@ bool Ant::IsDead() const { return this->_isDead; }
 //void Ant::Turn() {}
 
 // Manually Set's the Ant's Location to the given Position on the given
-// Field if that Location is availible
+// Field if that Location is available
 // Returns true if Ant was set to the new location, false otherwise
 void Ant::SetLocation(Position pos) { this->_position = pos; }
 
@@ -145,8 +146,7 @@ void Ant::Attack(Ant* Enemy) {
               << "s are equal in power!\n";
     LOG(stream.str());
     // Pick one to die randomly
-    srand(static_cast<unsigned>(time(nullptr)));
-    if ((rand() % 8) % 2 == 0) {
+    if (Ants::RandomHelper::GetRand() % 2 == 0) {
       this->Promote();
       Enemy->Die();
     } else {

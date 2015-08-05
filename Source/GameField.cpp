@@ -3,8 +3,10 @@
 #include "..\\Headers\\Gameblock.h"
 #include "..\\Headers\\EventListener.h"
 #include "..\\Headers\\Logger.h"
-#include <time.h>
+#include "..\\Headers\\RandomHelper.h"
 #include <string>
+#include <memory>
+#include <sstream>
 
 using namespace Ants;
 
@@ -25,7 +27,7 @@ GameField::GameField(int size) : _length(size), _width(size) {
   if (this->_length < 0) this->_length *= -1;  // Invert Negative Inputs
   if (this->_width < 0) this->_width *= -1;    // Invert Negative Inputs
 
-  // Instantiate the gameboard
+  // Instantiate the game board
   // Field is a 2D array of GameBlocks
   _gameField = new GameBlock *[_length];
   for (int i = 0; i < _length; ++i) {
@@ -53,10 +55,11 @@ GameField::~GameField() {
   delete _gameField;
 }
 
-// Returns a reference to the GameBlock at the Specified Position
+// If the position is valid, returns a reference to the GameBlock
+// at the Specified Position, else returns nullptr
 GameBlock *GameField::GetBlock(Position pos) {
   GameBlock *block;
-  if (CheckIfPositionValid(pos)) {
+  if (this->CheckIfPositionValid(pos)) {
     block = &this->_gameField[pos.x][pos.y];
     if (block) return block;
   }
@@ -64,7 +67,7 @@ GameBlock *GameField::GetBlock(Position pos) {
 }
 
 // Places the Ant at the Position provided
-// Returns true if operation succesfull, false otherwise
+// Returns true if operation successful, false otherwise
 bool GameField::SetBlock(Position pos, Ant *ant) {
   if (!ant) return false; // Check for bad ant input
   if (this->_gameField[pos.x][pos.y].isFilled) {  // Both spots are open
@@ -127,11 +130,10 @@ std::shared_ptr<std::string> GameField::PopulateFieldHelper(int num, Color inCol
   }
 
   // Upper limit on Ant amount to prevent over flow
-  if (num > ((this->_length * this->_width) / 3)) {
-    num = (this->_length * this->_width) / 3;
+  if (num > ((this->GetLength() * this->GetWidth()) / 3)) {
+    num = (this->GetLength() * this->GetWidth()) / 3;
   }
   // randomly fill field right side
-  srand(static_cast<unsigned>(time(nullptr)));
   for (int i = 0; i < num; ++i) {
     if (attempts == upperLimit) {
       std::string msg("Buffer Overflow, while trying to populate "
@@ -139,8 +141,8 @@ std::shared_ptr<std::string> GameField::PopulateFieldHelper(int num, Color inCol
       std::shared_ptr<std::string> msg_ptr(&msg);
       return msg_ptr;
     }
-    x = (rand() % this->_length) / 2;  // x co-ordinates
-    y = (rand() % this->_width) / 2;   // y co-ordinates
+    x = (RandomHelper::GetRand() % this->_length) / 2;  // x co-ordinates
+    y = (RandomHelper::GetRand() % this->_width) / 2;   // y co-ordinates
     antPos.x = (x + this->_width) / 2;
     antPos.y = (y + this->_length) / 2;
     
@@ -170,4 +172,21 @@ std::shared_ptr<std::string> GameField::PopulateFieldHelper(int num, Color inCol
     }
   }
   return nullptr; // If operation is successful
+}
+
+// Returns a random block within the Field 
+Ants::GameBlock * Ants::GameField::GetRandomBlock() {
+  Ants::Position temp_pos = this->GetRandomValidPosition();
+  GameBlock * temp_block = this->GetBlock(temp_pos);
+  return temp_block ? temp_block : this->GetRandomBlock();
+}
+
+// Returns a valid random Ants::Position within the Field 
+Ants::Position Ants::GameField::GetRandomValidPosition() {
+  Ants::Position temp_pos;
+  temp_pos.x = RandomHelper::GetRand() % this->GetLength();
+  temp_pos.y = RandomHelper::GetRand() % this->GetWidth();
+  return
+    this->CheckIfPositionValid(temp_pos) 
+    ? temp_pos : this->GetRandomValidPosition();
 }

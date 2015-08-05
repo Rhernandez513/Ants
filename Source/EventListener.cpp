@@ -2,12 +2,13 @@
 #include "..\\Headers\\CommandRunner.h"
 #include "..\\Headers\\AntHelper.h"
 #include "..\\Headers\\Logger.h"
+#include <sstream>
 
 using namespace Ants;
 
 namespace {
 
-// Don't mind me, just a datatype
+// Don't mind me, just a data-type
 struct deadAntCount {
   struct colorHolder {
     int count;
@@ -81,6 +82,7 @@ void CheckBlock(GameBlock * _block) {
 
 // Magic, do not touch
 void Ants::EventListener::Update(Ant* ant) {
+  if (!ant) return;
   if (ant->IsDead()) {
     std::ostringstream stream;
     stream << "A " << ant << " has died honorably trying to fight its foe. . . .\n";
@@ -115,11 +117,12 @@ void Ants::EventListener::SetGameFailure() {
 void Ants::EventListener::SetGameSuccess() {
   std::string msg;
   if (red_queen_is_dead) {
-    msg = "\n\n\t\tThe Blue colony has triumphed!!!";
+    msg = newline "\n\t\tThe Blue colony has triumphed!!!";
   } else if (blue_queen_is_dead) {
-    msg = "\n\n\t\tThe Red colony has triumphed!!!";
+    msg = newline "\n\t\tThe Red colony has triumphed!!!";
   } else {
-    msg = "Both colonies fought bravely, but neither was the victor today...";
+    msg = newline "Both colonies fought bravely,"
+                  " but neither was the victor today...";
   }
   Ants::CommandRunner::TriggerExit(true, msg);
 }

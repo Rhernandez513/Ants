@@ -1,6 +1,6 @@
 #ifndef HIERARCHY_H
 #define HIERARCHY_H
-#include <iostream>
+#include <ostream>
 
 namespace Ants {
 

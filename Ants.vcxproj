@@ -149,7 +149,6 @@
   <ItemGroup>
     <ClCompile Include="Source\Ant.cpp" />
     <ClCompile Include="Source\AntHelper.cpp" />
-    <ClCompile Include="Source\AntMover.cpp" />
     <ClCompile Include="Source\CommandRunner.cpp" />
     <ClCompile Include="Source\Containers.cpp" />
     <ClCompile Include="Source\EventListener.cpp" />
@@ -157,11 +156,11 @@
     <ClCompile Include="Source\Logger.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Hierarchy.cpp" />
+    <ClCompile Include="Source\RandomHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Ant.h" />
     <ClInclude Include="Headers\AntHelper.h" />
-    <ClInclude Include="Headers\AntMover.h" />
     <ClInclude Include="Headers\CommandRunner.h" />
     <ClInclude Include="Headers\Containers.h" />
     <ClInclude Include="Headers\EventListener.h" />
@@ -169,6 +168,7 @@
     <ClInclude Include="Headers\GameField.h" />
     <ClInclude Include="Headers\Hierarchy.h" />
     <ClInclude Include="Headers\Logger.h" />
+    <ClInclude Include="Headers\RandomHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="WelcomeMsg.txt" />

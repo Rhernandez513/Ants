@@ -1,6 +1,7 @@
 #ifndef GAMEBLOCK_H
 #define GAMEBLOCK_H
 #include "Ant.h"
+#include "Containers.h"
 #include <stack>
 
 namespace Ants {
