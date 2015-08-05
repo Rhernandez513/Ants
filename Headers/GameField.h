@@ -17,7 +17,7 @@ class GameField {
   GameBlock** _gameField;
 
   // Heavy lifting for PopulateField(int numberOfAntsPerTeam)
-  std::shared_ptr<std::string> PopulateFieldHelper(int num, Color inColor);
+  std::string PopulateFieldHelper(int num, Color inColor);
 
  public:
   // Constructor

@@ -97,7 +97,7 @@ void GameField::PopulateField(int numberOfAntsPerTeam) {
     std::string error_msg = "Field Population failed after 5 attempts";
     EventListener::SetGameFailure(error_msg); // Exits program w/ error_msg
   }
-  std::shared_ptr<std::string> msg1,  msg2;
+  std::string * msg1,  msg2;
   msg1 = PopulateFieldHelper(numberOfAntsPerTeam, Color::red);
   msg2 = PopulateFieldHelper(numberOfAntsPerTeam, Color::blue);
   if(msg1) { // We expect a nullptr to be returned if the call was good
@@ -115,7 +115,7 @@ void GameField::PopulateField(int numberOfAntsPerTeam) {
 }
 
 // Heavy lifting for PopulateField(int numberOfAntsPerTeam)
-std::shared_ptr<std::string> GameField::PopulateFieldHelper(int num, Color inColor) {
+std::string * GameField::PopulateFieldHelper(int num, Color inColor) {
   std::string color_string;
   int x, y, attempts;
   x = y = attempts = 0;
@@ -138,7 +138,7 @@ std::shared_ptr<std::string> GameField::PopulateFieldHelper(int num, Color inCol
     if (attempts == upperLimit) {
       std::string msg("Buffer Overflow, while trying to populate "
                       + color_string + " field");
-      std::shared_ptr<std::string> msg_ptr(&msg);
+      std::string * msg_ptr(&msg);
       return msg_ptr;
     }
     x = (RandomHelper::GetRand() % this->_length) / 2;  // x co-ordinates
