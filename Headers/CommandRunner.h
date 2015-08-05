@@ -15,10 +15,10 @@ void TriggerExit(bool good_exit, std::string msg);
 bool SetWinner(Color color);
 // If we determine that the overlapping ants are of different colonies
 // They must engage in GLORIOUS COMBAT!!
-void PrepForCombat(Ants::GameBlock * _block);
+void PrepForCombat(GameBlock * _block);
 // If two ants overlap over a block, they will attack by
 // Getting popped from the stack
-void ResolveCombat(std::stack<Ants::GameBlock>& stack);
+void ResolveCombat(std::stack<GameBlock*>& stack);
 // Starts the logging procedure
 void SetUpLogging();
 }
