@@ -116,16 +116,16 @@ void GameSetup() {
 //  Ant* BSoldier = new Ant(Ants::Color::red, Hierarchy::Soldier, 2);
 //  Ant* RKnight = new Ant(Ants::Color::red, Hierarchy::Knight, 3);
 //  Ant* BKnight = new Ant(Ants::Color::blue, Hierarchy::Knight, 3);
-//  RWorker->Attack(BQueen);
+//  //RWorker->Attack(BQueen);
 //  RWorker->Attack(BSoldier);
 //  RWorker->Attack(BKnight);
 //  BWorker->Attack(RWorker);
-//  BWorker->Attack(RQueen);
+//  //BWorker->Attack(RQueen);
 //  BWorker->Attack(RSoldier);
 //  BWorker->Attack(RKnight);
 //  BWorker->Attack(RSoldier);
 //  RSoldier->Attack(BSoldier);
-//  RSoldier->Attack(BQueen);
+//  //RSoldier->Attack(BQueen);
 //  RSoldier->Attack(BWorker);
 //  RSoldier->Attack(BKnight);
 //  BSoldier->Attack(RSoldier);
@@ -134,7 +134,7 @@ void GameSetup() {
 //  BSoldier->Attack(RKnight);
 //  RKnight->Attack(BWorker);
 //  RKnight->Attack(BSoldier);
-//  RKnight->Attack(BKnight);
+//  //RKnight->Attack(BKnight);
 //  RKnight->Attack(BQueen);
 //  BKnight->Attack(RWorker);
 //  BKnight->Attack(RSoldier);

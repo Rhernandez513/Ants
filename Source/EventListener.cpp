@@ -85,7 +85,7 @@ void CheckBlock(GameBlock * _block) {
     }
   }
   if(!_block->_ant1 || !_block->_ant2) {
-    _block->isFilled = false; // Update Filled Value if missing one
+      _block->isFilled = false; // Update Filled Value if missing one
   }
   if (_block->_ant1 && _block->_ant2) {
     if (_block->_ant1->GetColor() != _block->_ant2->GetColor()) {

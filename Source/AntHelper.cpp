@@ -37,6 +37,8 @@ bool Ants::AntHelper::Move(Position position, GameField &field, Ant *ant) {
   for (int i = 0; i < 256; ++i) {
     if (position.x < 0) position.x *= -1;  // invert neg
     if (position.y < 0) position.y *= -1;  // invert neg
+    position.x = (position.x + field.GetLength()) % field.GetLength();
+    position.y = (position.y + field.GetWidth()) % field.GetWidth();
     if (field.SetBlock(position, ant)) {
       EventListener::Update(field.GetBlock(ant->GetLocation()));
       return true;
