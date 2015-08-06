@@ -1,75 +1,1769 @@
-
-Welcome to the battlefield!
-
-
-Here, on this kitchen table, the most epic battle between Ants is unfolding...
+1	Welcome to the battlefield!
 
 
+2	Here, on this kitchen table, the most epic battle between Ants is unfolding...
+
+
+3	
+
+
+4	On one side, there are the BLUE ants.
+
+
+5	The other side has RED Ants.
+
+
+6	  They despise each other. . .
+
+
+7	
+
+
+8	Each side has a hierarchy of ant ranks:
+
+
+9	  Worker Ant, Soldier Ant, and Knight Ant, and the Queen...
+
+
+10	(Press Enter to Continue...)
+
+
+11	Every Ant starts out as a Worker Ant gains strength as they battle.
+
+
+12	Queen Ants do not gain strength, but rather are the weakest Ant!
+
+
+13	
+
+
+14	Stronger ants can easily defeat weaker ants!
+
+
+15	If there are two evenly matched ants, fate shall decide who wins, and who dies
+
+
+16	
+
+
+17	Each side has a weak spot, their Queen.
+
+
+18	To win, one colony must:
+
+
+19	Either wipe out at least 90% of the other population.
+
+
+20	Or destroy the opposing colony's Queen.
+
+
+21	
+
+
+22	Are you ready..?  (Press Enter to Continue...)
+
+
+23	How Large should the field of battle be?
+
+
+24	The battlefield will be square with sides equal to your choice...
+
+
+25	Creating a board of size 30
+
+
+26	The Red Worker Ant and Blue Worker Ants are equal in power!
 
 
 
-On one side, there are the BLUE ants.
-
-
-The other side has RED Ants.
-
-
-  They despise each other. . .
+27	A Blue Worker Ant has died honorably trying to fight its foe. . . .
 
 
 
-
-
-Each side has a hierarchy of ant ranks:
-
-
-  Worker Ant, Soldier Ant, and Knight Ant, and the Queen...
-
-
-(Press Enter to Continue...)
-
-
-Every Ant starts out as a Worker Ant gains strength as they battle.
-
-
-Queen Ants do not gain strength, but rather are the weakest Ant!
+28	A Blue Worker Ant has died honorably trying to fight its foe. . . .
 
 
 
-
-
-Stronger ants can easily defeat weaker ants!
-
-
-If there are two evenly matched ants, fate shall decide who wins, and who dies
+29	The Red Knight Ant and Blue Worker Ants are equal in power!
 
 
 
-
-
-Each side has a weak spot, their Queen.
-
-
-To win, one colony must:
-
-
-Either wipe out at least 90% of the other population.
-
-
-Or destroy the opposing colony's Queen.
+30	A Red Knight Ant has died honorably trying to fight its foe. . . .
 
 
 
+31	A Red Knight Ant has died honorably trying to fight its foe. . . .
 
 
-Are you ready..?  (Press Enter to Continue...)
+
+32	A Blue Knight Ant has died honorably trying to fight its foe. . . .
 
 
-How Large should the field of battle be?
+
+33	A Red Knight Ant has died honorably trying to fight its foe. . . .
 
 
-The battlefield will be square with sides equal to your choice...
+
+34	A Blue Knight Ant has died honorably trying to fight its foe. . . .
 
 
+
+35	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+36	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+37	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+38	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+39	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+40	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+41	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+42	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+43	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+44	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+45	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+46	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+47	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+48	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+49	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+50	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+51	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+52	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+53	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+54	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+55	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+56	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+57	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+58	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+59	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+60	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+61	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+62	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+63	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+64	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+65	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+66	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+67	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+68	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+69	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+70	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+71	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+72	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+73	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+74	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+75	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+76	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+77	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+78	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+79	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+80	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+81	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+82	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+83	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+84	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+85	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+86	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+87	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+88	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+89	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+90	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+91	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+92	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+93	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+94	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+95	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+96	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+97	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+98	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+99	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+100	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+101	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+102	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+103	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+104	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+105	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+106	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+107	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+108	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+109	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+110	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+111	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+112	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+113	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+114	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+115	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+116	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+117	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+118	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+119	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+120	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+121	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+122	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+123	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+124	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+125	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+126	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+127	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+128	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+129	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+130	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+131	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+132	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+133	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+134	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+135	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+136	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+137	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+138	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+139	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+140	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+141	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+142	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+143	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+144	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+145	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+146	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+147	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+148	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+149	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+150	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+151	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+152	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+153	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+154	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+155	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+156	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+157	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+158	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+159	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+160	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+161	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+162	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+163	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+164	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+165	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+166	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+167	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+168	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+169	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+170	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+171	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+172	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+173	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+174	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+175	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+176	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+177	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+178	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+179	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+180	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+181	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+182	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+183	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+184	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+185	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+186	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+187	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+188	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+189	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+190	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+191	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+192	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+193	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+194	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+195	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+196	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+197	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+198	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+199	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+200	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+201	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+202	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+203	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+204	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+205	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+206	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+207	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+208	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+209	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+210	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+211	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+212	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+213	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+214	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+215	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+216	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+217	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+218	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+219	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+220	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+221	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+222	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+223	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+224	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+225	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+226	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+227	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+228	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+229	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+230	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+231	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+232	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+233	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+234	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+235	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+236	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+237	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+238	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+239	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+240	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+241	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+242	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+243	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+244	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+245	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+246	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+247	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+248	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+249	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+250	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+251	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+252	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+253	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+254	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+255	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+256	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+257	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+258	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+259	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+260	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+261	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+262	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+263	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+264	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+265	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+266	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+267	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+268	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+269	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+270	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+271	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+272	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+273	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+274	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+275	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+276	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+277	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+278	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+279	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+280	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+281	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+282	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+283	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+284	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+285	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+286	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+287	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+288	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+289	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+290	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+291	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+292	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+293	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+294	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+295	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+296	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+297	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+298	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+299	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+300	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+301	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+302	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+303	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+304	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+305	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+306	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+307	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+308	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+309	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+310	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+311	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+312	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+313	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+314	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+315	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+316	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+317	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+318	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+319	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+320	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+321	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+322	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+323	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+324	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+325	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+326	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+327	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+328	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+329	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+330	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+331	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+332	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+333	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+334	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+335	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+336	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+337	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+338	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+339	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+340	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+341	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+342	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+343	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+344	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+345	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+346	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+347	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+348	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+349	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+350	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+351	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+352	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+353	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+354	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+355	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+356	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+357	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+358	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+359	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+360	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+361	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+362	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+363	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+364	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+365	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+366	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+367	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+368	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+369	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+370	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+371	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+372	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+373	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+374	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+375	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+376	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+377	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+378	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+379	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+380	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+381	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+382	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+383	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+384	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+385	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+386	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+387	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+388	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+389	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+390	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+391	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+392	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+393	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+394	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+395	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+396	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+397	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+398	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+399	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+400	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+401	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+402	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+403	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+404	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+405	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+406	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+407	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+408	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+409	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+410	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+411	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+412	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+413	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+414	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+415	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+416	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+417	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+418	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+419	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+420	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+421	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+422	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+423	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+424	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+425	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+426	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+427	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+428	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+429	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+430	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+431	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+432	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+433	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+434	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+435	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+436	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+437	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+438	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+439	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+440	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+441	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+442	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+443	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+444	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+445	A Red Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+446	A Blue Knight Ant has died honorably trying to fight its foe. . . .
+
+
+
+447	
+Both colonies fought bravely, but neither was the victor today...
+
+
+448	
+
+
+449			*****Logging Complete!*****
 
 

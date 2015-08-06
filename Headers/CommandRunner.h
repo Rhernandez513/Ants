@@ -18,7 +18,7 @@ bool SetWinner(Color color);
 void PrepForCombat(Ants::GameBlock * _block);
 // If two ants overlap over a block, they will attack by
 // Getting popped from the stack
-void ResolveCombat(std::stack<Ants::GameBlock>& stack);
+void ResolveCombat();
 // Starts the logging procedure
 void SetUpLogging();
 }

@@ -12,7 +12,7 @@ void Ants::CommandRunner::TriggerExit(bool good_exit) {
 
 // Exits program depending on input, optional message
 void Ants::CommandRunner::TriggerExit(bool good_exit, std::string msg) {
-  std::cout << msg << std::endl;
+  LOG(msg);
   TriggerExit(good_exit);
 }
 
@@ -33,16 +33,16 @@ bool Ants::CommandRunner::SetWinner(Ants::Color color) {
 // They must engage in GLORIOUS COMBAT!!
 void Ants::CommandRunner::PrepForCombat(Ants::GameBlock * _block) {
   // Put the ACTUAL block into the stack
-  if (_block) Ants::blockStack.push(*_block);
+  if (_block) Ants::blockStack.push(_block);
 }
 
 // If two ants overlap over a block, they will attack by
 // Getting popped from the stack
-void Ants::CommandRunner::ResolveCombat(std::stack<Ants::GameBlock>& stack) {
+void Ants::CommandRunner::ResolveCombat() {
   Ants::GameBlock * temp = nullptr;
-  while (!stack.empty()) {
-    temp = &stack.top(); // used to manipulate actual blocks on the board
-    stack.pop();
+  while (!Ants::blockStack.empty()) {
+    temp = Ants::blockStack.top(); // used to manipulate actual blocks on the board
+    Ants::blockStack.pop();
     if (!temp) { continue; } // Check for null blocks
     if (!temp->_ant1 || !temp->_ant2) continue;  // Check for non-paired ants
     while (!temp->_ant1->IsDead() || !temp->_ant2->IsDead()) {
@@ -50,11 +50,10 @@ void Ants::CommandRunner::ResolveCombat(std::stack<Ants::GameBlock>& stack) {
 
       // _ant 1 will attack _ant 2
       temp->_ant1->Attack(temp->_ant2);
+      if (temp->_ant1->IsDead()) break;  // Inner loop
       if (temp->_ant2->IsDead()) break;  // Inner loop
-
       // _ant 2 will attack _ant 1
       temp->_ant2->Attack(temp->_ant1);
-      if (temp->_ant1->IsDead()) break;  // Inner loop
     } // End inner loop
     if (temp) Ants::EventListener::Update(temp);
   } // End outer loop

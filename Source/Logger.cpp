@@ -14,6 +14,7 @@ std::string file_name = "log.txt";
 std::unique_ptr<std::ofstream> out_stream(new std::ofstream);
 std::ostringstream log_stream;
 bool logging_started = false;
+unsigned line_count = 0;
 
   void WriteToLog(const std::string& data) {
     if (out_stream) {
@@ -24,13 +25,13 @@ bool logging_started = false;
   void Close_ostream() {
     if (out_stream) {
       out_stream->close();
+      std::cout << "\t\tSuccess!! Logger Closed Properly!!" << std::endl;
     }
   }
 
   void DestroyLogger() {
-    std::string msg = (newline "\t\tLogging Complete!");
-    WriteToLog(msg);
-    LOG(newline "\t\tSuccess!! Logger Closed Properly!!");
+    LOG("");
+    LOG("\t\t*****Logging Complete!*****");
     Close_ostream();
   }
 
@@ -50,7 +51,7 @@ bool logging_started = false;
 
   template<typename First, typename...Rest >
   void Annotate_impl(First param1, Rest...param) {
-    log_stream << newline << param1 << std::endl;
+    log_stream << ++line_count << '\t' << param1 << newline << std::endl;
     Annotate_impl(param...);
   }
 }

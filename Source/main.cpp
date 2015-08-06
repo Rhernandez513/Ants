@@ -1,9 +1,7 @@
-#include "..\\Headers\\Ant.h"
 #include "..\\Headers\\AntHelper.h"
 #include "..\\Headers\\GameField.h"
 #include "..\\Headers\Gameblock.h"
 #include "..\\Headers\\EventListener.h"
-#include "..\\Headers\\CommandRunner.h"
 #include "..\\Headers\\Logger.h"
 #include <iostream>
 //#include <glut.h>
@@ -17,12 +15,44 @@ using namespace Ants;
 // Helps with clearing std::cin buffer to prevent infinite loops
 // Can also work like std::cin.get() to accept a Return key press
 void bufferClear();
-// Combat testing method
-void TestCombat();
-// Set's up game board etc
-void GameSetup();
+// Splash message
+int GameSetup();
 // Executes if game reaches end
 void GameTearDown();
+
+
+int main() {
+  Ants::Ant * temp_ant = nullptr;
+  std::stack<GameBlock> blockStack;
+  int numOfAntsToCreatePerTeam = 0;
+  try {
+    GameField field(GameSetup());
+
+    std::cout << "\n\nHow large should each colony be? " newline;
+    std::cin >> numOfAntsToCreatePerTeam; bufferClear();
+    field.PopulateField(numOfAntsToCreatePerTeam);
+
+    // MAIN LOOP
+    int max = std::numeric_limits<int>::max() / 20; // approx 100 million
+    for (int i = 0; i < max; ++i) {
+      temp_ant = Ants::AntHelper::PickAnt(field);
+      if (!temp_ant) { continue; }
+      Ants::AntHelper::Move(field.GetRandomValidPosition(), field, temp_ant);
+    } // END MAIN LOOP
+  } catch (std::runtime_error e) {
+    std::cout << e.what() << std::endl;
+    Ants::EventListener::SetGameFailure(); // Terminate Program not "Happy path"
+  }
+  Ants::EventListener::SetGameFailure("Maximum Ant Movement Attempts exceeded");
+  return 2; // Should not reach
+}
+
+// Helps with clearing std::cin buffer to prevent infinite loops
+// Can also work like std::cin.get() to accept a Return key press
+void bufferClear() {
+  std::cin.clear();
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
 
 // Prints to stdout & logs the supplied file contents
 bool PrintFile(std::string file_name) {
@@ -47,97 +77,30 @@ bool PrintFile(std::string file_name) {
   return true;
 }
 
-int main() {
-  try {
-    Ants::Ant * temp_ant = nullptr;
-    std::stack<GameBlock> blockStack;
-    int size = 0, numOfAntsToCreatePerTeam = 0;
-    GameSetup();
-    std::string question = "How Large should the field of battle be?\n" newline
-      "\nThe battlefield will be square with sides equal to your choice...\n\n";
-    LOG(question + newline);
-    for (int i = 0; i < 19; ++i) {
-      std::cout << newline << std::endl;
-    }
-    std::cout << question;
-    std::cin >> size;
-    bufferClear();
-
-    std::cout << "\n\nHow large should each colony be? " newline;
-    std::cin >> numOfAntsToCreatePerTeam;
-    EventListener::SetStartCond(numOfAntsToCreatePerTeam);
-    GameField field(size);
-    field.PopulateField(numOfAntsToCreatePerTeam);
-
-
-    //TestCombat();
-    int max = std::numeric_limits<int>::max() / 20; // approx 100 million
-    for (int i = 0; i < max; ++i) {
-      temp_ant = Ants::AntHelper::PickAnt(field);
-      if (!temp_ant) {
-        continue;
-      }
-      Ants::AntHelper::Move(field.GetRandomValidPosition(), field, temp_ant);
-      Ants::CommandRunner::ResolveCombat(blockStack);
-    }
-    bufferClear();
-  }
-  catch (std::runtime_error e) {
-    std::cout << e.what() << std::endl;
-    Ants::EventListener::SetGameFailure(); // Terminate Program not "Happy path"
-  }
-  return 0; // Should not reach
-}
-
-// Helps with clearing std::cin buffer to prevent infinite loops
-// Can also work like std::cin.get() to accept a Return key press
-void bufferClear() {
-  std::cin.clear();
-  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-}
-
-// Combat testing method
-void GameSetup() {
-  std::string file_name = "WelcomeMsg.txt";
-  PrintFile(file_name);
-  bufferClear();
+// Splash message
+int GameSetup() {
+  std::string question, desc, file_name;
+  file_name = "WelcomeMsg.txt";
+  question = "How Large should the field of battle be?";
+  desc = "The battlefield will be square with sides equal to your choice...";
+  PrintFile(file_name); bufferClear();
   file_name = "WelcomeMsg2.txt";
-  PrintFile(file_name);
+  PrintFile(file_name); bufferClear();
+  for (int i = 0; i < 19; ++i) {
+    std::cout << newline << std::endl;
+  }
+  LOG(question);
+  LOG(desc);
+  int _size = 0;
+  do {
+    std::cout << question << newline << newline << desc << std::endl;
+    std::cin >> _size;
+    if (_size <= 0) {
+      std::cout << "Invalid input! Try again..." << newline << std::endl;
+    }
+  } while (_size <= 0);
+  std::string msg("Creating a board of size " + std::to_string(_size));
+  std::cout << newline << msg << std::endl; LOG(msg);
   bufferClear();
+  return _size;
 }
-
-//// Simple method for testing some functionality
-//void TestCombat() {
-//  Ant* RQueen = new Ant(Ants::Color::red, Hierarchy::Queen, 0);
-//  Ant* BQueen = new Ant(Ants::Color::blue, Hierarchy::Queen, 0);
-//  Ant* RWorker = new Ant(Ants::Color::red, Hierarchy::Worker, 1);
-//  Ant* BWorker = new Ant(Ants::Color::blue, Hierarchy::Worker, 1);
-//  Ant* RSoldier = new Ant(Ants::Color::red, Hierarchy::Soldier, 2);
-//  Ant* BSoldier = new Ant(Ants::Color::red, Hierarchy::Soldier, 2);
-//  Ant* RKnight = new Ant(Ants::Color::red, Hierarchy::Knight, 3);
-//  Ant* BKnight = new Ant(Ants::Color::blue, Hierarchy::Knight, 3);
-//  //RWorker->Attack(BQueen);
-//  RWorker->Attack(BSoldier);
-//  RWorker->Attack(BKnight);
-//  BWorker->Attack(RWorker);
-//  //BWorker->Attack(RQueen);
-//  BWorker->Attack(RSoldier);
-//  BWorker->Attack(RKnight);
-//  BWorker->Attack(RSoldier);
-//  RSoldier->Attack(BSoldier);
-//  //RSoldier->Attack(BQueen);
-//  RSoldier->Attack(BWorker);
-//  RSoldier->Attack(BKnight);
-//  BSoldier->Attack(RSoldier);
-//  BSoldier->Attack(RQueen);
-//  BSoldier->Attack(RWorker);
-//  BSoldier->Attack(RKnight);
-//  RKnight->Attack(BWorker);
-//  RKnight->Attack(BSoldier);
-//  //RKnight->Attack(BKnight);
-//  RKnight->Attack(BQueen);
-//  BKnight->Attack(RWorker);
-//  BKnight->Attack(RSoldier);
-//  BKnight->Attack(RKnight);
-//  BKnight->Attack(RQueen);
-//}

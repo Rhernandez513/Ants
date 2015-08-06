@@ -10,11 +10,11 @@ using namespace Ants;
 
 // Spawn an Ant!! But you first must construct more pylons!
 Ant::Ant(Color color, Hierarchy heirarchy)
-    :// _num_kills(0)
-  /*,*/_color(color)
-    , _hierarchy(heirarchy)
+  :// _num_kills(0)
+/*,*/_color(color)
+  , _hierarchy(heirarchy)
+  , _isDead(false)
 {
-  _isDead = false;
   switch (this->_hierarchy) {
     case (Hierarchy::Queen):
       _attackPower = 0;
@@ -33,11 +33,9 @@ Ant::Ant(Color color, Hierarchy heirarchy)
 
 // Spawn an Ant!! But you first must construct more pylons!
 Ant::Ant(Color color, Hierarchy hierarchy, int attackpower)
-  : _color(color)
-  , _hierarchy(hierarchy)
-  , _attackPower(attackpower)
-  , _isDead(false)
+  : Ant(color, hierarchy)
 {
+  this->_attackPower = attackpower;
 };
 
 // Destructor
@@ -68,6 +66,9 @@ Color Ant::GetColor() const { return this->_color; }
 // Return's Ant's Ranking in the Hierarchy
 Hierarchy Ant::GetHierarchy() const { return this->_hierarchy; }
 
+// Set Ant's Ranking in the Hierarchy
+void Ant::SetHierarchy(Hierarchy hierarchy) { this->_hierarchy = hierarchy; }
+
 // Set Ant's Attack Power
 void Ant::SetAttackPower(int attackPower) {
   if (attackPower < 0) {
@@ -76,22 +77,9 @@ void Ant::SetAttackPower(int attackPower) {
   this->_attackPower = attackPower;
 }
 
-// Set Ant's Ranking in the Hierarchy
-void Ant::SetHierarchy(Hierarchy hierarchy) {
-  while (this->_hierarchy != hierarchy) {
-    if (this->_hierarchy > hierarchy) {
-      this->Promote();
-    }
-              /*DEPRECATED*/
-    /* else if (this->_hierarchy < hierarchy) {
-      this->Demote();
-    }*/
-  }
-}
-
 // Promote's Ant to next Highest Rank
 void Ant::Promote() {
-  if (this->_hierarchy != Hierarchy::Queen) {
+  if (this->_hierarchy <= Hierarchy::Soldier) {
     // Will not work if Hierarchy is non-continuous
     ++this->_hierarchy;
   }

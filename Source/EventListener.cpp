@@ -9,8 +9,7 @@
 using namespace Ants;
 
 namespace {
-
-std::stack<Ant> Dead_Ants;
+std::stack<Ant *> Dead_Ants;
 
 // Don't mind me, just a data-type
 struct deadAntCount {
@@ -34,16 +33,16 @@ void TrackDeadAnts(Ant * ant) {
     SetWinningTeam(ant->GetColor()); // Exits Game
   }
    // If it's not the Queen we have to actually do stuff  (-.-)
-  double temp_num = (double)count.totalAntPerTeamCount * .9;
+  double temp_num = (double)count.totalAntPerTeamCount * .7;
   if (ant->GetColor() == Color::red) {
     ++count.red_holder.count;
-    if (count.red_holder.count > temp_num) {
-      SetWinningTeam(Color::blue); // 90% of red ants dead, blue team wins
+    if (count.red_holder.count >= temp_num) {
+      SetWinningTeam(Color::blue); // 70% of red ants dead, blue team wins
     }
   } else if (ant->GetColor() == Color::blue) {
     ++count.blue_holder.count;
-    if (count.blue_holder.count > temp_num) {
-      SetWinningTeam(Color::red); // 90% of blue ants dead, red team wins
+    if (count.blue_holder.count >= temp_num) {
+      SetWinningTeam(Color::red); // 70% of blue ants dead, red team wins
     }
   }
 }
@@ -55,33 +54,26 @@ void SetTotalAntsPerTeam(int num) {
 
 // Wipes that nasty Ant residue off of your block
 // Leaves it Shiny and Chrome
-//bool CleanAnt(Ant * ant) {
-//  if (ant) {
-//    if (ant->IsDead()) {
-//      delete ant;
-//      ant = nullptr;
-//      return true;
-//    }
-//  }
-//  return false;
-//}
+void CleanAnt(Ant * ant) {
+  if (ant) {
+    if (ant->IsDead()) {
+      ant = nullptr;
+    }
+  }
+}
 
 // MAGIC
 void CheckBlock(GameBlock * _block) {
   if (_block->_ant1) {
     EventListener::Update(_block->_ant1);
     if (_block->_ant1->IsDead()) {
-      Ant * temp = _block->_ant1;
-      Dead_Ants.push(*temp);
-      _block->_ant1 = nullptr;
+      CleanAnt(_block->_ant1);
     }
   }
   if (_block->_ant2) {
     EventListener::Update(_block->_ant2);
     if (_block->_ant2->IsDead()) {
-      Ant * temp = _block->_ant2;
-      Dead_Ants.push(*temp);
-      _block->_ant1 = nullptr;
+      CleanAnt(_block->_ant2);
     }
   }
   if(!_block->_ant1 || !_block->_ant2) {
@@ -92,6 +84,7 @@ void CheckBlock(GameBlock * _block) {
       // If we determine that the overlapping ants are of different colonies
       // They must engage in GLORIOUS COMBAT!!
       Ants::CommandRunner::PrepForCombat(_block);
+      Ants::CommandRunner::ResolveCombat();
     }
   }
 }
@@ -107,7 +100,6 @@ void Ants::EventListener::Update(Ant* ant) {
            << " has died honorably trying to fight its foe. . . .\n";
     LOG(stream.str());
     TrackDeadAnts(ant);
-    //CleanAnt(ant);
   }
 }
 
@@ -124,7 +116,7 @@ void Ants::EventListener::SetStartCond(int num) {
 
 // FATAL ERROR EXITS GAME, optional msg
 void Ants::EventListener::SetGameFailure(std::string msg) {
-  std::string _msg = "\n\n\t\tSeems Like Something Went Wrong...\n\n";
+  std::string _msg = newline "\t\tSeems Like Something Went Wrong..." newline;
   Ants::CommandRunner::TriggerExit(false, (msg + _msg));
 }
 
@@ -137,9 +129,9 @@ void Ants::EventListener::SetGameFailure() {
 void Ants::EventListener::SetGameSuccess() {
   std::string msg;
   if (red_queen_is_dead) {
-    msg = newline "\n\t\tThe Blue colony has triumphed!!!";
+    msg = newline "\t\tThe Blue colony has triumphed!!!";
   } else if (blue_queen_is_dead) {
-    msg = newline "\n\t\tThe Red colony has triumphed!!!";
+    msg = newline "\t\tThe Red colony has triumphed!!!";
   } else {
     msg = newline "Both colonies fought bravely,"
                   " but neither was the victor today...";

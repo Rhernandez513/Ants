@@ -26,7 +26,7 @@ std::ostream& Ants::operator<<(std::ostream& os, Color color) {
 }
 
 // Extensible Storage
-struct GameBlock {
+class GameBlock {
   bool isFilled = false;
   Ant* _ant1 = nullptr;
   Ant* _ant2 = nullptr;

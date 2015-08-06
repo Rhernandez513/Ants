@@ -98,6 +98,7 @@ bool GameField::SetBlock(Position pos, Ant *ant) {
 // Populates The Gamefield with 2x numberOfAntsPerTream
 // OR ((length * width) * 2/3), whichever is greater
 void GameField::PopulateField(int numberOfAntsPerTeam) {
+  EventListener::SetStartCond(numberOfAntsPerTeam);
   if (this->_fieldPopAttempts >= this->_maxFieldPopAttempts) {
     std::string error_msg = "Field Population failed after 5 attempts";
     EventListener::SetGameFailure(error_msg); // Exits program w/ error_msg

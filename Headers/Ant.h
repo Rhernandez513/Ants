@@ -12,6 +12,7 @@ class Ant {
   Direction _direction;  // direction ant is facing
   int _attackPower;
   bool _isDead;  // True if dead
+  bool _just_promoted;
 
   Position _position;  // (x,y)
 

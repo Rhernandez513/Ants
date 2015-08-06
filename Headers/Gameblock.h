@@ -13,6 +13,6 @@ struct GameBlock {
   Ant* _ant2;
   Position _pos;
 };
-static std::stack<GameBlock> blockStack;
+static std::stack<GameBlock*> blockStack;
 }
 #endif  // GAMEBLOCK_H
