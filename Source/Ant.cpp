@@ -95,10 +95,7 @@ void Ant::Promote() {
 //}
 
 // This Kills the Ant...
-void Ant::Die() {
-  this->_isDead = true;
-  AntHelper::Update(this);
-}
+void Ant::Die() { this->_isDead = true; }
 
 // Returns true if the Ant is Dead
 // False otherwise

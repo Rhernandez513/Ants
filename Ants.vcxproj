@@ -48,7 +48,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>FastLTCG</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -151,6 +151,7 @@
     <ClCompile Include="Source\CommandRunner.cpp" />
     <ClCompile Include="Source\Containers.cpp" />
     <ClCompile Include="Source\EventListener.cpp" />
+    <ClCompile Include="Source\GameBlock.cpp" />
     <ClCompile Include="Source\GameField.cpp" />
     <ClCompile Include="Source\Logger.cpp" />
     <ClCompile Include="Source\main.cpp" />

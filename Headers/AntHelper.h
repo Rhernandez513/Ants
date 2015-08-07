@@ -6,8 +6,6 @@
 
 namespace Ants {
 namespace AntHelper {
-// Updates various Game Status's
-void Update(Ant* ant);
 
 // Moves the specified Ant to the specified Position on the Provided Gamefield
 // Returns true if operation successful, false otherwise

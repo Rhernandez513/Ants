@@ -44,7 +44,6 @@ void ResolveCombat() {
       // _ant 2 will attack _ant 1
       temp->_ant2->Attack(temp->_ant1);
     } // End inner loop
-    if (temp) Ants::EventListener::Update(temp);
   } // End outer loop
 }
 
@@ -89,40 +88,21 @@ void CleanAnt(Ant * ant) {
   }
 }
 
-// MAGIC
-void CheckBlock(GameBlock * _block) {
-  if (_block->_ant1) {
-    EventListener::Update(_block->_ant1);
-    if (_block->_ant1->IsDead()) {
-      CleanAnt(_block->_ant1);
-    }
-  }
-  if (_block->_ant2) {
-    EventListener::Update(_block->_ant2);
-    if (_block->_ant2->IsDead()) {
-      CleanAnt(_block->_ant2);
-    }
-  }
+// Returns true if two ants are within the block of different colors
+bool CheckBlock(GameBlock * _block) {
+  if (!_block) return false;
+  if (_block->_ant1) EventListener::Update(_block->_ant1);
+  if (_block->_ant2) EventListener::Update(_block->_ant2);
   if(!_block->_ant1 || !_block->_ant2) {
       _block->isFilled = false; // Update Filled Value if missing one
+  } else if (_block->_ant1 && _block->_ant2) {
+    if (_block->_ant1->GetColor() != _block->_ant2->GetColor())
+      return true;
   }
-  if (_block->_ant1 && _block->_ant2) {
-    if (_block->_ant1->GetColor() != _block->_ant2->GetColor()) {
-      // If we determine that the overlapping ants are of different colonies
-      // They must engage in GLORIOUS COMBAT!!
-      PrepForCombat(_block);
-      ResolveCombat();
-    }
-  }
+  return false;
 }
-} // End Anon namespace
 
-// If we determine that the overlapping ants are of different colonies
-// They must engage in GLORIOUS COMBAT!!
-void PrepForCombat(Ants::GameBlock * _block);
-// If two ants overlap over a block, they will attack by
-// Getting popped from the stack
-void ResolveCombat();
+} // End Anon namespace
 
 
 // Magic, do not touch
@@ -135,12 +115,17 @@ void Ants::EventListener::Update(Ant* ant) {
            << " has died honorably trying to fight its foe. . . .\n";
     LOG(stream.str());
     TrackDeadAnts(ant);
+    CleanAnt(ant);
   }
 }
 
 // Magic, do not touch
 void Ants::EventListener::Update(GameBlock * _block) {
-  if (_block) CheckBlock(_block);
+  if (!_block) return;
+  if (CheckBlock(_block)) {
+    PrepForCombat(_block);
+    ResolveCombat();
+  }
 }
 
 // Magic, do not touch

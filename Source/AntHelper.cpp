@@ -10,12 +10,6 @@
 
 using namespace Ants;
 
-// Updates various Game Status's
-void AntHelper::Update(Ants::Ant* ant) {
-  if (!ant) return;
-  EventListener::Update(ant);
-}
-
 // Prints This ant's Hierarchy & Color
 // Example
 // Ant red_ant(red, worker, 1);
@@ -37,14 +31,14 @@ bool Ants::AntHelper::Move(Position position, GameField &field, Ant *ant) {
   for (int i = 0; i < 256; ++i) {
     if (position.x < 0) position.x *= -1;  // invert neg
     if (position.y < 0) position.y *= -1;  // invert neg
-    position.x = (position.x + field.GetLength()) % field.GetLength();
-    position.y = (position.y + field.GetWidth()) % field.GetWidth();
+    position.x = position.x % field.GetLength();
+    position.y = position.y % field.GetWidth();
     if (field.SetBlock(position, ant)) {
       EventListener::Update(field.GetBlock(ant->GetLocation()));
       return true;
     }
     int random_choice = RandomHelper::GetRand() % 12;
-    int val = (RandomHelper::GetRand() % 4) + 1; // Avoid 0
+    int val = (RandomHelper::GetRand() % 15485863) + 1; // Large Prime, Avoid 0
     switch (random_choice) {
       case (0) :
         position.x += val;
