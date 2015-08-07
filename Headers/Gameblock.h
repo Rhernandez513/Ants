@@ -7,11 +7,14 @@
 namespace Ants {
 
 // Extensible Storage
-struct GameBlock {
+class GameBlock {
+private:
   bool isFilled;
   Ant* _ant1;
   Ant* _ant2;
   Position _pos;
+public:
+  void UpdateFilled();
 };
 static std::stack<GameBlock*> blockStack;
 }

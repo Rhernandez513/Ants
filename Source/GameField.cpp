@@ -70,6 +70,7 @@ bool GameField::SetBlock(Position pos, Ant *ant) {
   int x = Ants::RandomHelper::GetRand() % 2;
   if (!ant) return false; // Check for bad ant input
   if (!CheckIfPositionValid(pos)) return false; // Off the Grid
+  this->GetBlock(pos)->UpdateFilled();
   if (this->_gameField[pos.x][pos.y].isFilled) return false; // Both spots taken
   if (x == 0) { // Try ant1 slot
     if (this->_gameField[pos.x][pos.y]._ant1) {
@@ -89,9 +90,6 @@ bool GameField::SetBlock(Position pos, Ant *ant) {
     }
   }
   // Both spots are open and block wasn't properly set to full
-  if (this->_gameField[pos.x][pos.y]._ant1 &&
-      this->_gameField[pos.x][pos.y]._ant1
-     ) this->_gameField[pos.x][pos.y].isFilled = true;
   return false;
 }
 
