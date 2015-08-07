@@ -1,5 +1,4 @@
 #include "..\\Headers\\EventListener.h"
-#include "..\\Headers\\CommandRunner.h"
 #include "..\\Headers\\AntHelper.h"
 #include "..\\Headers\\Logger.h"
 #include "..\\Headers\\Containers.h"
@@ -19,11 +18,39 @@ struct deadAntCount {
   int totalAntPerTeamCount;
 } count;
 
+// If we determine that the overlapping ants are of different colonies
+// They must engage in GLORIOUS COMBAT!!
+void PrepForCombat(Ants::GameBlock * _block) {
+  // Put the ACTUAL block into the stack
+  if (_block) Ants::blockStack.push(_block);
+}
+
+// If two ants overlap over a block, they will attack by
+// Getting popped from the stack
+void ResolveCombat() {
+  Ants::GameBlock * temp = nullptr;
+  while (!Ants::blockStack.empty()) {
+    temp = Ants::blockStack.top(); // used to manipulate blocks on the board
+    Ants::blockStack.pop();
+    if (!temp) { continue; } // Check for null blocks
+    if (!temp->_ant1 || !temp->_ant2) continue;  // Check for non-paired ants
+    while (!temp->_ant1->IsDead() || !temp->_ant2->IsDead()) {
+      // first while loop to check if either _ant is dead
+
+      // _ant 1 will attack _ant 2
+      temp->_ant1->Attack(temp->_ant2);
+      if (temp->_ant1->IsDead()) break;  // Inner loop
+      if (temp->_ant2->IsDead()) break;  // Inner loop
+      // _ant 2 will attack _ant 1
+      temp->_ant2->Attack(temp->_ant1);
+    } // End inner loop
+    if (temp) Ants::EventListener::Update(temp);
+  } // End outer loop
+}
+
 // Someone must have won the game
 void SetWinningTeam(Color color) {
-  if (CommandRunner::SetWinner(color)) {
-    EventListener::SetGameSuccess();
-  }
+    EventListener::SetGameSuccess(color);
 }
 
 // If you look closely you'll see this is where the magic happens
@@ -83,12 +110,20 @@ void CheckBlock(GameBlock * _block) {
     if (_block->_ant1->GetColor() != _block->_ant2->GetColor()) {
       // If we determine that the overlapping ants are of different colonies
       // They must engage in GLORIOUS COMBAT!!
-      Ants::CommandRunner::PrepForCombat(_block);
-      Ants::CommandRunner::ResolveCombat();
+      PrepForCombat(_block);
+      ResolveCombat();
     }
   }
 }
 } // End Anon namespace
+
+// If we determine that the overlapping ants are of different colonies
+// They must engage in GLORIOUS COMBAT!!
+void PrepForCombat(Ants::GameBlock * _block);
+// If two ants overlap over a block, they will attack by
+// Getting popped from the stack
+void ResolveCombat();
+
 
 // Magic, do not touch
 void Ants::EventListener::Update(Ant* ant) {
@@ -126,15 +161,14 @@ void Ants::EventListener::SetGameFailure() {
 }
 
 // Evaluate's Win Condition and exits game
-void Ants::EventListener::SetGameSuccess() {
+void Ants::EventListener::SetGameSuccess(Ants::Color color) {
   std::string msg;
-  if (red_queen_is_dead) {
-    msg = newline "\t\tThe Blue colony has triumphed!!!";
-  } else if (blue_queen_is_dead) {
-    msg = newline "\t\tThe Red colony has triumphed!!!";
-  } else {
-    msg = newline "Both colonies fought bravely,"
-                  " but neither was the victor today...";
-  }
+  if (color == Color::blue) {
+    msg = "\t\tThe Blue colony has triumphed!!!";
+  } else if (color == Color::red) {
+    msg = "\t\tThe Red colony has triumphed!!!";
+  }/* else {
+    msg =  "Both colonies fought bravely, but neither was the victor today...";
+  }*/
   Ants::CommandRunner::TriggerExit(true, msg);
 }

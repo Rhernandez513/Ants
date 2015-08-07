@@ -16,55 +16,11 @@ void Ants::CommandRunner::TriggerExit(bool good_exit, std::string msg) {
   TriggerExit(good_exit);
 }
 
-// Trip Wire for the Winner!
-bool Ants::CommandRunner::SetWinner(Ants::Color color) {
-  switch (color) {
-    case(Color::red) :
-      Ants::red_queen_is_dead = true;
-      return true;
-    case(Color::blue) :
-      Ants::blue_queen_is_dead = true;
-      return true;
-  }
-  return false;
-}
-
-// If we determine that the overlapping ants are of different colonies
-// They must engage in GLORIOUS COMBAT!!
-void Ants::CommandRunner::PrepForCombat(Ants::GameBlock * _block) {
-  // Put the ACTUAL block into the stack
-  if (_block) Ants::blockStack.push(_block);
-}
-
-// If two ants overlap over a block, they will attack by
-// Getting popped from the stack
-void Ants::CommandRunner::ResolveCombat() {
-  Ants::GameBlock * temp = nullptr;
-  while (!Ants::blockStack.empty()) {
-    temp = Ants::blockStack.top(); // used to manipulate actual blocks on the board
-    Ants::blockStack.pop();
-    if (!temp) { continue; } // Check for null blocks
-    if (!temp->_ant1 || !temp->_ant2) continue;  // Check for non-paired ants
-    while (!temp->_ant1->IsDead() || !temp->_ant2->IsDead()) {
-      // first while loop to check if either _ant is dead
-
-      // _ant 1 will attack _ant 2
-      temp->_ant1->Attack(temp->_ant2);
-      if (temp->_ant1->IsDead()) break;  // Inner loop
-      if (temp->_ant2->IsDead()) break;  // Inner loop
-      // _ant 2 will attack _ant 1
-      temp->_ant2->Attack(temp->_ant1);
-    } // End inner loop
-    if (temp) Ants::EventListener::Update(temp);
-  } // End outer loop
-}
-
 // Starts the logging procedure
 void Ants::CommandRunner::SetUpLogging() {
   try {
     Ants::Logger::StartLogging();
-  }
-  catch (std::runtime_error e) {
+  } catch (std::runtime_error e) {
     std::string error_msg = e.what();
     Ants::CommandRunner::TriggerExit(false, error_msg);
   }
