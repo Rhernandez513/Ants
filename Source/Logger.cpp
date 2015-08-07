@@ -51,7 +51,7 @@ unsigned line_count = 0;
 
   template<typename First, typename...Rest >
   void Annotate_impl(First param1, Rest...param) {
-    log_stream << ++line_count << '\t' << param1 << newline << std::endl;
+    log_stream << ++line_count << '\t' << param1 << newline;
     Annotate_impl(param...);
   }
 }
