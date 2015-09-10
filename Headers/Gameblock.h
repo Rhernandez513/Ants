@@ -15,6 +15,11 @@ private:
   Position _pos;
 public:
   void UpdateFilled();
+  bool GetFilled();
+  Ant* GetAnt1();
+  Ant* GetAnt2();
+  bool SetAnt(Ant * ant);
+  Position GetPosition();
 };
 static std::stack<GameBlock*> blockStack;
 }

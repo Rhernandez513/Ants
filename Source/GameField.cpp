@@ -71,24 +71,7 @@ bool GameField::SetBlock(Position pos, Ant *ant) {
   if (!ant) return false; // Check for bad ant input
   if (!CheckIfPositionValid(pos)) return false; // Off the Grid
   this->GetBlock(pos)->UpdateFilled();
-  if (this->_gameField[pos.x][pos.y].isFilled) return false; // Both spots taken
-  if (x == 0) { // Try ant1 slot
-    if (this->_gameField[pos.x][pos.y]._ant1) {
-      return false;
-    } else {  // 1st ant * spot is open
-      this->_gameField[pos.x][pos.y]._ant1 = ant;
-      ant->SetLocation(pos);
-      return true;
-    }
-  } else if (x == 1) { // Try ant2 slot
-    if (this->_gameField[pos.x][pos.y]._ant2) {
-      return false;
-    } else {  // 2nd ant * spot is open
-      this->_gameField[pos.x][pos.y]._ant2 = ant;
-      ant->SetLocation(pos);
-      return true;
-    }
-  }
+
   // Both spots are open and block wasn't properly set to full
   return false;
 }
@@ -148,7 +131,7 @@ std::string GameField::PopulateFieldHelper(int num, Color inColor) {
     antPos = this->GetRandomValidPosition();
     temp = this->GetBlock(antPos);
     if (!temp) continue;
-    if (temp->isFilled) continue; 
+    if (temp->GetFilled()) continue; 
 
     if (i == 0) {
       // Attempts to set the Queen until Successful
